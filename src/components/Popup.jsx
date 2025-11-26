@@ -60,12 +60,8 @@ const Popup = () => {
             </Button>
             
             <div className="p-2">
-              {!imageLoaded && (
-                <div className="w-full h-64 flex items-center justify-center bg-gray-100 rounded-lg">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                </div>
-              )}
-              <img 
+             
+                <img 
                 src="https://aia.in.net/assets/images/Other-Pages-Pop-Up.jpg" 
                 alt="Internal Audit Training Course"
                 className={`w-full h-auto rounded-lg transition-opacity duration-300 ${
@@ -77,6 +73,9 @@ const Popup = () => {
                   setImageLoaded(true);
                 }}
               />
+
+              
+          
             </div>
           </div>
         </DialogContent>

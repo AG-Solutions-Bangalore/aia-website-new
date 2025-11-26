@@ -9,6 +9,20 @@ export const CompanyMarquee = () => {
     ];
   
     return (
+      <>
+      <style>
+        {`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+          }
+
+          .marquee {
+            animation: marquee 20s linear infinite;
+          }
+        `}
+      </style>
+
       <div className="w-full bg-muted py-16 overflow-hidden">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -16,30 +30,30 @@ export const CompanyMarquee = () => {
           </h2>
         </div>
         
-        {/* Added fixed height to the marquee container */}
-        <div className="relative flex overflow-hidden h-24"> {/* Changed this line */}
+
+        <div className="relative flex overflow-hidden h-24"> 
           
-          <div className="flex animate-marquee whitespace-nowrap items-center"> {/* Added items-center */}
+          <div className="flex marquee whitespace-nowrap items-center">
             {companies.map((c, i) => (
               <div key={`first-${i}`} className="mx-8 flex items-center justify-center">
-                {/* Added fixed height and max-width to images */}
+          
                 <img 
                   src={c.src} 
                   alt={c.alt} 
-                  className="h-16 w-auto object-contain max-w-[120px]" // Changed this line
+                  className="h-16 w-auto object-contain max-w-[120px]"
                 />
               </div>
             ))}
           </div>
   
-          <div className="flex animate-marquee whitespace-nowrap items-center" aria-hidden="true"> {/* Added items-center */}
+          <div className="flex marquee whitespace-nowrap items-center" aria-hidden="true"> 
             {companies.map((c, i) => (
               <div key={`second-${i}`} className="mx-8 flex items-center justify-center">
-                {/* Added fixed height and max-width to images */}
+           
                 <img 
                   src={c.src} 
                   alt={c.alt} 
-                  className="h-16 w-auto object-contain max-w-[120px]" // Changed this line
+                  className="h-16 w-auto object-contain max-w-[120px]" 
                 />
               </div>
             ))}
@@ -47,5 +61,6 @@ export const CompanyMarquee = () => {
   
         </div>
       </div>
+      </>
     );
   };
