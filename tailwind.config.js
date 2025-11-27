@@ -90,12 +90,6 @@ export default {
   				},
   				'100%': {
   					transform: 'translateX(-100%)'
-  				},
-  				from: {
-  					transform: 'translateX(0)'
-  				},
-  				to: {
-  					transform: 'translateX(calc(-100% - var(--gap)))'
   				}
   			}
   		},
