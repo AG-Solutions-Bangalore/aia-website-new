@@ -85,7 +85,6 @@ export default function MapComponent() {
     });
 
     function galleryHTML(regionTitle, images) {
-      console.log(images, "images");
       let columns = 1;
       if (images.length === 2) columns = 2;
       else if (images.length == 3) columns = 3;
