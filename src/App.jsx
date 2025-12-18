@@ -34,7 +34,7 @@ function App() {
   };
   return (
     <>
-      {/* <div className="fixed bottom-20 right-6 z-[10000] space-x-6">
+      <div className="fixed bottom-20 right-6 z-[10000] space-x-6">
         <Button
           onClick={() => navigate("/map")}
           className=" bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg shadow-lg text-base"
@@ -53,7 +53,7 @@ function App() {
         >
           Map New{" "}
         </Button>
-      </div> */}
+      </div>
       <Toaster richColors position="top-right" />
       <ScrollToTop />
       <AppRoutes />
