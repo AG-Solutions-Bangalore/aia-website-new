@@ -29,6 +29,7 @@ import CamsMap from "@/components/courses/cams/cams-map";
 import AboutTrainerSection from "@/components/about/about-trainer-section";
 import HomeAlumniWork from "@/components/home/home-alumini-work";
 import CamsFaq from "@/components/courses/cams/cams-faq";
+import CamsReview from "@/components/courses/cams/cams-review";
 
 const CAMS = () => {
   return (
@@ -41,9 +42,12 @@ const CAMS = () => {
 <CamsWhyAia/>
 <CamsHighlight/>
 <CamsMap/>
+<CamsReview/>
 <AboutTrainerSection/>
+
 <HomeAlumniWork/>
 <CamsFaq/>
+
 
 
 {/* 
