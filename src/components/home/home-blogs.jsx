@@ -8,6 +8,7 @@ import axios from "axios";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { BASE_URL } from "@/api/base-url";
 
 // -------------------- HomeBlog Component --------------------
 const HomeBlog = () => {
@@ -22,7 +23,7 @@ const HomeBlog = () => {
     queryKey: ["aia-blog"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getFrontBlogs"
+          `${BASE_URL}/api/getFrontBlogs`
       );
       return res.data;
     },

@@ -4,13 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 import TestimonialsColumn2 from "@/components/ui/testimonial-column-2";
 import usePreloadImages from "@/hooks/usePreloadImages";
+import { BASE_URL } from "@/api/base-url";
 
 const HomePassout = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ["passout-students"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getAllPassoutStudents"
+         `${BASE_URL}/api/getAllPassoutStudents`
       );
       return res.data;
     },

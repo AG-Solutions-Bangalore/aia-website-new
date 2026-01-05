@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Calendar, ArrowRight, Clock, BookOpen, Tag } from "lucide-react";
+import { BASE_URL } from "@/api/base-url";
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -16,7 +17,7 @@ const Blog = () => {
   const fetchBlogs = async () => {
     try {
       const response = await axios.get(
-        "https://aia.in.net/webapi/public/api/getAllBlogs"
+           `${BASE_URL}/api/getAllBlogs`
       );
       setBlogs(response.data.data || []);
       

@@ -10,6 +10,7 @@ import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "./map.css";
+import { BASE_URL } from "@/api/base-url";
 
 const MAX_PHOTOS = 6;
 
@@ -22,7 +23,7 @@ const CamsMap = () => {
     queryKey: ["student-map-data"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getAllPassoutStudentsMap"
+           `${BASE_URL}/api/getAllPassoutStudentsMap`
       );
       return res.data;
     },
@@ -190,16 +191,15 @@ const CamsMap = () => {
       });
     });
 
-    // Add markers for each country
+ 
     Object.keys(groupedByCountry).forEach((country) => {
       const students = groupedByCountry[country];
       if (students.length === 0) return;
 
-      // Use the coordinates from the first student in the country
       const firstStudent = students[0];
       const coords = [firstStudent.lat, firstStudent.lng];
       
-      // Validate coordinates
+  
       if (isNaN(coords[0]) || isNaN(coords[1])) {
         console.warn(`Invalid coordinates for ${country}:`, coords);
         return;
@@ -266,7 +266,7 @@ const CamsMap = () => {
     );
   }
 
-  return <div id="map" style={{ height: "100vh", width: "100%" }} />;
+  return <div id="map" style={{ height: "100vh", width: "95.5%" }}  className="mx-auto"/>;
 };
 
 export default CamsMap;
