@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Calendar, Clock, ArrowLeft, Image as ImageIcon } from 'lucide-react';
+import { BASE_URL } from '@/api/base-url';
 
 
 const BlogDetails = () => {
@@ -140,7 +141,7 @@ const [currentStudentIndex, setCurrentStudentIndex] = useState(0);
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://aia.in.net/webapi/public/api/getBlogbySlug/${id}`
+           `${BASE_URL}/api/getBlogbySlug/${id}`
       );
       
       const blogData = response.data.data;

@@ -6,13 +6,14 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 import { CardCarousel } from "@/components/ui/card-carousel";
 import axios from "axios";
+import { BASE_URL } from "@/api/base-url";
 
 const CamsRecentPassout = () => {
   const { data: camsPassoutData, isLoading, isError, refetch } = useQuery({
     queryKey: ["cams-passout-students"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getPassoutStudentbyCourse/CAMS"
+          `${BASE_URL}/api/getPassoutStudentbyCourse/CAMS`
       );
       return res.data;
     },

@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { BASE_URL } from '@/api/base-url';
 
 const HomeYoutube = () => {
   const [activeTab, setActiveTab] = useState('');
@@ -12,7 +13,7 @@ const HomeYoutube = () => {
     queryKey: ["aia-youtube-home"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getLectureYoutubebySlug/home"
+         `${BASE_URL}/api/getLectureYoutubebySlug/home`
       );
       return res.data;
     },

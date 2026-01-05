@@ -54,7 +54,7 @@ const CamsLms = () => {
       <div className="absolute inset-0 bg-black/55 " />
 
       
-      <div className="relative z-10 w-full max-w-2xl aspect-square">
+      <div className="relative z-10 w-full max-w-3xl aspect-square">
         <svg viewBox="0 0 600 600" className="w-full h-full">
           <defs>
             <linearGradient id="orbitGradient" x1="0%" y1="0%" x2="100%" y2="100%">

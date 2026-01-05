@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { BASE_URL } from "@/api/base-url";
 
 const HomeAlumniWork = () => {
 
@@ -7,7 +8,7 @@ const HomeAlumniWork = () => {
     queryKey: ["aia-alumini"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getAlumni"
+         `${BASE_URL}/api/getAlumni`
       );
       return res.data;
     },

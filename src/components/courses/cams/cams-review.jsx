@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { BASE_URL } from '@/api/base-url';
 
 const ServiceCard = React.forwardRef(({ testimonial, i, progress, range, targetScale, imageUrl }, ref) => {
   const scale = useTransform(progress, range, [1, targetScale]);
@@ -114,7 +115,7 @@ const CamsReview = () => {
     queryKey: ["cams-testimonials"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getTestimonialbyCourse/CAMS"
+          `${BASE_URL}/api/getTestimonialbyCourse/CAMS`
       );
       return res.data;
     },

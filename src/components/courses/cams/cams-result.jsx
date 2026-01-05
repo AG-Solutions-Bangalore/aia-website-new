@@ -4,13 +4,14 @@ import React from 'react'
 import axios from 'axios'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { BASE_URL } from '@/api/base-url'
 
 const CamsResult = () => {
   const { data: certificatesData, isLoading, isError } = useQuery({
     queryKey: ["cams-certificates"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getCertificatebyCourse/CAMS"
+         `${BASE_URL}/api/getCertificatebyCourse/CAMS`
       );
       return res.data;
     },

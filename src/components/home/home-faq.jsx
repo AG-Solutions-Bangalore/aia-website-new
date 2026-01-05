@@ -7,13 +7,14 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
+import { BASE_URL } from "@/api/base-url";
 
 const HomeFaq = () => {
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["aia-faq"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getFAQbySlug/home"
+        `${BASE_URL}/api/getFAQbySlug/home`
       );
       return res.data;
     },

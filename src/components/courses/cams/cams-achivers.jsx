@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { BASE_URL } from '@/api/base-url';
 
 const SQRT_5000 = Math.sqrt(5000);
 
@@ -63,7 +64,7 @@ const CamsAchivers = () => {
     queryKey: ["cams-passout-students"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getPassoutStudentbyCourse/CAMS"
+    `${BASE_URL}/api/getPassoutStudentbyCourse/CAMS`
       );
       return res.data;
     },

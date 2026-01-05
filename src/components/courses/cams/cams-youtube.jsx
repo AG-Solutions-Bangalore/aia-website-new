@@ -5,6 +5,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { BASE_URL } from '@/api/base-url';
 
 const CamsYoutube = () => {
   const [activeTab, setActiveTab] = useState('');
@@ -14,7 +15,7 @@ const CamsYoutube = () => {
     queryKey: ["aia-youtube-cams"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getLectureYoutubebySlug/cams"
+        `${BASE_URL}/api/getLectureYoutubebySlug/cams`
       );
       return res.data;
     },

@@ -10,6 +10,7 @@ import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "./map.css";
+import { BASE_URL } from "@/api/base-url";
 
 const MAX_PHOTOS = 6;
 
@@ -22,7 +23,7 @@ const CamsMap = () => {
     queryKey: ["student-map-data"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getAllPassoutStudentsMap"
+           `${BASE_URL}/api/getAllPassoutStudentsMap`
       );
       return res.data;
     },

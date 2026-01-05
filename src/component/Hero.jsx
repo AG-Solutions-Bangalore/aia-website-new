@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { BASE_URL } from "@/api/base-url";
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -15,7 +16,7 @@ export default function Hero() {
     queryKey: ["hero-banners"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getBanner",
+        `${BASE_URL}/api/getBanner`,
         {
           timeout: 10000,
           headers: {

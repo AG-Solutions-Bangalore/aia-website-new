@@ -10,13 +10,14 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { BASE_URL } from "@/api/base-url";
 
 const CamsFaq = () => {
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["aia-faq"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getFAQbySlug/CAMS"
+          `${BASE_URL}/api/getFAQbySlug/CAMS`
       );
       return res.data;
     },

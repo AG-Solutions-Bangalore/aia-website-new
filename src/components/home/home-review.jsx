@@ -11,13 +11,14 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 import { AlertCircle, RefreshCcw } from "lucide-react";
+import { BASE_URL } from "@/api/base-url";
 
 const HomeReview = () => {
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["aia-testimonials"],
     queryFn: async () => {
       const res = await axios.get(
-        "https://aia.in.net/webapi/public/api/getAllTestimonials"
+         `${BASE_URL}/api/getAllTestimonials`
       );
       return res.data;
     },
