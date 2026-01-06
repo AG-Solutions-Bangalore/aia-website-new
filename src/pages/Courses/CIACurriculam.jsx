@@ -1,39 +1,68 @@
 import React from "react";
-import AIALMS from "../../component/courses/AIALMS";
-import AIAUnique from "../../component/courses/AIAUnique";
-import AllRated from "../../component/courses/AllRated";
-import AlumniWorkFor from "../../component/courses/AlumniWorkFor";
-import CIAFAQs from "../../component/courses/CIAFAQs";
-import CIAResults from "../../component/courses/CIAResults";
-import CIASuccessStories from "../../component/courses/CIASuccessStories";
-import CompleteGuide from "../../component/courses/CompleteGuide";
-import CourseOverview from "../../component/courses/CourseOverview";
-import GlobalClassroomMap from "../../component/courses/GlobalClassroomMap";
-import LearnersToLegends from "../../component/courses/LearnersToLegends";
-import PrepCourse from "../../component/courses/PrepCourse";
-import TurningDreams from "../../component/courses/TurningDreams";
-import WhyAcademyofAudit from "../../component/courses/WhyAcademyofAudit";
-import KnowYourTrainer from "../../component/KnowYourTrainer";
+
+
+
+
+import AboutTrainerSection from "@/components/about/about-trainer-section";
+import HomeAlumniWork from "@/components/home/home-alumini-work";
+
+
+
+
+
+
+
+import CamsConnection from "@/components/courses/cams/cams-connection";
+import CourseHero from "@/components/courses/common/course-hero";
+
+
+import CourseYoutube from "@/components/courses/common/course-youtube";
+import CourseLms from "@/components/courses/common/course-lms";
+
+import CiaCurrResult from "@/components/courses/cia-curriculam/cia-curr-result";
+import CiaCurrFaq from "@/components/courses/cia-curriculam/cia-curr-faq";
+import CiaCurrReview from "@/components/courses/cia-curriculam/cia-curr-review";
+import CiaCurrAchivers from "@/components/courses/cia-curriculam/cia-curr-achivers";
+import CiaCurrCourseCurriculum from "@/components/courses/cia-curriculam/cia-curr-cource-curriculam";
+import CiaCurrJourney from "@/components/courses/cia-curriculam/cia-curr-journey";
+import CiaCurrWhyAia from "@/components/courses/cia-curriculam/cia-curr-why-aia";
+import CiaCurrHighlight from "@/components/courses/cia-curriculam/cia-curr-highlight";
+import CfeCurrUnique from "@/components/courses/cia-curriculam/cfe-curr-unique";
+import CiaCurrAbout from "@/components/courses/cia-curriculam/cia-curr-about";
+
+import CourseMap from "@/components/courses/common/course-map";
+
+
 
 const CIACurriculam = () => {
   return (
     <div>
       {" "}
-      <PrepCourse />
-      <CourseOverview />
-      <GlobalClassroomMap />
-      <CompleteGuide />
-      <WhyAcademyofAudit />
-      <LearnersToLegends />
-      <KnowYourTrainer />
-      <CIAResults />
-      <AIALMS />
-      <TurningDreams />
-      <AllRated />
-      <AIAUnique />
-      <AlumniWorkFor />
-      <CIASuccessStories />
-      <CIAFAQs />
+      {" "}
+      <CourseHero/>
+      <CiaCurrAbout />
+      {/* <CamsRecentPassout/> */}
+      <CiaCurrCourseCurriculum/>
+      <CiaCurrResult/> 
+      <CiaCurrJourney/>
+
+
+<CiaCurrWhyAia/>
+<CiaCurrHighlight/>
+
+
+
+<CourseMap courseCode="CIA"/>
+<CourseYoutube courseSlug="cia"/>
+<CiaCurrReview/>
+
+<AboutTrainerSection/>
+<CourseLms/>
+<CfeCurrUnique/>
+<CiaCurrAchivers/>
+<CamsConnection/>
+<HomeAlumniWork/>
+<CiaCurrFaq/>
     </div>
   );
 };

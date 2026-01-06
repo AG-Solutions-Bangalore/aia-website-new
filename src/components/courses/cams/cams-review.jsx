@@ -123,25 +123,24 @@ const CamsReview = () => {
 
   useEffect(() => {
     if (testimonialsData) {
-      // Find the student image URL from the image_url array
+    
       const studentImageUrlObj = testimonialsData.image_url?.find(
         item => item.image_for === "Student"
       );
       const studentImageUrl = studentImageUrlObj?.image_url || "";
       setImageUrl(studentImageUrl);
       
-      // Add totalCount to each testimonial for the connector line condition
+     
       const testimonialsWithCount = (testimonialsData.data || []).map((t, index) => ({
         ...t,
         _index: index,
         _totalCount: testimonialsData.data.length
       }));
       setTestimonials(testimonialsWithCount);
-      
-      // Initialize refs
+   
       cardRefs.current = testimonialsWithCount.map(() => React.createRef());
       
-      // Set ready flag after a short delay to ensure DOM is mounted
+   
       setTimeout(() => setIsReady(true), 0);
     }
   }, [testimonialsData]);
@@ -175,7 +174,7 @@ const CamsReview = () => {
     );
   }
 
-  // Don't render the scroll container until we have data
+ 
   if (testimonials.length === 0) {
     return null;
   }
@@ -183,7 +182,7 @@ const CamsReview = () => {
   return (
     <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid md:grid-cols-2 gap-12">
-        {/* Left Side - ONLY IMAGE */}
+     
         <div className="md:sticky md:top-0 md:h-screen md:flex md:items-center md:justify-center">
           <img
             src="https://aia.in.net/crm/public/assets/images/testimonial/rated.jpg"
@@ -193,7 +192,7 @@ const CamsReview = () => {
           />
         </div>
 
-        {/* Right Side - Testimonial Cards */}
+    
         {isReady && <ScrollableTestimonials 
           testimonials={testimonials} 
           imageUrl={imageUrl}
@@ -204,7 +203,7 @@ const CamsReview = () => {
   );
 };
 
-// Separate component that uses useScroll
+
 const ScrollableTestimonials = ({ testimonials, imageUrl, containerRef }) => {
   const { scrollYProgress } = useScroll({
     target: containerRef,

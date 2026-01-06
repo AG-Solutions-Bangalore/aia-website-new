@@ -1,46 +1,70 @@
 import React from "react";
-import PrepCourse from "../../component/courses/PrepCourse";
-import CIAAchievers from "../../component/courses/CIAAchievers";
-import CIAChallengeOverview from "../../component/courses/CIAChallengeOverview";
-import CIAChallengeCurriculum from "../../component/courses/CIAChallengeCurriculum";
-import GlobalClassroom from "../../component/courses/GlobalClassroom";
-import GlobalClassroomMap from "../../component/courses/GlobalClassroomMap";
-import GlobalStandards from "../../component/GlobalStandards";
-import LearnersToLegends from "../../component/courses/LearnersToLegends";
-import CompleteGuide from "../../component/courses/CompleteGuide";
-import WhyAcademyofAudit from "../../component/courses/WhyAcademyofAudit";
-import KnowYourTrainer from "../../component/KnowYourTrainer";
-import AllRated from "../../component/courses/AllRated";
-import AIALMS from "../../component/courses/AIALMS";
-import CIAChallengeResults from "../../component/courses/CIAChallengeResults";
-import TurningDreams from "../../component/courses/TurningDreams";
-import AlumniWorkFor from "../../component/courses/AlumniWorkFor";
-import SuccessStories from "../../component/courses/SucessStories";
-import OnePlatform from "../../component/courses/OnePlatform";
-import CIAFAQs from "../../component/courses/CIAFAQs";
+
+
+
+import AboutTrainerSection from "@/components/about/about-trainer-section";
+import HomeAlumniWork from "@/components/home/home-alumini-work";
+
+
+
+import CamsAchivers from "@/components/courses/cams/cams-achivers";
+
+
+import CamsConnection from "@/components/courses/cams/cams-connection";
+import CourseHero from "@/components/courses/common/course-hero";
+
+import CiaResult from "@/components/courses/cia-challenge/cia-result";
+
+import CiaRevew from "@/components/courses/cia-challenge/cia-review";
+import CourseYoutube from "@/components/courses/common/course-youtube";
+import CourseLms from "@/components/courses/common/course-lms";
+
+import CiaCourseCurriculum from "@/components/courses/cia-challenge/cia-cource-curriculam";
+import CiaJourney from "@/components/courses/cia-challenge/cia-journey";
+import CiaWhyAia from "@/components/courses/cia-challenge/cia-why-aia";
+import CiaHighlight from "@/components/courses/cia-challenge/cia-highlight";
+import CiaUnique from "@/components/courses/cia-challenge/cia-unique";
+import CiaFaq from "@/components/courses/cia-challenge/cia-faq";
+import CiaAbout from "@/components/courses/cia-challenge/cia-about";
+
+import CourseMap from "@/components/courses/common/course-map";
 
 const CIAChallenge = () => {
   return (
     <div>
-      {" "}
-      <PrepCourse />
-      <CIAAchievers />
-      <CIAChallengeOverview />
-      <CIAChallengeCurriculum />
-      <GlobalStandards />
-      <GlobalClassroomMap />
-      <CompleteGuide />
-      <WhyAcademyofAudit />
-      <LearnersToLegends />
-      <AllRated />
-      <KnowYourTrainer />
-      <CIAChallengeResults />
-      <AIALMS />
-      <TurningDreams />
-      <AlumniWorkFor />
-      <OnePlatform />
-      <SuccessStories />
-      <CIAFAQs />
+   <CourseHero/>
+           <CiaAbout />
+           {/* <CamsRecentPassout/> */}
+           <CiaCourseCurriculum/>
+           <CiaResult/>    
+           <CiaJourney/>
+
+
+     <CiaWhyAia/>
+
+
+
+     <CiaHighlight/>
+     <CourseMap courseCode="CIAC"/>
+     <CourseYoutube courseSlug="ciac"/>
+     <CiaRevew/>
+
+
+
+
+     <AboutTrainerSection/>
+     <CourseLms/>
+     <CiaUnique/>
+
+
+
+     <CamsAchivers/>
+
+
+     
+     <CamsConnection/>
+     <HomeAlumniWork/>
+     <CiaFaq/>
     </div>
   );
 };

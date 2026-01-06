@@ -8,12 +8,12 @@ import { CardCarousel } from "@/components/ui/card-carousel";
 import axios from "axios";
 import { BASE_URL } from "@/api/base-url";
 
-const CamsRecentPassout = () => {
+const CiaRecentPassout = () => {
   const { data: camsPassoutData, isLoading, isError, refetch } = useQuery({
     queryKey: ["cams-passout-students"],
     queryFn: async () => {
       const res = await axios.get(
-          `${BASE_URL}/api/getPassoutStudentbyCourse/CAMS`
+          `${BASE_URL}/api/getPassoutStudentbyCourse/cia`
       );
       return res.data;
     },
@@ -174,4 +174,4 @@ const CamsRecentPassout = () => {
   );
 };
 
-export default CamsRecentPassout;
+export default CiaRecentPassout;

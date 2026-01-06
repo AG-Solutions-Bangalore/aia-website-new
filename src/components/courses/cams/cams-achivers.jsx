@@ -4,67 +4,17 @@ import { cn } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { BASE_URL } from '@/api/base-url';
-
-const SQRT_5000 = Math.sqrt(5000);
-
-const TestimonialCard = ({ 
-  position, 
-  testimonial, 
-  handleMove, 
-  cardSize 
-}) => {
-  const isCenter = position === 0;
-
-  return (
-    <div
-      onClick={() => handleMove(position)}
-      className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-6 transition-all duration-500 ease-in-out",
-        isCenter 
-          ? "z-10 bg-amber-600 text-primary-foreground border-amber-500" 
-          : "z-0 bg-card text-card-foreground border-border hover:border-primary/50"
-      )}
-      style={{
-        width: cardSize,
-        height: cardSize,
-        clipPath: `polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)`,
-        transform: `
-          translate(-50%, -50%) 
-          translateX(${(cardSize / 1.5) * position}px)
-          translateY(${isCenter ? -65 : position % 2 ? 15 : -15}px)
-          rotate(${isCenter ? 0 : position % 2 ? 2.5 : -2.5}deg)
-        `,
-        boxShadow: isCenter ? "0px 8px 0px 4px hsl(var(--border))" : "0px 0px 0px 0px transparent"
-      }}>
-      <span
-        className="absolute block origin-top-right rotate-45 bg-border"
-        style={{
-          right: -2,
-          top: 48,
-          width: SQRT_5000,
-          height: 2
-        }} />
-      <img
-        src={testimonial.student_image_url}
-        alt={testimonial.student_image_alt || testimonial.student_name}
-        className="h-full w-full bg-muted object-cover object-top"
-        style={{
-          boxShadow: "3px 3px 0px hsl(var(--background))"
-        }} />
-    </div>
-  );
-};
-
+import CourseAchiverCard from '../common/course-achiver-card';
 const CamsAchivers = () => {
   const [cardSize, setCardSize] = useState(365);
   const [testimonialsList, setTestimonialsList] = useState([]);
 
   
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["cams-passout-students"],
+    queryKey: ["ciac-passout-students"],
     queryFn: async () => {
       const res = await axios.get(
-    `${BASE_URL}/api/getPassoutStudentbyCourse/CAMS`
+    `${BASE_URL}/api/getPassoutStudentbyCourse/CIAC`
       );
       return res.data;
     },
@@ -130,7 +80,7 @@ const CamsAchivers = () => {
     );
   }
 
-  if (isError || testimonialsList.length === 0) {
+  if (isError ) {
     return (
       <div className="relative w-full overflow-hidden bg-muted/30 flex items-center justify-center" style={{ height: 600 }}>
         <div className="text-lg text-red-500">Failed to load achievers</div>
@@ -147,12 +97,13 @@ const CamsAchivers = () => {
           ? index - (testimonialsList.length + 1) / 2
           : index - testimonialsList.length / 2;
         return (
-          <TestimonialCard
+          <CourseAchiverCard
             key={testimonial.tempId}
             testimonial={testimonial}
             handleMove={handleMove}
             position={position}
             cardSize={cardSize} />
+            
         );
       })}
       <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">

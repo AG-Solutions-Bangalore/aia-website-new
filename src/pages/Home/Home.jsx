@@ -14,6 +14,7 @@ import HomeCourses from "@/components/home/home-courses";
 import HomeBlogs from "@/components/home/home-blogs";
 import HomeFaq from "@/components/home/home-faq";
 import HomeYoutube from "@/components/home/home-youtube";
+import HomeAbout from "@/components/home/home-about";
 
 
 
@@ -22,7 +23,7 @@ export default function Home() {
   return (
     <div className="font-sans text-gray-800">
       <Hero />
-      <About />
+      <HomeAbout />
       <HomeContact/>
       <HomeAccredited/>
       <HomeCourses/>

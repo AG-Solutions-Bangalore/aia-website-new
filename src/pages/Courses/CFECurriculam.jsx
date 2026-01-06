@@ -1,42 +1,64 @@
 import React from "react";
-import PrepCourse from "../../component/courses/PrepCourse";
-import CourseOverview from "../../component/courses/CourseOverview";
-import GlobalStandards from "../../component/GlobalStandards";
-import GlobalClassroom from "../../component/courses/GlobalClassroom";
-import WhyAcademyofAudit from "../../component/courses/WhyAcademyofAudit";
-import CompleteGuide from "../../component/courses/CompleteGuide";
-import LearnersToLegends from "../../component/courses/LearnersToLegends";
-import KnowYourTrainer from "../../component/KnowYourTrainer";
-import CFEResults from "../../component/courses/CFEResults";
-import AIALMS from "../../component/courses/AIALMS";
-import TurningDreams from "../../component/courses/TurningDreams";
-import AllRated from "../../component/courses/AllRated";
-import AIAUnique from "../../component/courses/AIAUnique";
-import AlumniWorkFor from "../../component/courses/AlumniWorkFor";
-import SuccessStories from "../../component/courses/SucessStories";
-import CFEFAQs from "../../component/courses/CFEFAQs";
-import GlobalClassroomMap from "../../component/courses/GlobalClassroomMap";
+
+
+
+import AboutTrainerSection from "@/components/about/about-trainer-section";
+import HomeAlumniWork from "@/components/home/home-alumini-work";
+
+
+import CamsConnection from "@/components/courses/cams/cams-connection";
+import CourseHero from "@/components/courses/common/course-hero";
+
+
+import CfeResult from "@/components/courses/cfe-curriculam/cfe-result";
+
+import CfeReview from "@/components/courses/cfe-curriculam/cfe-review";
+import CourseYoutube from "@/components/courses/common/course-youtube";
+import CourseLms from "@/components/courses/common/course-lms";
+
+import CfeAchivers from "@/components/courses/cfe-curriculam/cfe-achivers";
+
+import CiaFaq from "@/components/courses/cia-challenge/cia-faq";
+import CfeCourseCurriculum from "@/components/courses/cfe-curriculam/cfe-cource-curriculam";
+import CfeJourney from "@/components/courses/cfe-curriculam/cfe-journey";
+import CfeWhyAia from "@/components/courses/cfe-curriculam/cfe-why-aia";
+import CfeHighlight from "@/components/courses/cfe-curriculam/cfe-highlight";
+import CfeUnique from "@/components/courses/cfe-curriculam/cfe-unique";
+import CfeAbout from "@/components/courses/cfe-curriculam/cfe-about";
+
+import CourseMap from "@/components/courses/common/course-map";
+
 
 const CFECurriculam = () => {
   return (
     <div>
-      <PrepCourse />
-      <CourseOverview />
-      <GlobalStandards />
-      <GlobalClassroom />
-      <GlobalClassroomMap />
-      <CompleteGuide />
-      <WhyAcademyofAudit />
-      <LearnersToLegends />
-      <KnowYourTrainer />
-      <CFEResults />
-      <AIALMS />
-      <TurningDreams />
-      <AllRated />
-      <AIAUnique />
-      <AlumniWorkFor />
-      <SuccessStories />
-      <CFEFAQs />
+      <CourseHero/>
+           <CfeAbout />
+           {/* <CamsRecentPassout/> */}
+           <CfeCourseCurriculum/>
+           <CfeResult/>    
+           <CfeJourney/>
+
+
+     <CfeWhyAia/>
+     <CfeHighlight/>
+     <CourseMap courseCode="CFE"/>
+     <CourseYoutube courseSlug="cfe"/>
+     <CfeReview/>
+
+
+
+ 
+
+
+
+     <AboutTrainerSection/>
+     <CourseLms/>
+     <CfeUnique/>
+     <CfeAchivers/>
+     <CamsConnection/>
+     <HomeAlumniWork/>
+     <CiaFaq/>
     </div>
   );
 };
