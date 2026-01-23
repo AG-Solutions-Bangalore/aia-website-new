@@ -33,7 +33,7 @@ const PassoutStoriesSlug = () => {
     setTimeout(() => setIsCopied(false), 2000);
   };
 
-  // Format LinkedIn URL to ensure it's a proper external link
+ 
   const formatLinkedInUrl = (url) => {
     if (!url) return "#";
     if (url.startsWith('http://') || url.startsWith('https://')) {
@@ -274,6 +274,24 @@ const PassoutStoriesSlug = () => {
                             : ""}
                         </p>
                       </div>
+
+
+                      <div>
+                        <h3 className="text-base font-medium text-[#0F3652]">
+                          LinkedIn
+                        </h3>
+                   
+                        <a
+                          href={linkedinUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                     
+                        >
+                        <p className="text-sm text-[#0F3652] underline">
+                        View 
+                        </p>
+                        </a>
+                      </div>
                     </div>
                     
                     <div className="py-2 mt-4">
@@ -313,7 +331,7 @@ const PassoutStoriesSlug = () => {
                         </div>
                       )}
                     </div>
-                    
+{/*                     
                     <div className="mt-4">
                       <h3 className="text-base font-medium text-[#0F3652] mb-4">
                         Share this Success Story
@@ -390,7 +408,7 @@ const PassoutStoriesSlug = () => {
                           </svg>
                         </a>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

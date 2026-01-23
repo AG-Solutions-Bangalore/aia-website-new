@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Users, Trophy, Award, Search, FileText, UserCheck, Settings, TrendingUp, Heart } from "lucide-react";
+import CountUp from "../common/count-up";
 
 
 
@@ -40,7 +41,39 @@ const processSteps = [
     description: "Ongoing support and partnership",
     position: "bottom"
   }
+];const statsCards = [
+  {
+    value: 5,
+    suffix: "+",
+    label: "Years of consistent growth",
+    icon: "📈",
+  },
+  {
+    value: 2000,
+    suffix: "+",
+    label: "Professionals Enrolled",
+    icon: "👥",
+  },
+  {
+    value: 36,
+    suffix: "+",
+    label: "Countries Reached",
+    icon: "🌍",
+  },
+  {
+    value: 99.6,
+    suffix: "%",
+    label: "Certification Success Rate",
+    icon: "✅",
+  },
+  {
+    value: 22,
+    suffix: "+",
+    label: "Years of Faculty Experience",
+    icon: "🎓",
+  },
 ];
+
 
 const AboutJourney = () => {
   const [progress, setProgress] = useState(0);
@@ -83,32 +116,37 @@ const AboutJourney = () => {
           </h2>
           <div className="mx-auto space-y-4 text-[#0F3652] text-lg leading-relaxed">
             <p>
-              Matebiz has completed its 9 years journey till now, growing further. It has seen many odds at the time of its formation and during the attempt to establish itself as a powerful organization. But the teammates here never viewed this odds as anything negative. Instead, they remained optimistic and accepted the challenges with passion and hard work of hours sending even till midnight. We were so passionate and persistent about what we wanted to achieve that we didn't even bother about the time. During our attempt to build and establish.
+            AIA started its journey in 2020 with a simple idea of sharing knowledge through YouTube has steadily evolved into a trusted global learning ecosystem. Each year at AIA marks a deliberate step forward, building structure, earning learner trust, and strengthening outcomes. From guiding the first 3 learners batch of CFE in 2021 to shaping careers across 36+ countries in 2026 & still counting, the journey has been defined by consistency, practical learning, and expert-led mentorship.
             </p>
             <p className="font-semibold text-[#F3831C]">
-              Matebiz with the limited team, other than the hunger for development and success, the only thing we had with us was sheer hard work and persistence.
+            Meaningful growth is built step by step, with clarity, discipline, and long-term impact at its core.
             </p>
           </div>
         </div>
+        <div className="px-6">
+  <div className="max-w-340 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+    {statsCards.map((item, index) => (
+      <div
+        key={index}
+        className="bg-white rounded-2xl shadow-md p-6 text-center border border-[#0F3652] hover:border-[#F3831C] cursor-pointer transition-transform hover:scale-105"
+      >
+        <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center rounded-full bg-[#F3831C]/10 text-[#F3831C] text-xl font-bold">
+          {item.icon}
+        </div>
 
-       <div className="bg-[#F3831C] py-16 px-8">
-  <div className="max-w-full mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
-    <div>
-      <h2 className="text-5xl md:text-6xl font-bold mb-2">1500+</h2>
-      <p className="text-lg md:text-xl font-medium">Student Trained</p>
-    </div>
-    
-    <div>
-      <h2 className="text-5xl md:text-6xl font-bold mb-2">99%</h2>
-      <p className="text-lg md:text-xl font-medium">Positive Result</p>
-    </div>
-    
-    <div>
-      <h2 className="text-5xl md:text-6xl font-bold mb-2">22+</h2>
-      <p className="text-lg md:text-xl font-medium">Faculty Experience</p>
-    </div>
+        <h2 className="text-3xl font-bold text-[#0F3652]">
+          <CountUp end={item.value} suffix={item.suffix} />
+        </h2>
+
+        <p className="text-sm text-gray-600 mt-2">
+          {item.label}
+        </p>
+      </div>
+    ))}
   </div>
 </div>
+
+
        
         <div ref={processRef} className="py-16 hidden md:block relative">
 

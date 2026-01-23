@@ -5,11 +5,14 @@ import { Calendar, ArrowRight, Clock, BookOpen, Tag, Search, TrendingUp } from "
 import { BASE_URL } from "@/api/base-url";
 import PopUp from "@/components/common/pop-up";
 
+import BlogListFaq from "./blog-list-faq";
+
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [imageBaseUrl, setImageBaseUrl] = useState("");
   const [selectedCategory, setSelectedCategory] = useState('ALL');
+  const [showAllTrending, setShowAllTrending] = useState(false); // Added state for trending toggle
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -160,163 +163,195 @@ const Blog = () => {
     <>
       <PopUp slug="Blogs"/>
    
-    <section className="py-16 bg-white">
-      <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 bg-white">
+        <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
       
-        <div className="text-center  mb-12  rounded-2xl p-4">
-          <h1 className="text-4xl sm:text-5xl font-semibold text-[#0F3652] mb-6 leading-tight">
-            Explore expert insights from Academy of Internal Audit
-          </h1>
+          <div className="text-center  mb-12  rounded-2xl p-4">
+            <h1 className="text-4xl sm:text-5xl font-semibold text-[#0F3652] mb-6 leading-tight">
+              Explore expert insights from Academy of Internal Audit
+            </h1>
           
-          <div className="max-w-2xl mx-auto mt-8">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder=" Search smart. Learn Audit, Fraud & AML with AIA..."
-                className="w-full px-6 py-2 pr-12 text-lg rounded-2xl focus:outline-none shadow-sm bg-white text-[#0F3652] border border-[#0F3652]/20"
-              />
-              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 hover:bg-[#0F3652]/10 rounded-full transition-colors">
-                <Search className="w-6 h-6 text-[#0F3652]" />
-              </button>
-            </div>
-          </div>
-        </div>
-
-     
-        {trendingBlogs.length > 0 && (
-          <div className="mb-12 p-4 border-2  rounded-lg">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-3">
-                <TrendingUp className="w-6 h-6 text-[#F3831C]" />
-                <h2 className="text-2xl md:text-3xl font-medium text-[#0F3652]">Trending Blog</h2>
-              </div>
-              <span className="text-sm text-[#0F3652]">
-                {trendingBlogs.length} {trendingBlogs.length === 1 ? 'article' : 'articles'} trending
-              </span>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              {trendingBlogs.slice(0, 3).map((blog) => (
-                <BlogCard key={blog.id} blog={blog} />
-              ))}
-            </div>
-
-            {trendingBlogs.length > 3 && (
-              <div className="text-center">
-                <button
-                  className="relative overflow-hidden cursor-pointer flex items-center justify-center px-4 py-2 border border-[#0F3652] mx-auto gap-2 rounded-md font-medium text-sm text-[#0F3652] group"
-                  onClick={() => setSelectedCategory('ALL')}
-                >
-                  <span className="absolute inset-0 bg-[#0F3652] scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100"></span>
-                  <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-white">
-                    View All Trending Articles
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
+            <div className="max-w-2xl mx-auto mt-8">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder=" Search smart. Learn Audit, Fraud & AML with AIA..."
+                  className="w-full px-6 py-2 pr-12 text-lg rounded-2xl focus:outline-none shadow-sm bg-white text-[#0F3652] border border-[#0F3652]/20"
+                />
+                <button className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 hover:bg-[#0F3652]/10 rounded-full transition-colors">
+                  <Search className="w-6 h-6 text-[#0F3652]" />
                 </button>
               </div>
-            )}
+            </div>
           </div>
-        )}
 
-      
-        <div className="mb-12">
-          <h2 className="text-2xl md:text-3xl font-medium text-[#0F3652] text-left mb-6">Categories</h2>
-          
-          <div className="flex flex-wrap justify-start gap-3 mb-8">
-            <button
-              onClick={() => setSelectedCategory('ALL')}
-              className={`px-6 py-2 rounded-md text-sm transition-colors duration-200 ${selectedCategory === 'ALL' ? 'bg-[#0F3652] text-white' : 'bg-[#0F3652]/10 text-[#0F3652] hover:bg-[#0F3652]/20'}`}
-            >
-              ALL
-            </button>
+          {/* Trending Blogs Section - Updated with toggle functionality */}
+          {trendingBlogs.length > 0 && (
+            <div className="mb-12 p-4 border-2  rounded-lg">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <TrendingUp className="w-6 h-6 text-[#F3831C]" />
+                  <h2 className="text-2xl md:text-3xl font-medium text-[#0F3652]">Trending Blog</h2>
+                </div>
+                <span className="text-sm text-[#0F3652]">
+                  {trendingBlogs.length} {trendingBlogs.length === 1 ? 'article' : 'articles'} trending
+                </span>
+              </div>
             
-            {uniqueCategories.map((category) => (
+              {/* Show all trending blogs if showAllTrending is true, otherwise show only first 4 */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                {showAllTrending 
+                  ? trendingBlogs.map((blog) => (
+                      <BlogCard key={blog.id} blog={blog} />
+                    ))
+                  : trendingBlogs.slice(0, 4).map((blog) => (
+                      <BlogCard key={blog.id} blog={blog} />
+                    ))
+                }
+              </div>
+
+              {/* Show "View All Trending Articles" button if there are more than 4 trending blogs AND we're not showing all */}
+              {trendingBlogs.length > 4 && !showAllTrending && (
+                <div className="text-center">
+                  <button
+                    className="relative overflow-hidden cursor-pointer flex items-center justify-center px-4 py-2 border border-[#0F3652] mx-auto gap-2 rounded-md font-medium text-sm text-[#0F3652] group"
+                    onClick={() => setShowAllTrending(true)}
+                  >
+                    <span className="absolute inset-0 bg-[#0F3652] scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100"></span>
+                    <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-white">
+                      View All Trending Articles ({trendingBlogs.length})
+                      <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </button>
+                </div>
+              )}
+
+              {/* Show "Show Less" button when all trending blogs are displayed */}
+              {showAllTrending && trendingBlogs.length > 4 && (
+                <div className="text-center">
+                  <button
+                    className="relative overflow-hidden cursor-pointer flex items-center justify-center px-4 py-2 border border-[#0F3652] mx-auto gap-2 rounded-md font-medium text-sm text-[#0F3652] group"
+                    onClick={() => setShowAllTrending(false)}
+                  >
+                    <span className="absolute inset-0 bg-[#0F3652] scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100"></span>
+                    <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-white">
+                      Show Less
+                      <ArrowRight className="w-4 h-4 rotate-180" />
+                    </span>
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Categories Section */}
+          <div className="mb-12">
+            <h2 className="text-2xl md:text-3xl font-medium text-[#0F3652] text-left mb-6">Categories</h2>
+          
+            <div className="flex flex-wrap justify-start gap-3 mb-8">
               <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-6 py-2 cursor-pointer rounded-md text-sm transition-colors duration-200 ${selectedCategory === category ? 'bg-[#0F3652] text-white' : 'bg-[#0F3652]/10 text-[#0F3652] hover:bg-[#0F3652]/20'}`}
+                onClick={() => {
+                  setSelectedCategory('ALL');
+                  setShowAllTrending(false); // Reset trending view when changing category
+                }}
+                className={`px-6 py-2 rounded-md text-sm transition-colors duration-200 ${selectedCategory === 'ALL' ? 'bg-[#0F3652] text-white' : 'bg-[#0F3652]/10 text-[#0F3652] hover:bg-[#0F3652]/20'}`}
               >
-                {category}
+                ALL
               </button>
-            ))}
-          </div>
-        </div>
-
-        
-        {selectedCategory === 'ALL' ? (
-          uniqueCategories.map((category) => {
-            const categoryBlogs = blogs.filter(blog => blog.blog_course === category).slice(0, 3);
-            if (categoryBlogs.length === 0) return null;
             
-            return (
-              <div key={category} className="mb-16 p-4 border-2  rounded-lg">
-                <div className="flex items-center justify-between mb-8">
-                  <div className="flex items-center gap-3">
-                    <h3 className="text-xl md:text-2xl font-medium text-[#0F3652]">{category}</h3>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                  {categoryBlogs.map((blog) => (
-                    <BlogCard key={blog.id} blog={blog} />
-                  ))}
-                </div>
-            
+              {uniqueCategories.map((category) => (
                 <button
-                  onClick={() => setSelectedCategory(category)}
-                  className="relative overflow-hidden cursor-pointer flex items-center justify-center px-4 py-2 border border-[#0F3652] mx-auto gap-2 rounded-md font-medium text-sm text-[#0F3652] group"
+                  key={category}
+                  onClick={() => {
+                    setSelectedCategory(category);
+                    setShowAllTrending(false); // Reset trending view when changing category
+                  }}
+                  className={`px-6 py-2 cursor-pointer rounded-md text-sm transition-colors duration-200 ${selectedCategory === category ? 'bg-[#0F3652] text-white' : 'bg-[#0F3652]/10 text-[#0F3652] hover:bg-[#0F3652]/20'}`}
                 >
-                  <span className="absolute inset-0 bg-[#0F3652] scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100"></span>
-                  <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-white">
-                    View All
-                    <ArrowRight className="w-4 h-4" />
-                  </span>
+                  {category}
                 </button>
-              </div>
-            );
-          })
-        ) : (
-          <div className="p-4 bg-[#f3841c56] rounded-lg">
-            <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-3">
-                <h3 className="text-xl md:text-2xl font-medium text-[#0F3652]">{selectedCategory}</h3>
-              </div>
-              <span className="text-sm text-[#0F3652]">
-                Showing {filteredBlogs.length} {filteredBlogs.length === 1 ? 'article' : 'articles'}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              {filteredBlogs.slice(0, 6).map((blog) => (
-                <BlogCard key={blog.id} blog={blog} />
               ))}
             </div>
+          </div>
 
-            {filteredBlogs.length > 6 && (
-              <div className="text-center mt-12 pt-8 border-t border-[#0F3652]/20">
-                <button className="inline-flex items-center gap-2 border border-[#0F3652]/20 hover:border-[#0F3652] text-[#0F3652] hover:text-[#0F3652] px-6 py-3 rounded-md font-medium transition-colors duration-200">
-                  View All {selectedCategory} Articles ({filteredBlogs.length})
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+          {/* Category Blogs Section */}
+          {selectedCategory === 'ALL' ? (
+            uniqueCategories.map((category) => {
+              const categoryBlogs = blogs.filter(blog => blog.blog_course === category).slice(0, 4);
+              if (categoryBlogs.length === 0) return null;
+            
+              return (
+                <div key={category} className="mb-16 p-4 border-2  rounded-lg">
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center gap-3">
+                      <h3 className="text-xl md:text-2xl font-medium text-[#0F3652]">{category}</h3>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    {categoryBlogs.map((blog) => (
+                      <BlogCard key={blog.id} blog={blog} />
+                    ))}
+                  </div>
+            
+                  <button
+                    onClick={() => setSelectedCategory(category)}
+                    className="relative overflow-hidden cursor-pointer flex items-center justify-center px-4 py-2 border border-[#0F3652] mx-auto gap-2 rounded-md font-medium text-sm text-[#0F3652] group"
+                  >
+                    <span className="absolute inset-0 bg-[#0F3652] scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100"></span>
+                    <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-white">
+                      View All
+                      <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </button>
+                </div>
+              );
+            })
+          ) : (
+            <div className="p-4 bg-[#f3841c56] rounded-lg">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                  <h3 className="text-xl md:text-2xl font-medium text-[#0F3652]">{selectedCategory}</h3>
+                </div>
+                <span className="text-sm text-[#0F3652]">
+                  Showing {filteredBlogs.length} {filteredBlogs.length === 1 ? 'article' : 'articles'}
+                </span>
               </div>
-            )}
-          </div>
-        )}
 
-        <div className="flex flex-col items-center justify-center bg-white px-4">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-8 max-w-5xl text-[#0F3652]">
-            Grow Better with AIA today
-          </h1>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                {filteredBlogs.map((blog) => (
+                  <BlogCard key={blog.id} blog={blog} />
+                ))}
+              </div>
+
+              {filteredBlogs.length > 6 && (
+                <div className="text-center mt-12 pt-8 border-t border-[#0F3652]/20">
+                  <button className="inline-flex items-center gap-2 border border-[#0F3652]/20 hover:border-[#0F3652] text-[#0F3652] hover:text-[#0F3652] px-6 py-3 rounded-md font-medium transition-colors duration-200">
+                    View All {selectedCategory} Articles ({filteredBlogs.length})
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* CTA Section */}
+          <div className="flex flex-col items-center justify-center bg-white px-4">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-8 max-w-5xl text-[#0F3652]">
+              Grow Better with AIA today
+            </h1>
           
-          <div className="flex flex-wrap gap-4 justify-center">
-            <button className="px-6 py-3 bg-[#F3831C] text-white rounded-lg font-medium hover:bg-[#F3831C]/90 transition-colors">
-              Contact Now
-            </button>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <button className="px-6 py-3 bg-[#F3831C] text-white rounded-lg font-medium hover:bg-[#F3831C]/90 transition-colors">
+                Contact Now
+              </button>
+            </div>
           </div>
+          
+          <BlogListFaq/>
         </div>
-      </div>
-    </section>
-     </>
+      </section>
+    </>
   );
 };
 

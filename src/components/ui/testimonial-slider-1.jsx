@@ -1,12 +1,11 @@
 /* eslint-disable no-unused-vars */
 
 import * as React from "react";
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
-
 
 /**
  * A reusable, animated testimonial slider component.
@@ -18,33 +17,52 @@ export const TestimonialSlider = ({
   className
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  // 'direction' helps framer-motion understand slide direction (next vs. prev)
   const [direction, setDirection] = useState("right");
+  const [loadedImages, setLoadedImages] = useState(new Set());
 
   const activeReview = reviews[currentIndex];
 
-  const handleNext = () => {
+  
+  const handleNext = useCallback(() => {
     setDirection("right");
     setCurrentIndex((prev) => (prev + 1) % reviews.length);
-  };
+  }, [reviews.length]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setDirection("left");
     setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
-  };
+  }, [reviews.length]);
 
-  const handleThumbnailClick = (index) => {
-    // Determine direction for animation
+  const handleThumbnailClick = useCallback((index) => {
     setDirection(index > currentIndex ? "right" : "left");
     setCurrentIndex(index);
-  };
+  }, [currentIndex]);
 
-  // Get the next 3 reviews for the thumbnails, excluding the current one
-  const thumbnailReviews = reviews
-    .filter((_, i) => i !== currentIndex)
-    .slice(0, 3);
+  const handleImageLoad = useCallback((imageSrc) => {
+    setLoadedImages(prev => new Set([...prev, imageSrc]));
+  }, []);
 
-  // Animation variants for the main image
+
+  const preloadImages = useMemo(() => {
+    const imagesToPreload = new Set();
+    const prevIndex = (currentIndex - 1 + reviews.length) % reviews.length;
+    const nextIndex = (currentIndex + 1) % reviews.length;
+    
+    if (reviews[prevIndex]?.imageSrc) imagesToPreload.add(reviews[prevIndex].imageSrc);
+    if (reviews[nextIndex]?.imageSrc) imagesToPreload.add(reviews[nextIndex].imageSrc);
+    
+    return Array.from(imagesToPreload);
+  }, [currentIndex, reviews]);
+
+ 
+  const thumbnailReviews = useMemo(() => 
+    reviews
+      .filter((_, i) => i !== currentIndex)
+      .slice(0, 3),
+    [reviews, currentIndex]
+  );
+
+ 
   const imageVariants = {
     enter: (direction) => ({
       y: direction === "right" ? "100%" : "-100%",
@@ -57,7 +75,7 @@ export const TestimonialSlider = ({
     }),
   };
 
-  // Animation variants for the text content
+ 
   const textVariants = {
     enter: (direction) => ({
       x: direction === "right" ? 50 : -50,
@@ -76,28 +94,38 @@ export const TestimonialSlider = ({
         "relative w-full min-h-[650px] md:min-h-[600px] overflow-hidden bg-background text-foreground p-8 md:p-12",
         className
       )}>
+
+      {preloadImages.map((src) => (
+        <link
+          key={`preload-${src}`}
+          rel="preload"
+          as="image"
+          href={src}
+          fetchPriority="low"
+        />
+      ))}
+
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-full">
-        {/* === Left Column: Meta and Thumbnails === */}
+     
         <div
           className="md:col-span-3 flex flex-col justify-between order-2 md:order-1">
           <div
             className="flex flex-row md:flex-col justify-between md:justify-start space-x-4 md:space-x-0 md:space-y-4">
-            {/* Pagination */}
+        
             <span className="text-sm text-muted-foreground font-mono">
               {String(currentIndex + 1).padStart(2, "0")} /{" "}
               {String(reviews.length).padStart(2, "0")}
             </span>
-            {/* Vertical "Reviews" Text */}
+           
             <h2
               className="text-sm font-medium tracking-widest uppercase [writing-mode:vertical-rl] md:rotate-180 hidden md:block">
               Reviews
             </h2>
           </div>
 
-          {/* Thumbnail Navigation */}
+          
           <div className="flex space-x-2 mt-8 md:mt-0">
             {thumbnailReviews.map((review) => {
-              // Find the original index to navigate to
               const originalIndex = reviews.findIndex((r) => r.id === review.id);
               return (
                 <button
@@ -108,14 +136,19 @@ export const TestimonialSlider = ({
                   <img
                     src={review.thumbnailSrc}
                     alt={review.name}
-                    className="w-full h-full object-cover" />
+                    loading="lazy"
+                    width="80"
+                    height="96"
+                    className="w-full h-full object-cover"
+                    onLoad={() => handleImageLoad(review.thumbnailSrc)}
+                  />
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* === Center Column: Main Image === */}
+      
         <div
           className="md:col-span-4 relative h-80 min-h-[400px] md:min-h-[500px] order-1 md:order-2">
           <AnimatePresence initial={false} custom={direction}>
@@ -128,16 +161,26 @@ export const TestimonialSlider = ({
               initial="enter"
               animate="center"
               exit="exit"
-              // Cubic bezier for smooth ease
+              loading={currentIndex === 0 ? "eager" : "lazy"}
+              fetchPriority={currentIndex === 0 ? "high" : "auto"}
+              width="400"
+              height="500"
               transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-              className="absolute inset-0 w-full h-full object-cover rounded-lg" />
+              className="absolute inset-0 w-full h-full object-cover rounded-lg"
+              onLoad={() => handleImageLoad(activeReview.imageSrc)}
+            />
           </AnimatePresence>
+          
+        
+          {!loadedImages.has(activeReview.imageSrc) && (
+            <div className="absolute inset-0 bg-muted animate-pulse rounded-lg" />
+          )}
         </div>
 
-        {/* === Right Column: Text and Navigation === */}
+       
         <div
           className="md:col-span-5 flex flex-col justify-between md:pl-8 order-3 md:order-3">
-          {/* Text Content */}
+ 
           <div className="relative overflow-hidden pt-4 md:pt-24 min-h-[200px]">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
@@ -161,7 +204,7 @@ export const TestimonialSlider = ({
             </AnimatePresence>
           </div>
 
-          {/* Navigation Buttons */}
+        
           <div className="flex items-center space-x-2 mt-8 md:mt-0">
             <Button
               variant="outline"
@@ -174,7 +217,7 @@ export const TestimonialSlider = ({
             <Button
               variant="default"
               size="icon"
-              className="rounded-full w-12 h-12 bg-primary text-primary-foreground hover:bg-primary/90"
+                 className="rounded-full w-12 h-12 border-muted-foreground/50"
               onClick={handleNext}
               aria-label="Next review">
               <ArrowRightIcon className="w-5 h-5" />

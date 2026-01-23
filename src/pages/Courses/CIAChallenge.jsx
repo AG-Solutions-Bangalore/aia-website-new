@@ -30,6 +30,8 @@ import CiaAbout from "@/components/courses/cia-challenge/cia-about";
 import CourseMap from "@/components/courses/common/course-map";
 import PopUp from "@/components/common/pop-up";
 import CiaAchivers from "@/components/courses/cia-challenge/cia-achivers";
+import CourseYoutubeLecture from "@/components/courses/common/course-youtube-lecture";
+import CourseTopStudent from "@/components/courses/common/course-top-student";
 
 const CIAChallenge = () => {
   return (
@@ -37,7 +39,7 @@ const CIAChallenge = () => {
        <PopUp  slug="CIA-Challenge-Curriculum"/>
    <CourseHero/>
            <CiaAbout />
-           {/* <CamsRecentPassout/> */}
+           <CourseTopStudent courseSlug="ciac" title="From CIAC Course"/>
            <CiaCourseCurriculum/>
            <CiaResult/>    
            <CiaJourney/>
@@ -49,6 +51,7 @@ const CIAChallenge = () => {
 
      <CiaHighlight/>
      <CourseMap courseCode="CIAC"/>
+     <CourseYoutubeLecture courseSlug="ciac"/>
      <CourseYoutube courseSlug="ciac"/>
      <CiaRevew/>
 
