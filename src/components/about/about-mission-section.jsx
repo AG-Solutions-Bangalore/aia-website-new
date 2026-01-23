@@ -6,9 +6,9 @@ const AboutMissionSection = () => {
     <div className="py-16 bg-linear-to-b from-gray-50 to-white">
       <div className="max-w-340 mx-auto ">
         <div className="text-center mb-12">
-          <p className="text-[#0F3652] text-lg mb-2">Our Mission & Vision</p>
+        
           <h1 className="text-4xl md:text-5xl font-bold text-[#0F3652] italic">
-            Driving <span className="text-[#F3831C]">Digital Transformation</span> Forward
+          Building Capable Professionals. <br/><span className="text-[#F3831C]">Creating Global Impact.</span>
           </h1>
         </div>
 
@@ -22,7 +22,7 @@ const AboutMissionSection = () => {
             </div>
             
             <p className="text-[#0F3652] leading-relaxed">
-              Our Mission is to provide the best training, study material and complete guidance related to Global Certifications to the aspirants at the lowest possible cost and let the corporate's have a right set of internal auditors and fraud examiners to safeguard their efforts and wealth.
+            At AIA, we empower professionals to move beyond credentials to build real capability. We exist to prepare audit, risk, and compliance professionals for the real realities of the profession, while also supporting them to achieve their certification goals on their first attempt. Through structured learning, practical insights, and expert-led mentorship, we focus on building skills that translate directly into confident decision-making and real-world impact. Our commitment is to walk with you at every stage of your journey, ensuring you gain clarity, competence, and the professional mindset needed to succeed in global roles and evolving business environments.
             </p>
           </div>
 
@@ -36,20 +36,9 @@ const AboutMissionSection = () => {
             
             <div className="text-[#0F3652] leading-relaxed space-y-4">
               <p>
-                At AIA, our vision is to empower professionals across the globe to learn the right skills, grow confidently in their careers, and demonstrate true professional excellence.
+              Our vision is to shape a global community of audit, fraud, and compliance professionals who have respected credentials, practical judgment, integrity, and the ability to lead. We aim to redefine professional education by moving beyond rote learning and creating an ecosystem where analytical thinking, continuous growth, and real-world readiness are the standard. As AIA continues to grow across borders, our goal is to become the most trusted partner for professionals who aspire to build meaningful, long-term careers with global relevance and impact.
               </p>
-              <p>
-                We are committed to helping individuals stay ahead of emerging risks and controls, ensuring they remain relevant, ethical, and impactful in their roles.
-              </p>
-              <p>
-                To explore more about how AIA can support your career journey with certification-driven training programs{" "}
-                <a 
-                  href="https://aia.in.net/" 
-                  className="text-[#F3831C] hover:text-[#0F3652] font-medium underline"
-                >
-                  Click here to explore AIA courses
-                </a>
-              </p>
+             
             </div>
           </div>
         </div>

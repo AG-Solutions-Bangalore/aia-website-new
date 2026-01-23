@@ -16,6 +16,7 @@ import AboutJourney from "@/components/about/about-journey";
 import PopUp from "@/components/common/pop-up";
 import { AboutCarousel } from "@/components/about/about-carousel";
 import AboutPartner from "@/components/about/about-partner";
+import HomePrCarousel from "@/components/home/home-pr-carousel";
 
 const AboutPage = () => {
   return (
@@ -27,7 +28,7 @@ const AboutPage = () => {
           <AboutTestimonial/>        
             <AboutMissionSection />
             <AboutHighlight/>
-            <AboutCarousel/> 
+            <HomePrCarousel/> 
       <AboutJourney />
 
       <HomeCourses/>

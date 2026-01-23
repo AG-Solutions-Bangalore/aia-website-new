@@ -2,9 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
-
 const FaqSection = ({ faqs = [] }) => {
-
   const groupedFaqs = {};
   let currentHeading = "General Questions";
 
@@ -25,20 +23,33 @@ const FaqSection = ({ faqs = [] }) => {
   });
 
   const headings = Object.keys(groupedFaqs);
-
-
   const [activeHeading, setActiveHeading] = useState(
     headings[0] || ""
   );
+  const [hoveredHeading, setHoveredHeading] = useState(null);
 
-  
   if (!faqs.length) return null;
+
+  const handleHeadingHover = (heading) => {
+    setHoveredHeading(heading);
+  };
+
+  const handleHeadingLeave = () => {
+    setHoveredHeading(null);
+  };
+
+  const handleHeadingClick = (heading) => {
+    setActiveHeading(heading);
+  };
+
+  // Determine which heading to show on right side
+  const displayHeading = hoveredHeading || activeHeading;
 
   return (
     <section className="py-16">
       <div className="mx-auto max-w-340 px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 md:grid-cols-5 md:gap-12">
-       
+          {/* Left sidebar - FAQ categories */}
           <div className="md:col-span-2">
             <h2 className="text-[#0F3652] text-4xl font-semibold">
               FAQs
@@ -49,11 +60,15 @@ const FaqSection = ({ faqs = [] }) => {
                 <div 
                   key={index} 
                   className="group"
-                  onClick={() => setActiveHeading(heading)}
+                  onMouseEnter={() => handleHeadingHover(heading)}
+                  onMouseLeave={handleHeadingLeave}
+                  onClick={() => handleHeadingClick(heading)}
                 >
-                  <h3 className={`text-lg font-medium cursor-pointer transition-colors ${
+                  <h3 className={`text-lg font-medium cursor-pointer transition-all duration-200 ${
                     activeHeading === heading 
                       ? 'text-[#F3831C] border-l-4 border-[#F3831C] pl-4' 
+                      : hoveredHeading === heading
+                      ? 'text-[#F3831C] border-l-4 border-[#F3831C]/50 pl-4'
                       : 'text-[#0F3652] hover:text-[#F3831C] pl-5'
                   }`}>
                     {heading}
@@ -63,14 +78,14 @@ const FaqSection = ({ faqs = [] }) => {
             </div>
           </div>
 
-     
+          {/* Right content - FAQ items */}
           <div className="md:col-span-3">
             <h3 className="text-[#0F3652] text-2xl font-semibold mb-6">
-              {activeHeading}
+              {displayHeading}
             </h3>
             
             <Accordion type="single" collapsible>
-              {groupedFaqs[activeHeading]?.map((item) => (
+              {groupedFaqs[displayHeading]?.map((item) => (
                 <AccordionItem
                   key={item.id}
                   value={item.id}
@@ -89,12 +104,7 @@ const FaqSection = ({ faqs = [] }) => {
             </Accordion>
           </div>
 
-          <p className="text-[#0F3652] mt-6 md:hidden">
-            Can't find what you're looking for? Contact our{" "}
-            <Link to="#" className="text-[#F3831C] font-medium hover:underline">
-              customer support team
-            </Link>.
-          </p>
+          
         </div>
       </div>
     </section>

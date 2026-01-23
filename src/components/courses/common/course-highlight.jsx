@@ -1,4 +1,7 @@
+import CountUp from "@/components/common/count-up";
 import React from "react";
+
+
 
 const CourseHighLight = ({
   badgeText,
@@ -28,14 +31,15 @@ const CourseHighLight = ({
         </div>
 
   
-        <div className="grid grid-cols-2 md:grid-cols-4 border-l border-r border-[#0F3652] gap-1 bg-[#0F3652]/10 mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4  gap-1  mx-auto">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="text-center px-6 py-4 border-r border-[#0F3652] last:border-r-0"
+              className="text-center px-6 py-4  last:border-r-0"
             >
               <h3 className="text-2xl md:text-3xl font-bold mb-1 text-[#0F3652]">
-                {stat.value}
+              <CountUp end={stat.value} suffix={stat.suffix} />
+
               </h3>
               <p className="text-sm text-[#0F3652]">
                 {stat.subtitle}
@@ -46,12 +50,12 @@ const CourseHighLight = ({
 
      
         {logos.length > 0 && (
-          <div className="text-white bg-[#0F3652]/5">
-        <div className=" max-w-340 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 py-10 px-2 mx-auto  ">
+          <div className="">
+        <div className=" max-w-340 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6 py-10 px-2 mx-auto  ">
           {logos.map((logo, index) => (
             <div
               key={index}
-              className="rounded-xl p-8 text-center transition-all duration-300 cursor-pointer bg-white flex items-center justify-center border border-[#F3831C]/20 hover:border-[#F3831C]"
+              className="rounded-xl p-8 text-center transition-all duration-300 cursor-pointer bg-white flex items-center justify-center hover:scale-150"
             >
               <img
                 src={logo.img}

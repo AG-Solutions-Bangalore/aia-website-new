@@ -248,7 +248,7 @@ body {
 }
 
 .animate-marquee {
-  animation: marquee var(--duration, 40s) linear infinite;
+  animation: marquee var(--duration, 1s) linear infinite;
 }
 
 .group:hover .animate-marquee {

@@ -1,10 +1,11 @@
-import { TestimonialsSection } from '@/components/ui/testimonials-with-marquee'
+
 import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import axios from 'axios'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { BASE_URL } from '@/api/base-url'
+import { TestimonialsSectionCourse } from '../common/testimonials-with-marquee-course'
 
 const CamsResult = () => {
   const { data: certificatesData, isLoading, isError } = useQuery({
@@ -30,10 +31,10 @@ const CamsResult = () => {
     return certificatesData.data.map((certificate) => ({
       author: {
     
-        avatar: `${certificateImageUrl}${certificate.student_certificate_image}`
+        avatar: `${certificateImageUrl}${certificate.student_other_certificate_image}`
       },
   
-      alt: certificate.student_certificate_image_alt || "Certificate Image"
+      alt: certificate.student_other_certificate_image_alt || "Certificate Image"
     }))
   }, [certificatesData])
 
@@ -71,7 +72,7 @@ const CamsResult = () => {
 
   return (
     <div>
-      <TestimonialsSection
+      <TestimonialsSectionCourse
         title="Proof of Excellence: Real ACAMS Results from Our Students!"
     
         testimonials={testimonials}

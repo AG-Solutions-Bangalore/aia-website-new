@@ -7,7 +7,7 @@ import { BASE_URL } from '@/api/base-url';
 import CourseAchiverCard from '../common/course-achiver-card';
 
 const CamsAchivers = () => {
-  const [cardSize, setCardSize] = useState(365);
+  const [cardSize, setCardSize] = useState(315);
   const [testimonialsList, setTestimonialsList] = useState([]);
 
   const { data, isLoading, isError } = useQuery({
@@ -63,7 +63,7 @@ const CamsAchivers = () => {
   useEffect(() => {
     const updateSize = () => {
       const { matches } = window.matchMedia("(min-width: 640px)");
-      setCardSize(matches ? 365 : 290);
+      setCardSize(matches ? 315 : 240);
     };
 
     updateSize();

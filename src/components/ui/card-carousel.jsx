@@ -12,20 +12,19 @@ import {
 } from "swiper/modules"
 
 export const CardCarousel = ({
-  images,
+  studentData,
   autoplayDelay = 1500,
   showPagination = true,
   showNavigation = true,
   className = "", 
 }) => {
   return (
-    <section className={`w-ace-y-4 ${className}`}>
-      <div className="mx-auto p-2">
+    <section className={`py-6 ${className}`}>
+      <div className="mx-auto px-4">
         <div className="relative mx-auto flex w-full flex-col">
-          <div className="flex w-full items-center justify-center gap-4">
-            <div className="w-full">
+          <div className="flex w-full items-center justify-center">
+            <div className="w-full max-w-6xl">
               <Swiper
-               
                 autoplay={{
                   delay: autoplayDelay,
                   disableOnInteraction: false,
@@ -63,17 +62,55 @@ export const CardCarousel = ({
                   640: { spaceBetween: 50 }, 
                 }}
               >
-                {images.map((image, index) => (
-                  <SwiperSlide key={index}>
-                    <div className="size-full  rounded-lg">
-                      <img
-                        src={image.src}
-                        width={500}
-                        height={500}
-                        className="size-full border border-indigo-900 shadow-xl backdrop-blur-2xl shadow-indigo-200 rounded-lg"
-                        alt={image.alt}
-                        loading="lazy"
-                      />
+                {studentData.map((student, index) => (
+                  <SwiperSlide key={index} className="max-w-xs">
+                    <div className="relative bg-white rounded-md shadow-lg shadow-gray-200/50 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-300/50">
+                   
+                      {student.marks && student.marks.split(',').length > 0 && (
+                        <div className="bg-[#0F3652] px-3 py-2">
+                          <div className="flex flex-wrap items-center justify-center gap-1">
+                            {student.marks.split(',').map((mark, idx) => (
+                              <div 
+                                key={idx}
+                                className="px-2 py-1 bg-[#F3831C] text-white text-xs font-medium rounded"
+                              >
+                                {mark.trim()}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      
+                    
+                      <div className="">
+                        <img
+                          src={student.src}
+                          width={400}
+                          height={300}
+                          className="w-full h-48 object-cover rounded-lg shadow-md"
+                          alt={student.alt}
+                          loading="lazy"
+                        />
+                      </div>
+                      
+        
+                      <div className="bg-[#0F3652] px-4 py-3">
+                        <div className="flex flex-col space-y-2">
+                        
+                          <h3 className="text-base flex flex-row items-center justify-between font-bold text-white truncate ">
+                            <span>{student.name}  </span>
+                            
+                            
+                            <span className="text-xs text-white/90 truncate">
+                                {student.designation}  at    <span className="text-sm text-[#F3831C] font-medium truncate">
+                                {student.companyName}
+                              </span>
+                              </span>
+                          </h3>
+                     
+                         
+                        </div>
+                      </div>
                     </div>
                   </SwiperSlide>
                 ))}

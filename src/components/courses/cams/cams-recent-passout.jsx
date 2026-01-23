@@ -8,12 +8,12 @@
 // import axios from "axios";
 // import { BASE_URL } from "@/api/base-url";
 
-// const CiaRecentPassout = () => {
+// const CiaRecentPassout = ({courseSlug}) => {
 //   const { data: camsPassoutData, isLoading, isError, refetch } = useQuery({
-//     queryKey: ["cams-passout-students"],
+//     queryKey: ["recent-passout-students"],
 //     queryFn: async () => {
 //       const res = await axios.get(
-//           `${BASE_URL}/api/getPassoutStudentbyCourse/cia`
+//           `${BASE_URL}/api/getPassoutStudentbyCourse/${courseSlug}`
 //       );
 //       return res.data;
 //     },
@@ -112,6 +112,7 @@
 //           </div>
 //         </div>
       
+
 //         <CardCarousel
 //           images={images}
 //           autoplayDelay={3000}

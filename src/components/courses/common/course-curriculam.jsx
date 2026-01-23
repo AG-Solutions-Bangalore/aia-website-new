@@ -30,11 +30,11 @@ const CourseCurriculum = ({ title, curriculumData }) => {
                 key={item.id}
                 onMouseEnter={() => setActiveTab(item.id)}
                 className={`
-                  w-full text-left p-3 rounded-bl-3xl rounded-tr-3xl transition-all duration-200
+                  w-full text-left p-3 rounded-tr-3xl rounded-bl-3xl transition-all duration-200
                   border
                   ${
                     activeTab === item.id
-                      ? "bg-[#0F3652] text-white border-[#F3831C]"
+                      ? "bg-[#F3831C] text-white "
                       : "bg-white text-[#0F3652] border-gray-200 hover:bg-[#0F3652]/5"
                   }
                 `}
@@ -57,7 +57,7 @@ const CourseCurriculum = ({ title, curriculumData }) => {
                   </span>
                 </div>
 
-                <div
+                {/* <div
                   className={`
                     mt-1 h-0.5 rounded-full transition-all duration-200
                     ${
@@ -66,14 +66,14 @@ const CourseCurriculum = ({ title, curriculumData }) => {
                         : "w-8 bg-[#0F3652]"
                     }
                   `}
-                />
+                /> */}
               </button>
             ))}
           </div>
 
        
           <div className="w-full md:w-3/5">
-            <div className="bg-white rounded-bl-3xl rounded-tr-3xl p-4 border border-[#F3831C]/20 min-h-[300px] h-full overflow-y-auto">
+            <div className="bg-white rounded-tr-3xl rounded-bl-3xl p-4 border border-[#F3831C]/20">
               {activeContent?.content?.length ? (
                 <div className="space-y-1">
                   <div className="mb-3">
@@ -83,7 +83,7 @@ const CourseCurriculum = ({ title, curriculumData }) => {
                     <div className="w-12 h-0.5 bg-[#0F3652] rounded-full" />
                   </div>
 
-                  <div className="max-h-60 overflow-y-auto pr-2">
+                  <div className=" pr-2">
                     {activeContent.content.map((text, index) => (
                       <div
                         key={index}

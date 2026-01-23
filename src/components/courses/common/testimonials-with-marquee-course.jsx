@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils"
-import { TestimonialCard } from "@/components/ui/testimonial-card";
-import { TestimonialCardCourse } from "../courses/common/testimonial-card-course";
+import { TestimonialCardCourse } from "./testimonial-card-course";
 
-export function TestimonialsSection({
+
+export function TestimonialsSectionCourse({
   title,
   testimonials,
   className
@@ -11,8 +11,7 @@ export function TestimonialsSection({
   if (!testimonials || testimonials.length === 0) return null;
 
   return (
-
-    <section className={cn("pb-12  px-0 ", className)}>
+    <section className={cn("py-12 sm:py-16 md:py-18 px-0 ", className)}>
       <div className="mx-auto flex max-w-340 flex-col items-center gap-4 text-center sm:gap-16">
         {title && (
           <div className="flex flex-col items-center gap-4 px-4 sm:gap-8">

@@ -29,6 +29,8 @@ import CfeAbout from "@/components/courses/cfe-curriculam/cfe-about";
 import CourseMap from "@/components/courses/common/course-map";
 import PopUp from "@/components/common/pop-up";
 import CfeFaq from "@/components/courses/cfe-curriculam/cfe-faq";
+import CourseYoutubeLecture from "@/components/courses/common/course-youtube-lecture";
+import CourseTopStudent from "@/components/courses/common/course-top-student";
 
 
 const CFECurriculam = () => {
@@ -38,7 +40,7 @@ const CFECurriculam = () => {
    
       <CourseHero/>
            <CfeAbout />
-           {/* <CamsRecentPassout/> */}
+           <CourseTopStudent courseSlug="cfe" title="From CFE Course"/>
            <CfeCourseCurriculum/>
            <CfeResult/>    
            <CfeJourney/>
@@ -47,6 +49,7 @@ const CFECurriculam = () => {
      <CfeWhyAia/>
      <CfeHighlight/>
      <CourseMap courseCode="CFE"/>
+     <CourseYoutubeLecture courseSlug="cfe"/>
      <CourseYoutube courseSlug="cfe"/>
      <CfeReview/>
 

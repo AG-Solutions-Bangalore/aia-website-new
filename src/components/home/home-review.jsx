@@ -53,12 +53,11 @@ const HomeReview = () => {
         <div className="mb-10">
           <div className="text-center md:text-left">
             <h1 className="text-3xl md:text-3xl font-bold text-[#0F3652] relative inline-block mb-2">
-              Top Testimonials
+            Learner Experiences From Across the Globe 
               <span className="absolute left-0 -bottom-2 w-14 h-1 bg-[#F3831C] rounded"></span>
             </h1>
             <p className="text-[#0F3652] text-base font-normal">
-              Description highlights the value of client feedback,
-              showcases real testimonials
+            Hear directly from professionals who achieved success with AIA.
             </p>
           </div>
         </div>

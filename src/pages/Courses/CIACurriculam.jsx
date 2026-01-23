@@ -32,6 +32,8 @@ import CiaCurrAbout from "@/components/courses/cia-curriculam/cia-curr-about";
 
 import CourseMap from "@/components/courses/common/course-map";
 import PopUp from "@/components/common/pop-up";
+import CourseYoutubeLecture from "@/components/courses/common/course-youtube-lecture";
+import CourseTopStudent from "@/components/courses/common/course-top-student";
 
 
 
@@ -43,7 +45,7 @@ const CIACurriculam = () => {
            <PopUp  slug="CIA-Curriculum"/>
       <CourseHero/>
       <CiaCurrAbout />
-      {/* <CamsRecentPassout/> */}
+      <CourseTopStudent courseSlug="cia" title="From CIA Course"/>
       <CiaCurrCourseCurriculum/>
       <CiaCurrResult/> 
       <CiaCurrJourney/>
@@ -55,6 +57,7 @@ const CIACurriculam = () => {
 
 
 <CourseMap courseCode="CIA"/>
+<CourseYoutubeLecture courseSlug="cia"/>
 <CourseYoutube courseSlug="cia"/>
 <CiaCurrReview/>
 

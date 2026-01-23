@@ -25,6 +25,8 @@ import CamsJourney from "@/components/courses/cams/cams-journey";
 import CamsAbout from "@/components/courses/cams/cams-about";
 import CourseMap from "@/components/courses/common/course-map";
 import PopUp from "@/components/common/pop-up";
+import CourseYoutubeLecture from "@/components/courses/common/course-youtube-lecture";
+import CourseTopStudent from "@/components/courses/common/course-top-student";
 
 
 
@@ -36,7 +38,7 @@ const CAMS = () => {
           <PopUp  slug="CAMS"/>
       <CourseHero/>
       <CamsAbout />
-      {/* <CamsRecentPassout/> */}
+      <CourseTopStudent courseSlug="cams" title="From CAMS Course"/>
       <CamsCourseCurriculum/>
       <CamsResult/> 
       <CamsJourney/>
@@ -49,6 +51,7 @@ const CAMS = () => {
 
 <CourseMap courseCode="CAMS"/>
 <CamsReview/>
+<CourseYoutubeLecture courseSlug="cams"/>
 <CourseYoutube courseSlug="cams"/>
 <AboutTrainerSection/>
 <CourseLms/>
