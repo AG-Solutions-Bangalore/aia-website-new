@@ -13,7 +13,7 @@ import Home from "./pages/Home/Home";
 import Blog from "./pages/Blog/Blog";
 import OurPassout from "./pages/OurPassout/OurPassout";
 
-import Enrool from "./pages/Enrool/Enrool";
+import Enrool from "./pages/Enroll/Enroll";
 import Contact from "./pages/contact/contact";
 import BlogDetails from "./pages/Blog/blog-details";
 import AboutPage from "./pages/About/About";

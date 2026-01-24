@@ -12,7 +12,7 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
   const [imageBaseUrl, setImageBaseUrl] = useState("");
   const [selectedCategory, setSelectedCategory] = useState('ALL');
-  const [showAllTrending, setShowAllTrending] = useState(false); // Added state for trending toggle
+  const [showAllTrending, setShowAllTrending] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -185,7 +185,7 @@ const Blog = () => {
             </div>
           </div>
 
-          {/* Trending Blogs Section - Updated with toggle functionality */}
+         
           {trendingBlogs.length > 0 && (
             <div className="mb-12 p-4 border-2  rounded-lg">
               <div className="flex items-center justify-between mb-6">
@@ -198,7 +198,7 @@ const Blog = () => {
                 </span>
               </div>
             
-              {/* Show all trending blogs if showAllTrending is true, otherwise show only first 4 */}
+           
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                 {showAllTrending 
                   ? trendingBlogs.map((blog) => (
@@ -210,7 +210,7 @@ const Blog = () => {
                 }
               </div>
 
-              {/* Show "View All Trending Articles" button if there are more than 4 trending blogs AND we're not showing all */}
+            
               {trendingBlogs.length > 4 && !showAllTrending && (
                 <div className="text-center">
                   <button
@@ -226,7 +226,7 @@ const Blog = () => {
                 </div>
               )}
 
-              {/* Show "Show Less" button when all trending blogs are displayed */}
+             
               {showAllTrending && trendingBlogs.length > 4 && (
                 <div className="text-center">
                   <button
