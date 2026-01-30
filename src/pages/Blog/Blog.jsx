@@ -241,7 +241,7 @@ const Blog = () => {
         <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 rounded-2xl p-4">
             <h1 className="text-4xl sm:text-5xl font-semibold text-[#0F3652] mb-6 leading-tight">
-              Explore expert insights from Academy of Internal Audit
+            Actionable Insights to Advance Your Prep and Career
             </h1>
           
             <div className="max-w-2xl mx-auto mt-8">
@@ -394,7 +394,7 @@ const Blog = () => {
 
           <div className="flex flex-col items-center justify-center bg-white px-4">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-8 max-w-5xl text-[#0F3652]">
-              Grow Better with AIA today
+            Start Your Journey with AIA
             </h1>
           
             <div className="flex flex-wrap gap-4 justify-center">

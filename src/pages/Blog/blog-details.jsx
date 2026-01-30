@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Calendar, Copy, Clock, ArrowLeft, Image as ImageIcon } from 'lucide-react';
-import { BASE_URL } from '@/api/base-url';
+import { BASE_URL, IMAGE_PATH } from '@/api/base-url';
 import BlogFaq from '@/components/blog/blog-faq';
 
 const BlogDetails = () => {
@@ -81,7 +81,7 @@ const BlogDetails = () => {
         "name": "Academy of Internal Audit",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://aia.in.net/crm/public/assets/images/logo/new_logo.webp"
+          "url": `${IMAGE_PATH}/new_logo.webp`
         }
       },
       "datePublished": blog.created_at,

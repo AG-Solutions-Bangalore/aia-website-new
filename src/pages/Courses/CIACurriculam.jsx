@@ -45,7 +45,7 @@ const CIACurriculam = () => {
            <PopUp  slug="CIA-Curriculum"/>
       <CourseHero/>
       <CiaCurrAbout />
-      <CourseTopStudent courseSlug="cia" title="From CIA Course"/>
+      <CourseTopStudent courseSlug="cia" needPrefix="true" title="From CIA Course"/>
       <CiaCurrCourseCurriculum/>
       <CiaCurrResult/> 
       <CiaCurrJourney/>

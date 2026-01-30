@@ -1,253 +1,188 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { BASE_URL } from '@/api/base-url';
+/* eslint-disable no-unused-vars */
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const cn = (...classes) => classes.filter(Boolean).join(' ');
 
+import axios from "axios";
+import { BASE_URL } from "@/api/base-url";
+import { PrCardCarousel } from "../courses/common/pr-card-carousel";
 
-const SQRT_5000 = Math.sqrt(5000);
+const CourseTopStudent = ({title="Heading - Need to Receive " ,needPrefix ,subtitle = "Our successful graduates making a difference in the industry"}) => {
+  const { data: prdata, isLoading, isError, refetch } = useQuery({
+    queryKey: ["pr-data"],
+    queryFn: async () => {
+      const res = await axios.get(
+          `${BASE_URL}/api/getPr`
+      );
+      return res.data;
+    },
+  });
 
-const TestimonialCard = ({ 
-  position, 
-  testimonial, 
-  handleMove, 
-  cardSize,
-  imageBaseUrl 
-}) => {
-  const isCenter = position === 0;
-  const zIndex = isCenter ? 10 : 10 - Math.abs(position);
-  return (
-    <div
-      onClick={() => handleMove(position)}
-      className={cn(
-        "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out",
-        isCenter 
-          ? "z-10 bg-[#0F3652] text-white border-[#0F3652]" 
-          : "z-0 bg-white text-[#0F3652] border-gray-200 hover:border-[#F3831C]/50"
-      )}
-      style={{
-        width: cardSize,
-        height: cardSize,
-        zIndex: zIndex,
-        clipPath: `polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)`,
-        transform: `
-          translate(-50%, -50%) 
-          translateX(${(cardSize / 1.5) * position}px)
-          translateY(${isCenter ? -65 : position % 2 ? 15 : -15}px)
-          rotate(${isCenter ? 0 : position % 2 ? 2.5 : -2.5}deg)
-        `,
-        boxShadow: isCenter ? "0px 8px 0px 4px rgba(15, 54, 82, 0.2)" : "0px 0px 0px 0px transparent",
-        opacity: Math.abs(position) > 2 ? 0 : 1,
-        pointerEvents: Math.abs(position) > 2 ? 'none' : 'auto',
-      }}>
-      <span
-        className="absolute block origin-top-right rotate-45 bg-[#F3831C]"
-        style={{
-          right: -2,
-          top: 48,
-          width: SQRT_5000,
-          height: 2
-        }} />
-      <img
-        src={`${imageBaseUrl}${testimonial.pr_image}`}
-        alt={testimonial.pr_image_alt || 'PR Image'}
-        className="mb-4 h-48 w-full bg-gray-200 object-cover object-top"
-        style={{
-          boxShadow: "3px 3px 0px rgba(15, 54, 82, 0.1)"
-        }} />
-      <h3
-        className={cn(
-          "text-base font-medium",
-          isCenter ? "text-white" : "text-[#0F3652]"
-        )}>
-        "{testimonial.pr_title}"
-      </h3>
+  const studentData = React.useMemo(() => {
+    if (!prdata?.data) return [];
+    
+    const studentImageUrlObj = prdata.image_url?.find(
+      item => item.image_for === "Pr"
+    );
+    const studentImageUrl = studentImageUrlObj?.image_url || "";
+    
+   
+    
+    return prdata.data.map((student) => ({
+      src: `${studentImageUrl}${student.pr_image}`,
+      alt: student.pr_image_alt || "Pr Image",
+      title: student.pr_title,
+      link: student.pr_link,
+      pr_date: student.pr_date,
+   
      
-      <div className="flex flex-row items-center justify-between">
-        <p
-          className={cn(
-            "text-sm italic",
-            isCenter ? "text-white/80" : "text-[#0F3652]/80"
-          )}>
-          - {new Date(testimonial.pr_date).toLocaleDateString('en-GB', { 
-            day: '2-digit', 
-            month: 'short', 
-            year: 'numeric' 
-          })}
-        </p>
-
-        <a
-          href={testimonial.pr_link}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className={cn(
-            "font-semibold py-1 px-2 rounded-md inline-flex items-center gap-2 transition-colors", 
-            isCenter ? "text-white bg-orange-500/90" : "text-white bg-[#0F3652]"
-          )}
-        >
-          <span>Read More</span>
-          <svg
-                  className="
-                    w-4 h-4
-                    transition-transform duration-200
-                    group-hover:translate-x-0.5
-                  "
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
-        </a>
-      </div>
-    </div>
-  );
-};
-
-export default function HomePrCarousel() {
-  const [cardSize, setCardSize] = useState(365);
-  const [testimonialsList, setTestimonialsList] = useState([]);
-  const [imageBaseUrl, setImageBaseUrl] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    const fetchPrData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch(`${BASE_URL}/api/getPr`);
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch PR data');
-        }
-        
-        const data = await response.json();
-        
-        if (data?.data) {
-          const processedData = data.data.map((item) => ({
-            ...item,
-            tempId: item.id
-          }));
-          setTestimonialsList(processedData);
-        }
-        
-        if (data?.image_url) {
-          const prImageUrl = data.image_url.find(img => img.image_for === 'Pr');
-          if (prImageUrl) {
-            setImageBaseUrl(prImageUrl.image_url);
-          }
-        }
-        
-        setIsLoading(false);
-      } catch (error) {
-        console.error('Error fetching PR data:', error);
-        setIsError(true);
-        setIsLoading(false);
-      }
-    };
-
-    fetchPrData();
-  }, []);
-
-  const handleMove = (steps) => {
-    const newList = [...testimonialsList];
-    if (steps > 0) {
-      for (let i = steps; i > 0; i--) {
-        const item = newList.shift();
-        if (!item) return;
-        newList.push({ ...item, tempId: Math.random() });
-      }
-    } else {
-      for (let i = steps; i < 0; i++) {
-        const item = newList.pop();
-        if (!item) return;
-        newList.unshift({ ...item, tempId: Math.random() });
-      }
-    }
-    setTestimonialsList(newList);
-  };
-
-  useEffect(() => {
-    const updateSize = () => {
-      const { matches } = window.matchMedia("(min-width: 640px)");
-      setCardSize(matches ? 365 : 290);
-    };
-
-    updateSize();
-    window.addEventListener("resize", updateSize);
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
+    }));
+  }, [prdata]);
 
   if (isLoading) {
     return (
-      <div className="relative w-full overflow-hidden bg-gray-50 flex items-center justify-center" style={{ height: 600 }}>
-        <div className="text-[#0F3652] text-xl font-medium">Loading PR articles...</div>
+      <div className="relative w-full  py-8">
+        <div className="absolute inset-0 overflow-hidden">
+          <div 
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: 'linear-gradient(to right, #888 1px, transparent 1px), linear-gradient(to bottom, #888 1px, transparent 1px)',
+              backgroundSize: '50px 50px',
+            }}
+          ></div>
+          <div 
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 70% 30%, #7c3aed 1px, transparent 1.5px), radial-gradient(circle at 30% 70%, #db2777 1px, transparent 1.5px)',
+              backgroundSize: '60px 60px',
+              animation: 'moveBackground 20s infinite alternate',
+            }}
+          ></div>
+        </div>
+
+        <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+          <div className="mb-8 text-center gap-4">
+            <div className="relative z-30"> 
+              <Skeleton height={40} width={400} className="mx-auto" />
+              <Skeleton height={20} width={200} className="mx-auto mt-2" />
+            </div>
+          </div>
+          
+          <div className="flex justify-center gap-4">
+            {[...Array(4)].map((_, index) => (
+              <div key={index} className="w-64 h-80">
+                <Skeleton height={320} width={256} />
+                <Skeleton height={20} width={150} className="mt-2" />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
 
   if (isError) {
     return (
-      <div className="relative w-full overflow-hidden bg-gray-50 flex items-center justify-center" style={{ height: 600 }}>
-        <div className="text-red-600 text-xl font-medium">Error loading PR articles</div>
+      <div className="relative w-full  py-8">
+        <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center">
+          <div className="text-red-500">Error loading students. Please try again later.</div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div
-      className="relative w-full min-h-screen overflow-hidden bg-gray-50 "
-      >
-<h2 className=" absolute top-0  w-full  text-center text-3xl  font-bold text-[#0F3652] py-10">
-            Heading - Need to Receive 
-          </h2>
-
-
-      {testimonialsList.map((testimonial, index) => {
-        const position = testimonialsList.length % 2
-          ? index - (testimonialsList.length + 1) / 2
-          : index - testimonialsList.length / 2;
-        return (
-          <TestimonialCard
-            key={testimonial.tempId}
-            testimonial={testimonial}
-            handleMove={handleMove}
-            position={position}
-            cardSize={cardSize}
-            imageBaseUrl={imageBaseUrl} />
-        );
-      })}
-
-
-
-      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
-        <button
-          onClick={() => handleMove(-1)}
-          className={cn(
-            "flex h-14 w-14 items-center justify-center text-2xl transition-colors",
-            "bg-white border-2 border-[#0F3652] text-[#0F3652] hover:bg-[#0F3652] hover:text-white",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F3831C] focus-visible:ring-offset-2"
-          )}
-          aria-label="Previous testimonial">
-          <ChevronLeft />
-        </button>
-        <button
-          onClick={() => handleMove(1)}
-          className={cn(
-            "flex h-14 w-14 items-center justify-center text-2xl transition-colors",
-            "bg-white border-2 border-[#0F3652] text-[#0F3652] hover:bg-[#0F3652] hover:text-white",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F3831C] focus-visible:ring-offset-2"
-          )}
-          aria-label="Next testimonial">
-          <ChevronRight />
-        </button>
+    <div className="relative w-full  py-8">
+      <div className="absolute inset-0 overflow-hidden">
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: 'linear-gradient(to right, #888 1px, transparent 1px), linear-gradient(to bottom, #888 1px, transparent 1px)',
+            backgroundSize: '50px 50px',
+          }}
+        ></div>
       </div>
+      
+      <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+        <div className="mb-8 text-center gap-4">
+          <div className="relative z-30"> 
+         
+            <h2 className="text-3xl font-medium text-gray-900">
+            {needPrefix == 'true' &&(
+
+              <span>Recent Passout Students</span>
+            )} {" "}
+              
+              
+               <span className="text-blue-900">{title}</span>
+            </h2>
+           
+          </div>
+        </div>
+      
+
+        <PrCardCarousel
+          studentData={studentData}
+          autoplayDelay={3000}
+          showPagination={true}
+          showNavigation={true}
+          className="showcase-student-carousel relative z-0"
+        />
+      </div>
+      <style>{`
+        .showcase-student-carousel .swiper {
+          width: 100%;
+          padding-bottom: 50px;
+        }
+        
+        .showcase-student-carousel .swiper-slide {
+          background-position: center;
+          background-size: cover;
+          width: 300px;
+          transform: translateZ(0);
+          backface-visibility: hidden;
+          perspective: 1000px;
+        }
+        
+        .showcase-student-carousel .swiper-slide img {
+          display: block;
+          width: 100%;
+          height: 300px;
+          object-fit: cover;
+          border-radius: 8px;
+          transform: translateZ(0);
+          will-change: transform;
+        }
+        
+        .showcase-student-carousel .swiper-3d .swiper-slide-shadow-left,
+        .showcase-student-carousel .swiper-3d .swiper-slide-shadow-right {
+          background-image: none;
+        }
+        
+        .showcase-student-carousel .swiper-pagination {
+          display: none !important;
+        }
+        
+        /* Animation for the background */
+        @keyframes moveBackground {
+          0% { background-position: 0% 0%; }
+          100% { background-position: 100% 100%; }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+          .showcase-student-carousel .swiper {
+            transition: none;
+          }
+          .showcase-student-carousel .swiper-slide {
+            animation: none;
+          }
+        }
+      `}</style>
     </div>
   );
-}
+};
+
+export default CourseTopStudent;

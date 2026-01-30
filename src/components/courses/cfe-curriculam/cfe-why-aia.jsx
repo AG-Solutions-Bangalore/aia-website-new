@@ -3,32 +3,33 @@
 
 import React from 'react'
 import CourseWhyAia from '../common/course-why-aia'
+import { IMAGE_PATH } from '@/api/base-url'
 
 const CfeWhyAia = () => {
   return (
     <CourseWhyAia
-  heading="Why Academy of Internal Audit"
+  heading="Why AIA"
   backgroundImage="https://christuniversity.in/images/bg_2.jpg"
   items={[
     {
-      img: "https://aia.in.net/assets/images/teacher-svgrepo-com.png",
-      title: "CFE Qualified Instructor",
+      img: `${IMAGE_PATH}/teacher-svgrepo-com.png`,
+      title: "CFE Expert Faculty",
     },
     {
-      img: "https://aia.in.net/assets/images/support-svgrepo-com.png",
-      title: "Training Support",
+      img: `${IMAGE_PATH}/support-svgrepo-com.png`,
+      title: "Complete Prep Support",
     },
     {
-      img: "https://aia.in.net/assets/images/video-record-device-svgrepo-com.png",
-      title: "Access to Recorded Sessions",
+      img: `${IMAGE_PATH}/video-record-device-svgrepo-com.png`,
+      title: "Recorded Detailed Video Sessions",
     },
     {
-      img: "https://aia.in.net/crm/public/assets/images/calender-svgrepo-com.png",
-      title: "Flexible Schedule",
+      img: `${IMAGE_PATH}/calender-svgrepo-com.png`,
+      title: "Flexible Learning Schedule",
     },
     {
-      img: "https://aia.in.net/crm/public/assets/images/books-svgrepo-com.png",
-      title: "Best CFE Study Material",
+      img: `${IMAGE_PATH}/books-svgrepo-com.png`,
+      title: "Updated CFE Material",
     },
   ]}
 />

@@ -5,69 +5,32 @@ const curriculumData = [
     id: 1,
     title: "FINANCIAL TRANSACTIONS & FRAUD SCHEMES",
     content: [
-      "Accounting Concepts",
-      "Financial Statement Fraud",
-      "Asset Misappropriation: Cash Receipts",
-      "Fraudulent Disbursements",
-      "Inventory and Other Assets",
-      "Bribery and Corruption",
-      "Theft of Data and Intellectual Property",
-      "Identity Theft",
-      "Financial Institution Fraud",
-      "Payment Fraud",
-      "Insurance Fraud",
-      "Health Care Fraud",
-      "Consumer Fraud",
-      "Computer and Internet Fraud",
-      "Contract and Procurement Fraud",
+      "This module focuses on understanding how fraud occurs within financial transactions. Learners study accounting concepts from a fraud perspective and explore major fraud schemes such as financial statement fraud, asset misappropriation, bribery, corruption, identity theft, and technology-driven frauds. The emphasis is on recognising red flags, understanding fraud patterns, and learning how fraudsters exploit weaknesses across industries like banking, insurance, healthcare, and procurement.",
+     
     ],
   },
   {
     id: 2,
     title: "LAW",
     content: [
-      "Overview of The Legal System",
-      "The Law Related to Fraud",
-      "Bankruptcy (Insolvency) Fraud",
-      "Securities Fraud",
-      "Money Laundering",
-      "Tax Fraud",
-      "Individual Rights During Examinations",
-      "The Criminal Justice System",
-      "The Civil Justice System",
-      "Basic Principles of Evidence",
-      "Testifying",
+      "The Law module builds a practical understanding of legal principles related to fraud examinations. It covers criminal and civil law, individual rights, rules of evidence, and legal procedures involved in fraud cases. Learners also study areas such as money laundering, tax fraud, securities fraud, and bankruptcy fraud, ensuring investigations are conducted lawfully, ethically, and in a manner that supports legal proceedings.",
+     
     ],
   },
   {
     id: 3,
     title: "INVESTIGATION",
     content: [
-      "Planning and Conducting a Fraud Examination",
-      "Analyzing Documents",
-      "Interview Theory and Application",
-      "Interviewing Suspects and Signed Statements",
-      "Covert Examinations",
-      "Sources of Information",
-      "Data Analysis and Reporting Tools",
-      "Digital Forensics",
-      "Tracing Illicit Transactions",
-      "Report Writing",
+      "This module develops the core skills required to conduct fraud investigations effectively. Learners gain hands-on understanding of investigation planning, interviewing techniques, document analysis, data analysis, digital forensics, and tracing illicit transactions. Strong focus is placed on evidence handling and report writing, enabling professionals to convert investigation findings into clear, structured, and defensible reports.",
+     
     ],
   },
   {
     id: 4,
     title: "FRAUD PREVENTION & DETERRENCE",
     content: [
-      "Understanding Criminal Behaviour",
-      "White-collar Crime",
-      "Corporate Governance",
-      "Management’s Fraud – Related Responsibilities",
-      "Auditors’ Fraud Related Responsibilities",
-      "Fraud Prevention Programs",
-      "Fraud Risk Assessment",
-      "Fraud Risk Management",
-      "Professional Code of Ethics",
+      "This module focuses on preventing fraud through strong governance and risk frameworks. This module covers criminal behaviour, white-collar crime, corporate governance, management responsibilities, and auditor roles in fraud prevention. In addition, the curriculum also highlights understanding of fraud risk assessment, internal controls, ethics, and fraud risk management, helping professionals design systems that reduce fraud risk and strengthen organisational integrity.",
+    
     ],
   },
 ];
@@ -75,7 +38,8 @@ const curriculumData = [
 const CfeCourseCurriculum = () => {
   return (
     <CourseCurriculum
-      title="CFE Curriculum"
+      title="Course Curriculum"
+      description={` The <strong>Certified Fraud Examiner (CFE) credential is globally recognised </strong> as a benchmark for professionals working in fraud detection, investigation, and prevention. The certification <strong> validates a professional’s ability to understand & identify fraud schemes </strong>, conduct structured investigations, and design effective fraud prevention frameworks across organisations.<br/> \nThe CFE exam is divided into <strong> four core modules </strong>, covering financial fraud schemes, legal aspects, investigation techniques, and fraud prevention and deterrence. Together, these modules build strong technical knowledge and practical judgment required to handle real-world fraud risks.<br/> \n At AIA, we design our <strong> CFE training program </strong> to ensure that aspirants develop a <strong> clear organisational understanding and an investigator mindset. </strong> The course structure helps learners view transactions through a fraud-risk framework, understand how controls fail, and analyse fraud from the perspective of how it occurs.`}
       curriculumData={curriculumData}
     />
   );

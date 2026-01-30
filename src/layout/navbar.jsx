@@ -1,3 +1,4 @@
+import { IMAGE_PATH } from "@/api/base-url";
 import { ChevronDown, Mail, Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
 import {
@@ -197,7 +198,7 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <a href="/">
                 <img
-                  src="https://aia.in.net/crm/public/assets/images/logo/new_logo.webp"
+                  src={`${IMAGE_PATH}/new_logo.webp`}
                   alt="Academy of Internal Audit"
                   className="h-8 md:h-10 w-auto"
                 />
@@ -315,7 +316,7 @@ const Navbar = () => {
 
               <div className="mb-8">
                 <img
-                  src="https://aia.in.net/crm/public/assets/images/logo/new_logo.webp"
+                  src={`${IMAGE_PATH}/new_logo.webp`}
                   alt="Academy of Internal Audit"
                   className="h-8 md:h-10 w-auto"
                 />

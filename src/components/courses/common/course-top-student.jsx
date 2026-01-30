@@ -8,7 +8,7 @@ import { CardCarousel } from "@/components/ui/card-carousel";
 import axios from "axios";
 import { BASE_URL } from "@/api/base-url";
 
-const CourseTopStudent = ({courseSlug,title}) => {
+const CourseTopStudent = ({courseSlug,title ,needPrefix ,subtitle = "Our successful graduates making a difference in the industry"}) => {
   const { data: camsPassoutData, isLoading, isError, refetch } = useQuery({
     queryKey: ["recent-passout-students"],
     queryFn: async () => {
@@ -114,11 +114,18 @@ const CourseTopStudent = ({courseSlug,title}) => {
       <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="mb-8 text-center gap-4">
           <div className="relative z-30"> 
+         
             <h2 className="text-3xl font-medium text-gray-900">
-              Recent Passout Students <span className="text-blue-900">{title}</span>
+            {needPrefix == 'true' &&(
+
+              <span>Recent Passout Students</span>
+            )} {" "}
+              
+              
+               <span className="text-blue-900">{title}</span>
             </h2>
             <p className="text-gray-600 mt-2">
-              Our successful graduates making a difference in the industry
+             {subtitle}
             </p>
           </div>
         </div>

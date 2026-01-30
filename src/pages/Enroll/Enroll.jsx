@@ -13,7 +13,7 @@ const Enrool = () => {
 
 <EnrollHighlight/>
 
-      <CourseTopStudent courseSlug="Enroll-Now" title="From Enroll Course"/>
+      <CourseTopStudent courseSlug="Enroll-Now" needPrefix="true" title="From Enroll Course"/>
 
 <HomeAlumniWork/>
 <CourseMap courseCode="Enroll-Now"/>

@@ -5,6 +5,7 @@
 
 import React from 'react'
 import CourseWhyAia from '../common/course-why-aia'
+import { IMAGE_PATH } from '@/api/base-url'
 
 const CiaCurrWhyAia = () => {
   return (
@@ -13,23 +14,23 @@ const CiaCurrWhyAia = () => {
   backgroundImage="https://christuniversity.in/images/bg_2.jpg"
   items={[
     {
-      img: "https://aia.in.net/crm/public/assets/images/books-svgrepo-com.png",
+      img: `${IMAGE_PATH}/books-svgrepo-com.png`,
       title: "CFE Qualified Instructor",
     },
     {
-      img: "https://aia.in.net/crm/public/assets/images/books-svgrepo-com.png",
+      img: `${IMAGE_PATH}/books-svgrepo-com.png`,
       title: "Training Support",
     },
     {
-      img: "https://aia.in.net/assets/images/video-record-device-svgrepo-com.png",
+      img: `${IMAGE_PATH}/video-record-device-svgrepo-com.png`,
       title: "Access to Recorded Sessions",
     },
     {
-      img: "https://aia.in.net/assets/images/Learning.png",
+      img: `${IMAGE_PATH}/Learning.png`,
       title: "IIA India Authorized Learning Partner",
     },
     {
-      img: "https://aia.in.net/assets/images/books-svgrepo-com.png",
+      img: `${IMAGE_PATH}/books-svgrepo-com.png`,
       title: "2025 Gleim Study Material",
     },
   ]}

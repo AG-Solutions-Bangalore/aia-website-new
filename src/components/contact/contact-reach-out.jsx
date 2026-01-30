@@ -1,5 +1,6 @@
 import React from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { IMAGE_PATH } from "@/api/base-url";
 
 const ContactReachOut = () => {
   const contactMethods = [
@@ -41,14 +42,14 @@ const ContactReachOut = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Title */}
+    
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-white mb-0">
             Reach Out Anytime, We're Here for You
           </h2>
         </div>
 
-        {/* Cards Container */}
+
         <div className="flex flex-wrap justify-center gap-8 px-5 pb-16">
           {contactMethods.map((method, index) => (
             <div
@@ -58,7 +59,7 @@ const ContactReachOut = () => {
                 border: '2px solid #f97316'
               }}
             >
-              {/* Icon Circle - Positioned absolutely */}
+             
               <div 
                 className="absolute -top-10 left-1/2 w-20 h-20 rounded-full flex items-center justify-center"
                 style={{
@@ -76,7 +77,7 @@ const ContactReachOut = () => {
                 </div>
               </div>
 
-              {/* Content */}
+      
               <h3 
                 className="text-3xl font-bold mb-4 mt-8"
                 style={{ color: '#f97316' }}
@@ -96,7 +97,7 @@ const ContactReachOut = () => {
   style={{ color: "#000", textDecoration: "none" }}
 >
   <img
-    src="https://aia.in.net/crm/public/assets/images/logo/toll free.png"
+    src={`${IMAGE_PATH}/toll free.png`}
     alt="Toll free number"
     className="mx-auto"
   />

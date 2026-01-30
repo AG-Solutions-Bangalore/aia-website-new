@@ -11,15 +11,15 @@ const CfeAbout=()=> {
   return (
     <>
       <CourseAbout
-  badgeText="Best Prep Course For CFE Preparation"
-  heading="Join AIA Prep Course and Get 100% Success in CFE Exam"
+  badgeText="Prepare for the CFE Exam with Confidence - Guided by AIA"
+  heading="CFE Preparation That Builds Real Fraud Expertise in You"
   description={`
-CFE is a credential awarded by the ACFE, US. Academy of Internal Audit provides end to end Training sessions & study material for CFE Certification,\n which ensures you grab the CFE Certification and relevant knowledge, skills & confidence to excel in your professional career.`}
+Certified Fraud Examiner (CFE) is a globally respected credential awarded by the ACFE, USA.\n At AIA, we help you understand fraud by learning how fraud schemes are planned, executed, detected, and investigated in real organisational settings. Our CFE preparation program combines structured learning, exam-focused practice, and expert guidance to help you build a practical fraud examiner’s mindset. \n This course is ideal for professionals from audit, finance, compliance, risk, or consulting who aim to clear the CFE exam and strengthen their credibility in fraud examination.`}
   aboutStats={[
-    { display: "Recorded Video Classes", title: "Expert Mentoring Sessions" },
-    { display: "Practice Questions", title: "Success Rate" },
-    { display: "Customized Study Material", title: "Success Stories" },
-    { display: "CFE Qualified Trainer", title: "Served" },
+    { display: "Recorded Video Sessions", title: "Expert Mentoring Sessions" },
+    { display: "Expert Curated Practice Questions", title: "Success Rate" },
+    { display: "Simplified Quick Study Notes", title: "Success Stories" },
+    { display: "CFE-Qualified Faculty", title: "Served" },
   ]}
 />
 

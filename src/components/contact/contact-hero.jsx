@@ -120,23 +120,23 @@ const handleSubmit = async (e) => {
           <div className=" relative lg:col-span-3 flex flex-col justify-center ">
             <div className="space-y-6">
               <h1 className="text-3xl md:text-4xl font-bold text-[#0c2340] leading-tight">
-                Discover How AIA Can<br />
-                <span className="text-[#fa8017]">Transform Your Career</span><br />
-                Growth
+              Turn Experience into  
+                <br />
+                <span className="text-[#fa8017]">Global Career Opportunities</span><br />
+                with AIA
               </h1>
 
               <div className="h-px w-full"></div>
 
               <p className="text-[#373839] leading-relaxed text-justify">
-                Have a question or career goal? <span className="text-[#fa8017] font-semibold">Let's talk</span><br />
-                We're here to guide you - just one message away!
+              Confused about which certification is the best fit for you?<br/> Get clear guidance on eligibility, preparation, and long-term career impact.<br/> We're here to guide you - just one message away <span className="text-[#fa8017] font-semibold">Let's talk</span>
               </p>
 
-              <div className="absolute top-1/2 left-1/2">
+              <div className="absolute top-[20%] left-[50%]">
                 <img 
                   src="https://aia.in.net/assets/images/arrow.png" 
                   alt="arrow" 
-                  className="w-32 h-auto"
+                  className="w-full h-auto"
                 />
               </div>
 

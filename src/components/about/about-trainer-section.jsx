@@ -1,3 +1,4 @@
+import { IMAGE_PATH } from "@/api/base-url";
 import React from "react";
 
 const AboutTrainerSection = () => {
@@ -8,7 +9,7 @@ const AboutTrainerSection = () => {
     
           <div className="relative">
           <img
-                src="https://aia.in.net/crm/public/assets/images/faculty/Puneet_Garg.webp"
+                src={`${IMAGE_PATH}/Puneet_Garg.webp`}
                 alt="Puneet Garg - Trainer"
                 className="w-full relative z-0"
               />
@@ -53,7 +54,7 @@ const AboutTrainerSection = () => {
               </div>
                <div className="mt-5">
               <img
-                src="https://aia.in.net/crm/public/assets/images/faculty/message.png"
+                src={`${IMAGE_PATH}/message.png`}
                 alt="Student Testimonials"
                 className="w-full rounded-lg"
               />

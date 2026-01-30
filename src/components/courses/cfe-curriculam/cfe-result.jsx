@@ -76,7 +76,7 @@ const CfeResult = () => {
   return (
     <div>
       <TestimonialsSectionCourse
-        title="Proof of Excellence: Real CFE Results of AIA Students!"
+        title="Verified CFE Exam Results Achieved by AIA Learners"
     
         testimonials={testimonials}
      

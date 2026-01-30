@@ -10,6 +10,7 @@
 
 import React from 'react'
 import CourseHighLight from '../courses/common/course-highlight'
+import { IMAGE_PATH } from '@/api/base-url'
 
 
 const CorporateHighlight = () => {
@@ -26,11 +27,11 @@ const CorporateHighlight = () => {
     ]}
     
     logos={[
-      { img: "https://aia.in.net/crm/public/assets/images/brand/IAO.jpeg" },
-      { img: "https://aia.in.net/crm/public/assets/images/brand/IIA.png" },
-      { img: "https://aia.in.net/crm/public/assets/images/brand/ISO.jpeg" },
-      { img: "https://aia.in.net/crm/public/assets/images/brand/Gleim.jpeg" },
-      { img: "https://aia.in.net/crm/public/assets/images/brand/GSAAA.png" },
+      { img: `${IMAGE_PATH}/IAO.jpeg` },
+      { img: `${IMAGE_PATH}/IIA.png` },
+      { img: `${IMAGE_PATH}/ISO.jpeg` },
+      { img: `${IMAGE_PATH}/Gleim.jpeg` },
+      { img: `${IMAGE_PATH}/GSAAA.png` },
     ]}
   />
   
