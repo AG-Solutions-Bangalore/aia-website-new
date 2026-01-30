@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { BASE_URL } from '@/api/base-url';
+import { BASE_URL, IMAGE_PATH } from '@/api/base-url';
 
 const ServiceCard = React.forwardRef(({ testimonial, i, progress, range, targetScale, imageUrl }, ref) => {
   const scale = useTransform(progress, range, [1, targetScale]);
@@ -188,7 +188,7 @@ const CiaRevew = () => {
      
         <div className="md:sticky md:top-0 md:h-screen md:flex md:items-center md:justify-center">
           <img
-            src="https://aia.in.net/crm/public/assets/images/testimonial/rated.jpg"
+            src={`${IMAGE_PATH}/rated.jpg`}
             alt="Rated testimonial"
             className="w-full h-auto max-w-full object-contain transform -scale-x-100"
             style={{ maxHeight: '90vh' }}

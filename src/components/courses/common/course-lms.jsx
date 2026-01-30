@@ -3,17 +3,18 @@ import React, { useEffect, useRef, useState } from "react";
 const CourseLms = () => {
   const labels = [
     "Dedicated Support Person",
-    "CAMS Version 7 Study Material",
-    "Practice Questions",
-    "Live Sessions with Faculty",
-    "100% Exam Registration Support",
-    "50+ Hours of Video Lectures",
-    "Mock Tests Preparations",
+    "Updated Study Curriculum",
+    "Exam-Oriented Practice Questions",
+    "60+ Hours of Detailed Video Lectures",
+    "Mock Tests Preparation",
+    "100% Exam Registration Assistant",
+    "Live Interactive Sessions with Faculty",
   ];
 
-  const radius = 180;
-  const center = 300;
-
+  const radius = 150;
+  const center = 250;
+  const centerX = 250;
+  const centerY = 250;
   const [angleOffset, setAngleOffset] = useState(0);
   const frameRef = useRef(null);
   const lastTimeRef = useRef(performance.now());
@@ -38,90 +39,217 @@ const CourseLms = () => {
     };
   };
 
+  const courseFeatures = [
+    {
+      title: "CFE Personalised Study Material",
+      description: "AIA provides concise, exam-focused study notes distilled from the extensive 2000 pages manual into 250 pages. This will help you cover key concepts efficiently & 10x advance your prep from others."
+    },
+    {
+      title: "Practice Questions",
+      description: "Access 1,500+ CFE practice questions on AIA LMS with answers and detailed explanations. This will test your understanding and build confidence by closely matching the actual exam format."
+    },
+    {
+      title: "Recorded Video Lectures",
+      description: "Get 60+ hours of detailed recorded video lectures by Puneet Sir, enabling flexible, self-paced learning while simplifying complex concepts through clear, structured explanations."
+    },
+    {
+      title: "Live Query Sessions",
+      description: "Attend weekly live query sessions with experienced industry faculty to clarify doubts, interact with peers, and gain practical insights that strengthen conceptual clarity and real-world fraud understanding."
+    },
+    {
+      title: "Time Frame",
+      description: "With a structured study plan and focused preparation, you can complete all four CFE modules in approximately 30 days by dedicating one week per module, subject to study time availability."
+    },
+    {
+      title: "8 Full-Length Mock Tests",
+      description: "Attempt eight full-length mock tests, two per module, designed to replicate the real CFE exam pattern and help assess readiness, improve time management, and refine exam strategy."
+    },
+    {
+      title: "End-to-End CFE Exam Registration Support",
+      description: "We offer complete support throughout the CFE exam registration process, guiding you step by step from application review to final exam scheduling, ensuring a smooth and stress-free experience."
+    },
+    {
+      title: "Updated Study Material",
+      description: "All study content is regularly reviewed and updated to reflect the latest CFE syllabus and regulatory changes, ensuring your preparation remains relevant and aligned with exam expectations."
+    }
+  ];
+
   return (
-    <section
-      className="relative flex items-center justify-center py-24"
-      style={{
-        backgroundImage:
-          "url('https://aia.in.net/crm/public/assets/images/LMS.webp')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="absolute inset-0 bg-black/55" />
+    <>
+      <section
+        className="relative flex items-center justify-center py-24"
+        style={{
+          backgroundImage:
+            "url('https://aia.in.net/crm/public/assets/images/LMS.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/55" />
 
-      <div className="relative z-10 w-full max-w-3xl aspect-square">
-        <svg viewBox="0 0 600 600" className="w-full h-full">
-          <defs>
-            <linearGradient id="orbitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#F3831C" />
-              <stop offset="100%" stopColor="#F3831C" />
-            </linearGradient>
-
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          <circle
-            cx={center}
-            cy={center}
-            r={radius}
-            fill="none"
-            stroke="url(#orbitGradient)"
-            strokeWidth="8"
-            filter="url(#glow)"
-          />
-
-          <foreignObject x={center - 120} y={center - 120} width={240} height={240}>
-            <div className="w-full h-full flex items-center justify-center">
-              <img
-                src="https://i.postimg.cc/BbXsmB3J/dsfsd-modified.png"
-                alt="LMS"
-                className="w-full h-full object-cover rounded-full"
-                draggable={false}
-              />
+        <div className="relative z-10 w-full max-w-340 px-8 flex flex-col lg:flex-row items-center gap-16">
+          <div className="w-full lg:w-1/2 text-center lg:text-left">
+            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+              AIA Digital Learning Platform
+            </h1>
+            
+            <h2 className="text-xl lg:text-2xl font-semibold text-white/90 mb-8">
+              Your All-in-One Partner for Structured Exam Preparation
+            </h2>
+            
+            <div className="mb-8">
+              <p className="text-3xl font-bold text-white mb-2">
+                Padho Kabhi Bhi, Kahi Bhi
+              </p>
+              <p className="text-2xl font-semibold text-white/80">
+                Learn Anytime, Anywhere
+              </p>
             </div>
-          </foreignObject>
+          </div>
 
-          {labels.map((label, i) => {
-            const angle = i * (360 / labels.length) + angleOffset;
-            const { x, y } = getPosition(angle);
-
-            return (
-              <g key={i}>
+          <div className="relative z-10 w-full lg:w-1/2 flex justify-center">
+            <div className="w-full max-w-3xl aspect-square">
+              <svg
+                viewBox="0 0 500 500"
+                className="w-full h-full"
+                style={{ willChange: "transform" }}
+              >
+                <defs>
+                  <linearGradient id="orbitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#6366f1" />
+                    <stop offset="50%" stopColor="#8b5cf6" />
+                    <stop offset="100%" stopColor="#ec4899" />
+                  </linearGradient>
+                  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                
                 <circle
-                  cx={x}
-                  cy={y}
-                  r="8"
-                  fill="white"
-                  stroke="#F3831C"
-                  strokeWidth="3"
+                  cx={centerX}
+                  cy={centerY}
+                  r={radius}
+                  fill="none"
+                  stroke="url(#orbitGradient)"
+                  strokeWidth={8}
+                  filter="url(#glow)"
                 />
                 
-                <foreignObject
-                  x={x - 100}
-                  y={y - 60}
-                  width={200}
-                  height={48}
-                >
-                  <div
-                    className="h-12 px-5 rounded-full bg-transparent flex items-center justify-center text-sm font-semibold text-white"
-                  >
-                    {label}
+                <circle
+                  cx={centerX}
+                  cy={centerY}
+                  r={120}
+                  fill="none"
+                  stroke="#F3831C"
+                  strokeWidth={2.5}
+                />
+                
+                <circle
+                  cx={centerX}
+                  cy={centerY}
+                  r={40}
+                  fill="#6366f1"
+                  opacity={0.1}
+                />
+                
+                <circle
+                  cx={centerX}
+                  cy={centerY}
+                  r={35}
+                  fill="white"
+                  stroke="#6366f1"
+                  strokeWidth={2.5}
+                />
+
+                <foreignObject x={center - 100} y={center - 100} width={200} height={200}>
+                  <div className="w-full h-full flex items-center justify-center">
+                    <img
+                      src="https://i.postimg.cc/BbXsmB3J/dsfsd-modified.png"
+                      alt="LMS"
+                      className="w-40 h-40 object-cover rounded-full"
+                      draggable={false}
+                    />
                   </div>
                 </foreignObject>
-              </g>
-            );
-          })}
-        </svg>
-      </div>
-    </section>
+
+                {labels.map((label, i) => {
+                  const angle = i * (360 / labels.length) + angleOffset;
+                  const pos = getPosition(angle);
+
+                  return (
+                    <foreignObject
+                      key={i}
+                      x={pos.x - 50}
+                      y={pos.y - 20}
+                      width={100}
+                      height={40}
+                      style={{
+                        overflow: "visible",
+                        willChange: "transform",
+                      }}
+                    >
+                      <div
+                        className="w-[110px] wrap-break-word text-center h-14 rounded-full bg-white border-2 border-[#0F3652]
+                                 shadow-[0_4px_12px_rgba(99,102,241,0.08)]
+                                 flex items-center justify-center
+                                 text-xs font-semibold text-[#0F3652]
+                                 transition-all duration-200 ease-out
+                                 cursor-pointer
+                                 hover:scale-105 hover:shadow-[0_8px_20px_rgba(99,102,241,0.15)] 
+                                 hover:border-[#0F3652]
+                                 transform-gpu backface-hidden"
+                        style={{
+                          transform: "translateZ(0)",
+                        }}
+                      >
+                        {label}
+                      </div>
+                    </foreignObject>
+                  );
+                })}
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 px-4 bg-white">
+        <div className="max-w-340 mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-[#0F3652] mb-3">
+              What's Included in the AIA CFE Prep Course
+            </h2>
+            <div className="w-24 h-1 bg-[#F3831C] mx-auto rounded-full"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {courseFeatures.map((feature, index) => (
+              <div 
+                key={index} 
+                className="bg-white border border-[#0F3652]/20 rounded-lg p-4 hover:shadow-md transition-shadow duration-200"
+              >
+                <div className="flex items-start gap-3 mb-3">
+                  <div className="w-8 h-8 bg-[#0F3652] text-white rounded-full flex-shrink-0 flex items-center justify-center text-sm font-bold">
+                    {index + 1}
+                  </div>
+                  <h3 className="text-base font-bold text-[#0F3652] leading-tight">
+                    {feature.title}
+                  </h3>
+                </div>
+                <p className="text-sm text-gray-700 pl-11">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

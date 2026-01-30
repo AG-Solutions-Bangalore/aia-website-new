@@ -34,7 +34,7 @@ const CFECurriculam = () => {
 
       <CourseHero />
       <CfeAbout />
-      <CourseTopStudent courseSlug="cfe" title="From CFE Course" />
+      <CourseTopStudent courseSlug="cfe" subtitle="Learners who prepared with AIA and performed strongly in the CFE exam" needPrefix="false" title="Professionals Who Excelled in the CFE Exam with Outstanding Scores" />
       <CfeCourseCurriculum />
       <CfeResult />
       <CfeJourney />

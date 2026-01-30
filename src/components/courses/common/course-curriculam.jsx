@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CourseCurriculum = ({ title, curriculumData }) => {
+const CourseCurriculum = ({ title, curriculumData ,description}) => {
   const [activeTab, setActiveTab] = useState(curriculumData?.[0]?.id || null);
 
   const activeContent = curriculumData.find(
@@ -19,8 +19,15 @@ const CourseCurriculum = ({ title, curriculumData }) => {
             </h1>
           </div>
         </div>
+        {description && (
+  <div
+    className="text-[#0F3652] leading-relaxed space-y-4 mx-20 mb-8"
+    dangerouslySetInnerHTML={{
+      __html: description.replace(/\n/g, "<br />"),
+    }}
+  />
+)}
 
-       
         <div className="flex flex-col md:flex-row  max-w-5xl mx-auto justify-center gap-4">
  
       

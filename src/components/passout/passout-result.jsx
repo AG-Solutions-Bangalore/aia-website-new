@@ -117,7 +117,7 @@ const PassoutResult = () => {
         <div className="mx-auto flex max-w-340 flex-col items-center gap-4 text-center sm:gap-16">
           <div className="flex flex-col items-center gap-4 px-4 sm:gap-8">
             <h2 className="max-w-340 text-[#0F3652] text-3xl font-semibold leading-tight sm:text-4xl sm:leading-tight">
-         <Highlight>Meet Our Passouts on LinkedIn </Highlight>    
+         <Highlight>Meet Our Proud Alumni on LinkedIn</Highlight>    
             </h2>
           </div>
 

@@ -40,7 +40,7 @@ const CAMS = () => {
           <PopUp  slug="CAMS"/>
       <CourseHero/>
       <CamsAbout />
-      <CourseTopStudent courseSlug="cams" title="From CAMS Course"/>
+      <CourseTopStudent courseSlug="cams" needPrefix="true" title="From CAMS Course"/>
       <CamsCourseCurriculum/>
       <CamsResult/> 
       <CamsJourney/>

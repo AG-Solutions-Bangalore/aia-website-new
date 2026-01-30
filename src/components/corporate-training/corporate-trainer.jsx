@@ -2,6 +2,7 @@
 
 
 
+import { IMAGE_PATH } from "@/api/base-url";
 import React from "react";
 
 const CorporateTrainer = () => {
@@ -15,7 +16,7 @@ const CorporateTrainer = () => {
              
               
               <img
-                src="https://aia.in.net/crm/public/assets/images/faculty/Puneet_Garg.webp"
+                src={`${IMAGE_PATH}/Puneet_Garg.webp`}
                 alt="Puneet Garg - Trainer"
                 className="w-full h-auto relative z-0"
               />

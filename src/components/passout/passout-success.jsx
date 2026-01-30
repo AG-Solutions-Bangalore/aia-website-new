@@ -107,7 +107,7 @@ const PassoutSuccess = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl sm:leading-tight font-bold text-[#0F3652] mb-4">
-         <Highlight>  Read Our Student's Journey</Highlight> 
+         <Highlight>  Know How Our Learners Turned Certification into Career Progress</Highlight> 
           </h2>
         </div>
 

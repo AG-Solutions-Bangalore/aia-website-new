@@ -15,10 +15,10 @@ const PassoutBanner = () => {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
         <div className="flex-1 max-w-xl">
           <h1 className="text-5xl font-bold text-[#0F3652] mb-4">
-            Proud AIA Alumni
+          Success Stories Shaped by AIA
           </h1>
           <p className="text-[#0F3652] text-lg leading-relaxed">
-            Meet our certified professionals who cleared CFE, CIA & CAMS with confidence.
+          Meet our proud alumni who cleared CFE, CIA, and CAMS and advanced their careers with structured preparation and expert guidance.
           </p>
         </div>
 

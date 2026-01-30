@@ -17,7 +17,7 @@ const FreeResources = () => {
      <FreeResourceFlashCard/>
      <FreeResourcePracticeQuestion/>
 
-      <CourseTopStudent courseSlug="CFE-Free-Resources" title="From CFE FREE Course"/>
+      <CourseTopStudent courseSlug="CFE-Free-Resources" needPrefix="false" title="Meet AIA’s Latest Achievers Redefining Success"/>
        <HomeAlumniWork/>
         <HomeReview/>
     </>

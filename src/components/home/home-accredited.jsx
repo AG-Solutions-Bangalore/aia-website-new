@@ -1,3 +1,4 @@
+import { IMAGE_PATH } from "@/api/base-url";
 import React from "react";
 
 const HomeAccredited = () => {
@@ -22,7 +23,7 @@ const HomeAccredited = () => {
          
           <div className="grayscale hover:grayscale-0 flex items-center justify-center transition-transform duration-300 hover:scale-110">
             <img
-              src="https://aia.in.net/crm/public/assets/images/brand/IAO.jpeg"
+              src={`${IMAGE_PATH}/IAO.jpeg`}
               alt="IAO logo"
               className="w-40 h-40 object-contain"
             />
@@ -31,7 +32,7 @@ const HomeAccredited = () => {
          
           <div className="grayscale hover:grayscale-0 flex items-center justify-center transition-transform duration-300  scale-150 hover:scale-175">
             <img
-              src="https://aia.in.net/crm/public/assets/images/brand/IIA.png"
+              src={`${IMAGE_PATH}/IIA.png`}
               alt="IIA logo"
               className="w-48 h-48 object-contain"
             />
@@ -40,7 +41,7 @@ const HomeAccredited = () => {
         
           <div className="grayscale hover:grayscale-0 flex items-center justify-center transition-transform duration-300 hover:scale-110">
             <img
-              src="https://aia.in.net/crm/public/assets/images/brand/ISO.jpeg"
+              src={`${IMAGE_PATH}/ISO.jpeg`}
               alt="ISO logo"
               className="w-40 h-40 object-contain"
             />
@@ -49,7 +50,7 @@ const HomeAccredited = () => {
       
           <div className="grayscale hover:grayscale-0 flex items-center justify-center transition-transform duration-300 hover:scale-110">
             <img
-              src="https://aia.in.net/crm/public/assets/images/brand/Gleim.jpeg"
+              src={`${IMAGE_PATH}/Gleim.jpeg`}
               alt="Gleim logo"
               className="w-40 h-40 object-contain"
             />
@@ -58,7 +59,7 @@ const HomeAccredited = () => {
    
           <div className="grayscale hover:grayscale-0 flex items-center justify-center transition-transform duration-300 hover:scale-110">
             <img
-              src="https://aia.in.net/crm/public/assets/images/brand/GSAAA.png"
+              src={`${IMAGE_PATH}/GSAAA.png`}
               alt="GSAAA logo"
               className="w-40 h-40 object-contain"
             />
@@ -70,7 +71,7 @@ const HomeAccredited = () => {
 
           <div className="bg-white rounded-full shadow-md flex items-center justify-center">
             <img
-              src="https://aia.in.net/crm/public/assets/images/brand/IAO.jpeg"
+              src={`${IMAGE_PATH}/IAO.jpeg`}
               alt="IAO logo"
               className="w-full h-full object-contain"
             />
@@ -79,7 +80,7 @@ const HomeAccredited = () => {
    
           <div className="bg-white rounded-full shadow-md flex items-center justify-center">
             <img
-              src="https://aia.in.net/crm/public/assets/images/brand/IIA.png"
+              src={`${IMAGE_PATH}/IIA.png`}
               alt="IIA logo"
               className="w-full h-full object-contain"
             />
@@ -88,7 +89,7 @@ const HomeAccredited = () => {
         
           <div className="bg-white rounded-full shadow-md flex items-center justify-center">
             <img
-              src="https://aia.in.net/crm/public/assets/images/brand/ISO.jpeg"
+              src={`${IMAGE_PATH}/ISO.jpeg`}
               alt="ISO logo"
               className="w-full h-full object-contain"
             />
@@ -97,7 +98,7 @@ const HomeAccredited = () => {
      
           <div className="bg-white rounded-full shadow-md flex items-center justify-center">
             <img
-              src="https://aia.in.net/crm/public/assets/images/brand/Gleim.jpeg"
+              src={`${IMAGE_PATH}/Gleim.jpeg`}
               alt="Gleim logo"
               className="w-full h-full object-contain"
             />
@@ -106,7 +107,7 @@ const HomeAccredited = () => {
         
           <div className="col-span-2 bg-white rounded-full shadow-md flex items-center justify-center">
             <img
-              src="https://aia.in.net/crm/public/assets/images/brand/GSAAA.png"
+              src={`${IMAGE_PATH}/GSAAA.png`}
               alt="GSAAA logo"
               className="w-full h-full object-contain"
             />

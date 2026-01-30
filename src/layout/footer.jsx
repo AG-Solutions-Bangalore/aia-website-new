@@ -1,3 +1,4 @@
+import { IMAGE_PATH } from '@/api/base-url';
 import React from 'react';
 
 export default function Footer() {
@@ -200,11 +201,11 @@ export default function Footer() {
               
                 <div className="space-y-2">
                   <div className="p-2">
-                    <img src="https://aia.in.net/crm/public/assets/images/payment.png" alt="Payment methods" className="w-full" />
+                    <img src={`${IMAGE_PATH}/payment.png`} alt="Payment methods" className="w-full" />
                   </div>
                   <a href="tel:+18001200255" className="block hover:scale-105 transition-transform">
                     <div className=" rounded-xl p-4">
-                      <img src="https://aia.in.net/crm/public/assets/images/logo/toll free.png" alt="Toll Free" className="w-full" />
+                      <img src={`${IMAGE_PATH}/logo/toll free.png`} alt="Toll Free" className="w-full" />
                     </div>
                   </a>
                 </div>
@@ -218,7 +219,7 @@ export default function Footer() {
                   </a>
                   <a href="https://www.gsaaa.org/india/academy-of-internal-audit" target="_blank" rel="noopener" className="group mx-auto">
                     <div className="bg-white rounded-full p-2 shadow-xl hover:shadow-[#fa8017]/30 transition-all group-hover:scale-110 border-2 border-gray-700 group-hover:border-[#fa8017]">
-                      <img src="https://aia.in.net/crm/public/assets/images/brand/GSAAA.png" alt="GSAAA" className="w-20 h-20" />
+                      <img src={`${IMAGE_PATH}/GSAAA.png`} alt="GSAAA" className="w-20 h-20" />
                     </div>
                   </a>
                 </div>
