@@ -24,6 +24,7 @@ import Policies from "./pages/policies/policies";
 import TermsAndConditions from "./pages/terms-and-conditions/terms-and-conditions";
 import BlogCourse from "./pages/Blog/blog-course";
 import CfePracticeQuestion from "./pages/free-resources/cfe-practice-question";
+import Meta from "./components/seo/meta";
 
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
       <GoogleAnalytics/>
   <NotificationPopup />
       <Layout>
+        <Meta/>
         <main className="grow">
           <Routes>
             <Route path="/" element={<Home />} />
