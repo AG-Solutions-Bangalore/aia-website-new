@@ -145,7 +145,7 @@ const CourseLms = () => {
                   cy={centerY}
                   r={120}
                   fill="none"
-                  stroke="#F3831C"
+                  stroke="none"
                   strokeWidth={2.5}
                 />
                 

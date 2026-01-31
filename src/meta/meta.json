@@ -1,0 +1,62 @@
+{
+  "/": {
+    "title": "Home | Best Training Institute For Top Certification Courses- AIA",
+    "description": "Explore our professional courses, resources, and success stories designed to help you grow your career."
+  },
+  "/about-us": {
+    "title": "About Us | Who We Are",
+    "description": "Learn about our mission, vision, and how we help professionals succeed in their careers."
+  },
+  "/cfe-curriculum": {
+    "title": "CFE Curriculum | Certified Fraud Examiner",
+    "description": "Complete overview of the CFE curriculum, subjects, and preparation strategy."
+  },
+  "/cia-curriculum": {
+    "title": "CIA Curriculum | Certified Internal Auditor",
+    "description": "Detailed CIA curriculum covering all parts and study approach."
+  },
+  "/cia-challenge-curriculum": {
+    "title": "CIA Challenge Curriculum",
+    "description": "Accelerated CIA Challenge curriculum for experienced professionals."
+  },
+  "/cams": {
+    "title": "CAMS Course | Anti Money Laundering",
+    "description": "Prepare for the CAMS certification with structured learning and expert guidance."
+  },
+  "/cfe-free-resources": {
+    "title": "Free CFE Resources",
+    "description": "Access free CFE study materials, practice questions, and learning resources."
+  },
+  "/blogs": {
+    "title": "Blogs | Insights & Updates",
+    "description": "Read expert blogs, exam tips, industry insights, and career guidance."
+  },
+  "/passed-out": {
+    "title": "Our Passouts | Success Stories",
+    "description": "Stories of our successful students and their professional journeys."
+  },
+  "/contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with us for course details, support, or general inquiries."
+  },
+  "/passout-stories/:slug": {
+    "title": "Passout Story | Student Success",
+    "description": "Read inspiring success stories from our students."
+  },
+  "/enroll-now": {
+    "title": "Enroll Now | Start Your Journey",
+    "description": "Enroll today and take the next step in your professional certification journey."
+  },
+  "/corpo": {
+    "title": "Corporate Training",
+    "description": "Customized corporate training programs for teams and organizations."
+  },
+  "/policies": {
+    "title": "Policies",
+    "description": "Read our policies regarding privacy, refunds, and usage."
+  },
+  "/terms-and-conditions": {
+    "title": "Terms and Conditions",
+    "description": "Review the terms and conditions governing the use of our services."
+  }
+}
