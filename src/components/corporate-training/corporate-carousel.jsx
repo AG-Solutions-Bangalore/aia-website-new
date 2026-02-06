@@ -1,49 +1,111 @@
-import React, { useEffect, useState } from "react";
+import { BASE_URL } from "@/api/base-url";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useEffect, useMemo, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
-const images = [
-  "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
-  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b",
-  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
-  "https://images.unsplash.com/photo-1501504905252-473c47e087f8",
-  "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
-  "https://images.unsplash.com/photo-1495465798138-718f86d1a4bc",
-  "https://images.unsplash.com/photo-1434030216411-0b793f4b4173",
-  "https://images.unsplash.com/photo-1501504905252-473c47e087f8",
-    "https://images.unsplash.com/photo-1501504905252-473c47e087f8",
-];
+const CorporateCarouselSkeleton = ({ cards = 5 }) => {
+  return (
+    <div className="w-full max-w-340 mx-auto py-8">
+      <div className="overflow-hidden">
+        <div className="flex gap-4">
+          {Array.from({ length: cards }).map((_, index) => (
+            <div key={index} className="shrink-0 w-[calc(20%-16px)]">
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <Skeleton height={250} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex justify-center mt-6 gap-2">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <Skeleton key={i} width={20} height={8} borderRadius={4} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const CorporateCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const cardsToShow = 5;
 
+  const {
+    data: certificatesData,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["corporater-carousel-slider"],
+    queryFn: async () => {
+      const res = await axios.get(`${BASE_URL}/api/getCorporateSlider`);
+      return res?.data ?? { data: [], image_url: [] };
+    },
+  });
+
+  const images = useMemo(() => {
+    if (!certificatesData?.data?.length) return [];
+
+    const sliderImageBase =
+      certificatesData.image_url?.find(
+        (item) => item.image_for === "Corporate Slider",
+      )?.image_url || "";
+
+    const noImage =
+      certificatesData.image_url?.find((item) => item.image_for === "No Image")
+        ?.image_url || "";
+
+    return certificatesData.data.map((item) => ({
+      src: item.corporate_slider_image
+        ? `${sliderImageBase}${item.corporate_slider_image}`
+        : noImage,
+      alt: item.corporate_slider_image_alt || "Corporate Image",
+    }));
+  }, [certificatesData]);
+
   useEffect(() => {
+    if (!images.length) return;
+
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => 
-        prev + cardsToShow >= images.length ? 0 : prev + cardsToShow
+      setCurrentSlide((prev) =>
+        prev + cardsToShow >= images.length ? 0 : prev + cardsToShow,
       );
     }, 3000);
+
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
+
+  if (isLoading) {
+    return <CorporateCarouselSkeleton cards={5} />;
+  }
+  if (isError || !images.length) return null;
 
   return (
-    <div className="w-full max-w-340 mx-auto  py-8">
+    <div className="w-full max-w-340 mx-auto py-8">
       <div className="relative">
-       
         <div className="overflow-hidden">
-          <div className="flex gap-4 transition-all duration-500 ease-in-out"
-               style={{ transform: `translateX(-${(currentSlide / cardsToShow) * 100}%)` }}>
-            {images.map((src, index) => (
-              <div 
-                key={index}
-                className="shrink-0 w-[calc(20%-16px)]"
-              >
+          <div
+            className="flex gap-4 transition-transform duration-500 ease-in-out"
+            style={{
+              transform: `translateX(-${(currentSlide / cardsToShow) * 100}%)`,
+            }}
+          >
+            {images.map((img, index) => (
+              <div key={index} className="shrink-0 w-[calc(20%-16px)]">
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                   <img
-                    src={src}
-                    alt={`Slide ${index + 1}`}
-                    className="w-full h-56 object-cover"
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full h-60 object-cover"
                     loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.src =
+                        certificatesData.image_url?.find(
+                          (item) => item.image_for === "No Image",
+                        )?.image_url || "";
+                    }}
                   />
                 </div>
               </div>
@@ -51,16 +113,17 @@ const CorporateCarousel = () => {
           </div>
         </div>
 
-        {/* Navigation Dots */}
         <div className="flex justify-center mt-6 gap-2">
-          {Array.from({ length: Math.ceil(images.length / cardsToShow) }).map((_, index) => (
+          {Array.from({
+            length: Math.ceil(images.length / cardsToShow),
+          }).map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index * cardsToShow)}
-              className={`w-2 h-2 rounded-full transition-all ${
-                currentSlide === index * cardsToShow 
-                  ? 'bg-blue-600 w-8' 
-                  : 'bg-gray-300'
+              className={`h-2 rounded-full transition-all ${
+                currentSlide === index * cardsToShow
+                  ? "bg-[#F3831C] w-8"
+                  : "bg-gray-300 w-2"
               }`}
             />
           ))}

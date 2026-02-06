@@ -1,4 +1,3 @@
-
 import AboutHeroSection from "@/components/about/about-hero-section";
 import AboutSection from "@/components/about/about-section";
 
@@ -13,6 +12,7 @@ import PopUp from "@/components/common/pop-up";
 import HomeCourses from "@/components/home/home-courses";
 import HomePrCarousel from "@/components/home/home-pr-carousel";
 import HomeReview from "@/components/home/home-review";
+import HomeCorporatePartner from "@/components/home/home-corporate-partner";
 
 const AboutPage = () => {
   return (
@@ -27,7 +27,7 @@ const AboutPage = () => {
       <HomePrCarousel />
       <AboutJourney />
       <HomeCourses />
-      <AboutPartner />
+      <HomeCorporatePartner />
       <HomeReview />
     </div>
   );

@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
+import { BASE_URL } from "@/api/base-url";
+import { Button } from "@/components/ui/button";
+import CircularTestimonials from "@/components/ui/circular-testimonial";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import Waves from "@/components/ui/waves-background";
-import CircularTestimonials from "@/components/ui/circular-testimonial";
-import { Button } from "@/components/ui/button";
-import { BASE_URL } from "@/api/base-url";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import SectionHeading from "../SectionHeading/SectionHeading";
 
 const HomeCorporatePartner = () => {
+  const location = useLocation();
   const {
     data: effortsData = {},
     isLoading,
@@ -59,18 +59,19 @@ const HomeCorporatePartner = () => {
               <p className="text-base md:text-lg text-[#0F3652] my-4 text-justify">
                 {currentDescription}
               </p>
-
-              <Button
-                className=" mb-4  relative cursor-pointer overflow-hidden group  px-4 py-2  text-xs bg-[#F3831C] text-white rounded-none hover:bg-[#0F3652] transition-colors duration-300 "
-                variant="ghost"
-                aria-label="Explore Siga"
-              >
-                <Link to={"/corporate-training"}>
-                  <span className="relative z-10 text-white">
-                    <span>Read More</span>
-                  </span>
-                </Link>
-              </Button>
+              {location.pathname != "/corporate-training" && (
+                <Button
+                  className=" mb-4  relative cursor-pointer overflow-hidden group  px-4 py-2  text-xs bg-[#F3831C] text-white rounded-none hover:bg-[#0F3652] transition-colors duration-300 "
+                  variant="ghost"
+                  aria-label="Explore Siga"
+                >
+                  <Link to={"/corporate-training"}>
+                    <span className="relative z-10 text-white">
+                      <span>Read More</span>
+                    </span>
+                  </Link>
+                </Button>
+              )}
             </div>
 
             {!isLoading && !isError && testimonials.length > 0 && (

@@ -4,8 +4,6 @@ import HomeAlumniWork from "@/components/home/home-alumini-work";
 import CamsConnection from "@/components/courses/cams/cams-connection";
 import CourseHero from "@/components/courses/common/course-hero";
 
-import CfeResult from "@/components/courses/cfe-curriculam/cfe-result";
-
 import CfeReview from "@/components/courses/cfe-curriculam/cfe-review";
 import CourseYoutube from "@/components/courses/common/course-youtube";
 
@@ -22,6 +20,7 @@ import PopUp from "@/components/common/pop-up";
 import CfeCourseLms from "@/components/courses/cfe-curriculam/cfe-course-lms";
 import CfeFaq from "@/components/courses/cfe-curriculam/cfe-faq";
 import CourseMap from "@/components/courses/common/course-map";
+import CourseResult from "@/components/courses/common/course-result";
 import CourseTopStudent from "@/components/courses/common/course-top-student";
 import CourseYoutubeLecture from "@/components/courses/common/course-youtube-lecture";
 
@@ -38,7 +37,11 @@ const CFECurriculam = () => {
         title="Professionals Who Excelled in the CFE Exam with Outstanding Scores"
       />
       <CfeCourseCurriculum />
-      <CfeResult />
+      <CourseResult
+        course="CFE"
+        queryKey="cfe-certificates"
+        title="Verified CFE Exam Results Achieved by AIA Learners"
+      />
       <CfeJourney />
       <CfeWhyAia />
       <CfeHighlight />
@@ -49,7 +52,7 @@ const CFECurriculam = () => {
       <AboutTrainerSection path="faculty_cfe.webp" />
       <CfeCourseLms />
       <CfeUnique />
-      <CfeAchivers />
+      <CfeAchivers title="Meet the Professionals Who Successfully Cleared the CFE with AIA" />
       <CamsConnection path="how_it_works_cfe.webp" />
       <HomeAlumniWork />
       <CfeFaq />

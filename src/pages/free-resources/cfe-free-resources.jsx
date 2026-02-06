@@ -1,10 +1,10 @@
 import FreeResourceBanner from "@/components/cfe-free-resource/free-resource-banner";
 import FreeResourceFlashCard from "@/components/cfe-free-resource/free-resource-flash-card";
 import FreeResourcePracticeQuestion from "@/components/cfe-free-resource/free-resource-practice-question";
+import FreeResourceReview from "@/components/cfe-free-resource/free-resource-review";
 import FreeResourceYoutube from "@/components/cfe-free-resource/free-resource-youtube";
-import CourseTopStudent from "@/components/courses/common/course-top-student";
+import CfeAchivers from "@/components/courses/cfe-curriculam/cfe-achivers";
 import HomeAlumniWork from "@/components/home/home-alumini-work";
-import HomeReview from "@/components/home/home-review";
 
 const FreeResources = () => {
   return (
@@ -13,15 +13,18 @@ const FreeResources = () => {
       <FreeResourceYoutube />
       <FreeResourceFlashCard />
       <FreeResourcePracticeQuestion />
-
-      <CourseTopStudent
+      {/* <CourseTopStudent
         courseSlug="CFE-Free-Resources"
         needPrefix="false"
         title="Meet AIA’s Latest Achievers Redefining Success"
         subtitle="Professionals who strengthened and advanced their careers through CFE preparation with AIA"
+      /> */}
+      <CfeAchivers
+        title="Meet AIA’s Latest Achievers Redefining Success"
+        description="Professionals who strengthened and advanced their careers through CFE preparation with AIA"
       />
       <HomeAlumniWork />
-      <HomeReview />
+      <FreeResourceReview />
     </>
   );
 };

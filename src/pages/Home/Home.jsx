@@ -14,6 +14,7 @@ import HomeAbout from "@/components/home/home-about";
 import PopUp from "@/components/common/pop-up";
 import HomePrCarousel from "@/components/home/home-pr-carousel";
 import HomeHero from "@/components/home/home-hero";
+import AllYoutube from "@/components/common/get-all-youtube";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
       <HomeAccredited />
       <HomeReview />
       <HomeYoutube />
+      <AllYoutube />
       <HomeCorporatePartner />
       <HomePrCarousel />
       <HomeAlumniWork />

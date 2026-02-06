@@ -1,16 +1,15 @@
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 import {
   Autoplay,
   EffectCoverflow,
   Navigation,
   Pagination,
 } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-export const CardCarousel = ({
+export const EnroolCardCarousel = ({
   studentData,
   autoplayDelay = 1500,
   showPagination = true,
@@ -64,7 +63,7 @@ export const CardCarousel = ({
                 {studentData.map((student, index) => (
                   <SwiperSlide key={index} className="max-w-xs">
                     <div className="relative bg-white shadow-lg shadow-gray-200/50 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-300/50">
-                      <div className=" border !rounded-none border-[#0F3652]">
+                      <div className=" border !rounded-none border-[#0F3652] relative">
                         <img
                           src={student.src}
                           width={400}
@@ -73,28 +72,24 @@ export const CardCarousel = ({
                           alt={student.alt}
                           loading="lazy"
                         />
+                        {student?.course && (
+                          <span className="py-0.5  text-white text-xs font-medium rounded absolute top-2 left-2 bg-[#0F3652] px-2">
+                            {student?.course}
+                          </span>
+                        )}
                       </div>
 
-                      {/* <div className="bg-[#0F3652] px-4 py-3">
+                      <div className="bg-[#0F3652] px-4 py-3">
                         <div className="flex flex-row items-start justify-between w-full">
                           <div className="flex flex-col it space-y-1">
                             <span className="text-white font-bold text-base">
                               {student.name}
                             </span>
-
-                            {student.marks &&
-                              student.marks.split(",").length > 0 && (
-                                <div className="flex flex-wrap gap-1">
-                                  {student.marks.split(",").map((mark, idx) => (
-                                    <span
-                                      key={idx}
-                                      className="px-2 py-0.5 bg-[#F3831C] text-white text-xs font-medium rounded"
-                                    >
-                                      {mark.trim()}
-                                    </span>
-                                  ))}
-                                </div>
-                              )}
+                            {student?.designation && (
+                              <span className="py-0.5  text-white text-xs font-medium rounded">
+                                {student?.designation}
+                              </span>
+                            )}
                           </div>
 
                           <div className="flex-shrink-0 pt-1">
@@ -107,7 +102,7 @@ export const CardCarousel = ({
                             </div>
                           </div>
                         </div>
-                      </div> */}
+                      </div>
                     </div>
                   </SwiperSlide>
                 ))}

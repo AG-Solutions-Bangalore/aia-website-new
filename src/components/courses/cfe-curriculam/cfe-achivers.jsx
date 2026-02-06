@@ -7,7 +7,7 @@ import { BASE_URL } from "@/api/base-url";
 import CourseAchiverCard from "../common/course-achiver-card";
 import Highlight from "@/components/common/highlight";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
-const CfeAchivers = () => {
+const CfeAchivers = ({ title, description }) => {
   const [cardSize, setCardSize] = useState(365);
   const [testimonialsList, setTestimonialsList] = useState([]);
 
@@ -103,7 +103,8 @@ const CfeAchivers = () => {
     >
       <div className="mb-4">
         <SectionHeading
-          title="Meet the Professionals Who Successfully Cleared the CFE with AIA"
+          title={title}
+          description={description}
           align="center"
         />
       </div>

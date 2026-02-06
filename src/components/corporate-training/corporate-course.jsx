@@ -84,7 +84,7 @@ const ServiceCard = ({ service, i, progress, range, targetScale }) => {
         <div>
           <div className="flex items-start justify-between mb-2">
             <p
-              className="text-xl  font-bold"
+              className="text-xl  font-bold  text-justify"
               style={{
                 color: service.textColor === "#ffffff" ? "#ffffff" : "#000000",
               }}
@@ -176,7 +176,7 @@ const CorporateCourse = () => {
                 {service.title}
               </h3>
               <p
-                className="text-sm mb-4"
+                className="text-sm mb-4 text-justify"
                 style={{
                   color:
                     service.textColor === "#ffffff" ? "#d1d5db" : "#64748b",
@@ -188,7 +188,7 @@ const CorporateCourse = () => {
 
             <div className="mb-4">
               <p
-                className="text-sm font-bold mb-3"
+                className="text-sm font-bold mb-3  text-justify"
                 style={{
                   color:
                     service.textColor === "#ffffff" ? "#ffffff" : "#000000",
@@ -258,9 +258,7 @@ const CorporateCourse = () => {
         ))}
       </div>
 
-      {/* Desktop - Split layout with sticky left and scrolling right */}
       <div className="hidden md:grid md:grid-cols-2 gap-12 ">
-        {/* Left side - Changes with scroll */}
         <div className="md:sticky md:top-20 md:h-screen md:flex md:flex-col md:justify-center ">
           <div className=" h-full mt-18 flex flex-col justify-between">
             <div>
@@ -274,7 +272,7 @@ const CorporateCourse = () => {
                   {ALL_SERVICES[activeCard]?.title || ALL_SERVICES[0].title}
                 </h1>
 
-                <p className="text-[#0F3652] text-lg mb-2 max-w-lg leading-relaxed">
+                <p className="text-[#0F3652] text-lg mb-2 max-w-lg leading-relaxed  text-justify">
                   {ALL_SERVICES[activeCard]?.description ||
                     ALL_SERVICES[0].description}
                 </p>

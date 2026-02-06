@@ -1,22 +1,22 @@
-
-import React from "react";
-
-import { BASE_URL } from "@/api/base-url";
 import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee";
 import { useQuery } from "@tanstack/react-query";
+import React from "react";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-const CourseYoutube = ({ courseSlug }) => {
+import { BASE_URL } from "@/api/base-url";
+import { TestimonialsSectionCourse } from "../common/testimonials-with-marquee-course";
+
+const CourseResult = ({ course, queryKey, title }) => {
   const {
     data: certificatesData,
-    isLoading: isLoadingPassout,
-    isError: isErrorPassout,
+    isLoading,
+    isError,
   } = useQuery({
-    queryKey: ["youtube-testimonials"],
+    queryKey: [queryKey ? queryKey : "course-results-common"],
     queryFn: async () => {
       const res = await axios.get(
-        `${BASE_URL}/api/getYoutubebyCourse/${courseSlug}`,
+        `${BASE_URL}/api/getCertificatebyCourse/${course}`,
       );
       return res.data;
     },
@@ -25,22 +25,27 @@ const CourseYoutube = ({ courseSlug }) => {
   const testimonials = React.useMemo(() => {
     if (!certificatesData?.data) return [];
 
-    const studentImageBaseUrl =
-      certificatesData.image_url?.find((item) => item.image_for === "Student")
-        ?.image_url || "";
+    const certificateImageUrlObj = certificatesData.image_url?.find(
+      (item) => item.image_for === "Student",
+    );
+    const certificateNoImageUrlObj = certificatesData.image_url?.find(
+      (item) => item.image_for === "No Image",
+    );
+    const certificateImageUrl = certificateImageUrlObj?.image_url || "";
 
-    return certificatesData.data.map((item) => ({
+    return certificatesData.data.map((certificate) => ({
       author: {
-        name: item.student_name,
-        avatar: `${studentImageBaseUrl}${item.student_youtube_image}`,
+        avatar: certificate.student_other_certificate_image
+          ? `${certificateImageUrl}${certificate.student_other_certificate_image}`
+          : certificateNoImageUrlObj?.image_url || "",
       },
-      alt: item.student_youtube_image_alt || "Student Testimonial",
-      youtubeLink: item.student_youtube_link,
-      course: item.student_course,
+
+      alt:
+        certificate.student_other_certificate_image_alt || "Certificate Image",
     }));
   }, [certificatesData]);
 
-  if (isLoadingPassout) {
+  if (isLoading) {
     return (
       <div className="relative w-full py-12 sm:py-24 md:py-32">
         <div className="mx-auto max-w-container flex flex-col items-center gap-4 text-center sm:gap-16">
@@ -62,7 +67,7 @@ const CourseYoutube = ({ courseSlug }) => {
     );
   }
 
-  if (isErrorPassout) {
+  if (isError) {
     return (
       <div className="relative w-full py-12 sm:py-24 md:py-32">
         <div className="mx-auto max-w-container flex flex-col items-center gap-4 text-center sm:gap-16">
@@ -75,11 +80,17 @@ const CourseYoutube = ({ courseSlug }) => {
   }
 
   return (
-    <TestimonialsSection
-      title="Meet Recently Qualified on YouTube "
-      testimonials={testimonials}
-    />
+    <div>
+      <TestimonialsSectionCourse
+        title={
+          title
+            ? title
+            : "Proof of Excellence: CIA Challenge Exam Success Stories of AIA Achievers"
+        }
+        testimonials={testimonials}
+      />
+    </div>
   );
 };
 
-export default CourseYoutube;
+export default CourseResult;

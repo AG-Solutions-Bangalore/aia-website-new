@@ -1,5 +1,4 @@
 import CamsHighlight from "@/components/courses/cams/cams-highlight";
-import CamsResult from "@/components/courses/cams/cams-result";
 import CamsWhyAia from "@/components/courses/cams/cams-why-aia";
 
 import AboutTrainerSection from "@/components/about/about-trainer-section";
@@ -23,13 +22,13 @@ import CamsCourseCurriculum from "@/components/courses/cams/cams-course-curricul
 import CamsJourney from "@/components/courses/cams/cams-journey";
 import CfeCourseLms from "@/components/courses/cfe-curriculam/cfe-course-lms";
 import CourseMap from "@/components/courses/common/course-map";
+import CourseResult from "@/components/courses/common/course-result";
 import CourseTopStudent from "@/components/courses/common/course-top-student";
 import CourseYoutubeLecture from "@/components/courses/common/course-youtube-lecture";
 
 const CAMS = () => {
   return (
     <div>
-      {" "}
       <PopUp slug="CAMS" />
       <CourseHero />
       <CamsAbout />
@@ -39,7 +38,12 @@ const CAMS = () => {
         title="From CAMS Course"
       />
       <CamsCourseCurriculum />
-      <CamsResult />
+      {/* <CamsResult /> */}
+      <CourseResult
+        course="CAMS"
+        queryKey="cams-certificates"
+        title="Proof of Excellence: Real ACAMS Results from Our Students!"
+      />
       <CamsJourney />
       <CamsWhyAia />
       <CamsHighlight />

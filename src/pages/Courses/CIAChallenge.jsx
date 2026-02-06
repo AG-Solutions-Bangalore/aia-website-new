@@ -8,12 +8,12 @@ import CiaCourseLms from "@/components/courses/cia-challenge/cia-course-lms";
 import CiaFaq from "@/components/courses/cia-challenge/cia-faq";
 import CiaHighlight from "@/components/courses/cia-challenge/cia-highlight";
 import CiaJourney from "@/components/courses/cia-challenge/cia-journey";
-import CiaResult from "@/components/courses/cia-challenge/cia-result";
 import CiaRevew from "@/components/courses/cia-challenge/cia-review";
 import CiaUnique from "@/components/courses/cia-challenge/cia-unique";
 import CiaWhyAia from "@/components/courses/cia-challenge/cia-why-aia";
 import CourseHero from "@/components/courses/common/course-hero";
 import CourseMap from "@/components/courses/common/course-map";
+import CourseResult from "@/components/courses/common/course-result";
 import CourseTopStudent from "@/components/courses/common/course-top-student";
 import CourseYoutube from "@/components/courses/common/course-youtube";
 import CourseYoutubeLecture from "@/components/courses/common/course-youtube-lecture";
@@ -34,7 +34,12 @@ const CIAChallenge = () => {
 "
       />
       <CiaCourseCurriculum />
-      <CiaResult />
+      {/* <CiaResult /> */}
+      <CourseResult
+        course="CIAC"
+        queryKey="cia-challenge-certificates"
+        title="Proof of Excellence: CIA Challenge Exam Success Stories of AIA Achievers"
+      />
       <CiaJourney />
       <CiaWhyAia />
       <CiaHighlight />
@@ -46,7 +51,7 @@ const CIAChallenge = () => {
       <CiaCourseLms />
       <CiaUnique />
       <CiaAchivers />
-      <CamsConnection path="how_it_works_cia_challenge.webp"/>
+      <CamsConnection path="how_it_works_cia_challenge.webp" />
       <HomeAlumniWork />
       <CiaFaq />
     </div>

@@ -10,7 +10,13 @@ export function TestimonialsSectionCourse({ title, testimonials, className }) {
       <div className="mx-auto flex max-w-340 flex-col items-center gap-4 text-center sm:gap-16">
         <SectionHeading title={title} align="center" />
         <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          <div className="group flex overflow-hidden p-2 [--gap:1rem] gap-(--gap) flex-row [--duration:40s]">
+          {/* <div className="group flex overflow-hidden p-2 [--gap:1rem] gap-(--gap) flex-row [--duration:40s]"> */}
+          <div
+            className="group flex overflow-hidden p-2 [--gap:1rem] gap-(--gap) flex-row"
+            style={{
+              ["--duration"]: `${Math.max(20, testimonials.length * 4)}s`,
+            }}
+          >
             <div className="flex shrink-0 justify-around gap-(--gap) animate-marquee flex-row group-hover:paused">
               {[...Array(2)].map((_, setIndex) =>
                 testimonials.map((testimonial, i) => (
