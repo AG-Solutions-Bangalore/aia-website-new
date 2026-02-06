@@ -1,22 +1,21 @@
-import React from "react"
-import { Swiper, SwiperSlide } from "swiper/react"
-import "swiper/css"
-import "swiper/css/effect-coverflow"
-import "swiper/css/pagination"
-import "swiper/css/navigation"
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import {
   Autoplay,
   EffectCoverflow,
   Navigation,
   Pagination,
-} from "swiper/modules"
+} from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export const CardCarousel = ({
   studentData,
   autoplayDelay = 1500,
   showPagination = true,
   showNavigation = true,
-  className = "", 
+  className = "",
 }) => {
   return (
     <section className={`py-6 ${className}`}>
@@ -58,17 +57,13 @@ export const CardCarousel = ({
                 threshold={15}
                 updateOnWindowResize={true}
                 breakpoints={{
-                  0: { spaceBetween: 10 },   
-                  640: { spaceBetween: 50 }, 
+                  0: { spaceBetween: 10 },
+                  640: { spaceBetween: 50 },
                 }}
               >
                 {studentData.map((student, index) => (
                   <SwiperSlide key={index} className="max-w-xs">
                     <div className="relative bg-white shadow-lg shadow-gray-200/50 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-300/50">
-                   
-                      
-                      
-                    
                       <div className=" border !rounded-none border-[#0F3652]">
                         <img
                           src={student.src}
@@ -78,47 +73,41 @@ export const CardCarousel = ({
                           alt={student.alt}
                           loading="lazy"
                         />
-                       
                       </div>
-                      
-           
-                      <div className="bg-[#0F3652] px-4 py-3">
-  <div className="flex flex-row items-start justify-between w-full">
 
-    <div className="flex flex-col it space-y-1">
-      <span className="text-white font-bold text-base">
-        {student.name}
-      </span>
-      
-      {student.marks && student.marks.split(',').length > 0 && (
-        <div className="flex flex-wrap gap-1">
-          {student.marks.split(',').map((mark, idx) => (
-            <span 
-              key={idx}
-              className="px-2 py-0.5 bg-[#F3831C] text-white text-xs font-medium rounded"
-            >
-              {mark.trim()}
-            </span>
-          ))}
-        </div>
-      )}
-    </div>
-    
-  
-    <div className="flex-shrink-0 pt-1">
-      <div className="w-12 h-12 flex items-center justify-center overflow-hidden ">
-        <img 
-          src={student.companyLogo}
-          alt={student.companyLogoAlt}
-          className="max-w-full border border-white !rounded-none  max-h-full object-contain"
-        />
-      </div>
-    </div>
-  </div>
-</div>
+                      {/* <div className="bg-[#0F3652] px-4 py-3">
+                        <div className="flex flex-row items-start justify-between w-full">
+                          <div className="flex flex-col it space-y-1">
+                            <span className="text-white font-bold text-base">
+                              {student.name}
+                            </span>
 
+                            {student.marks &&
+                              student.marks.split(",").length > 0 && (
+                                <div className="flex flex-wrap gap-1">
+                                  {student.marks.split(",").map((mark, idx) => (
+                                    <span
+                                      key={idx}
+                                      className="px-2 py-0.5 bg-[#F3831C] text-white text-xs font-medium rounded"
+                                    >
+                                      {mark.trim()}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
+                          </div>
 
-                      
+                          <div className="flex-shrink-0 pt-1">
+                            <div className="w-12 h-12 flex items-center justify-center overflow-hidden ">
+                              <img
+                                src={student.companyLogo}
+                                alt={student.companyLogoAlt}
+                                className="max-w-full border border-white !rounded-none  max-h-full object-contain"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div> */}
                     </div>
                   </SwiperSlide>
                 ))}
@@ -128,5 +117,5 @@ export const CardCarousel = ({
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

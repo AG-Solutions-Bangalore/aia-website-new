@@ -13,7 +13,6 @@ const FreeResources = () => {
       <FreeResourceYoutube />
       <FreeResourceFlashCard />
       <FreeResourcePracticeQuestion />
-
       <CourseTopStudent
         courseSlug="CFE-Free-Resources"
         needPrefix="false"

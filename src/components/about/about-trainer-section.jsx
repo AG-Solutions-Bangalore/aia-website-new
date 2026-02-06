@@ -5,12 +5,14 @@ const AboutTrainerSection = ({ path = "faculty_about.webp" }) => {
   return (
     <div className="bg-linear-to-r from-slate-700 via-slate-600 to-blue-950 ">
       <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-0 items-center">
-          <div className="relative">
+        <div className="grid lg:grid-cols-2 gap-x-12 items-center">
+          <div
+            className="relative px-4 shadow-[4px_0_15px_rgba(0,0,0,0.15)]"
+          >
             <img
               src={`${IMAGE_PATH}/${path}`}
               alt="Puneet Garg - Trainer"
-              className="w-full relative z-0"
+              className="w-full h-full relative z-0 "
             />
           </div>
 
@@ -19,12 +21,12 @@ const AboutTrainerSection = ({ path = "faculty_about.webp" }) => {
               <h2 className="text-3xl  bg-orange-500  instrument-font  text-transparent  bg-clip-text md:text-4xl font-bold mb-3">
                 Know Your Trainer
               </h2>
-              <p className="text-xl md:text-2xl mb-4 font-medium">
+              <p className="text-xl md:text-2xl mb-4 font-bold">
                 Not Just a Trainer, But Your Success Coach
               </p>
             </div>
 
-            <div className="space-y-2 text-base leading-relaxed">
+            <div className="space-y-2 text-base leading-relaxed text-justify text-sm">
               <p>
                 <span className="font-bold">Puneet Garg</span> is a globally
                 certified audit leader with{" "}

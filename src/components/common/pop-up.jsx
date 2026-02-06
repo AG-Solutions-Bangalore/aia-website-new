@@ -182,13 +182,13 @@ const PopUp = ({ slug = 'home' }) => {
             </DialogTitle>
           </DialogHeader>
           
-          <button
+          {/* <button
             onClick={handleClose}
             className="absolute right-3 top-3 z-10 h-7 w-7 rounded-full bg-white/80 hover:bg-white shadow-md flex items-center justify-center"
             aria-label="Close popup"
           >
             <X className="h-3 w-3 text-gray-700" />
-          </button>
+          </button> */}
           
           <div className="p-2">
             <img 
