@@ -37,7 +37,6 @@ const CFECurriculam = () => {
         title="Professionals Who Excelled in the CFE Exam with Outstanding Scores"
       />
       <CfeCourseCurriculum />
-      {/* <CfeResult /> */}
       <CourseResult
         course="CFE"
         queryKey="cfe-certificates"
@@ -53,7 +52,7 @@ const CFECurriculam = () => {
       <AboutTrainerSection path="faculty_cfe.webp" />
       <CfeCourseLms />
       <CfeUnique />
-      <CfeAchivers />
+      <CfeAchivers title="Meet the Professionals Who Successfully Cleared the CFE with AIA" />
       <CamsConnection path="how_it_works_cfe.webp" />
       <HomeAlumniWork />
       <CfeFaq />

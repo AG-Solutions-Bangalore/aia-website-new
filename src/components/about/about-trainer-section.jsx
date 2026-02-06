@@ -6,9 +6,7 @@ const AboutTrainerSection = ({ path = "faculty_about.webp" }) => {
     <div className="bg-linear-to-r from-slate-700 via-slate-600 to-blue-950 ">
       <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-x-12 items-center">
-          <div
-            className="relative px-4 shadow-[4px_0_15px_rgba(0,0,0,0.15)]"
-          >
+          <div className="relative px-4 shadow-[4px_0_15px_rgba(0,0,0,0.15)]">
             <img
               src={`${IMAGE_PATH}/${path}`}
               alt="Puneet Garg - Trainer"

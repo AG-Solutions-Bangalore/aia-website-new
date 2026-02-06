@@ -1,13 +1,11 @@
-
-import React from "react";
-
 import { BASE_URL } from "@/api/base-url";
-import { TestimonialsSection } from "@/components/ui/testimonials-with-marquee";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-const CourseYoutube = ({ courseSlug }) => {
+import { TestimonialsSection } from "../ui/testimonials-with-marquee";
+const AllYoutube = () => {
   const {
     data: certificatesData,
     isLoading: isLoadingPassout,
@@ -15,9 +13,7 @@ const CourseYoutube = ({ courseSlug }) => {
   } = useQuery({
     queryKey: ["youtube-testimonials"],
     queryFn: async () => {
-      const res = await axios.get(
-        `${BASE_URL}/api/getYoutubebyCourse/${courseSlug}`,
-      );
+      const res = await axios.get(`${BASE_URL}/api/getAllYoutube`);
       return res.data;
     },
   });
@@ -75,11 +71,14 @@ const CourseYoutube = ({ courseSlug }) => {
   }
 
   return (
-    <TestimonialsSection
-      title="Meet Recently Qualified on YouTube "
-      testimonials={testimonials}
-    />
+    <div className="w-full  py-12 px-4 sm:px-6 lg:px-8">
+      <TestimonialsSection
+        title="Meet Professionals Who Made It with AIA"
+        description="Click a success story to watch their full interview with Puneet Sir and get inspired."
+        testimonials={testimonials}
+      />
+    </div>
   );
 };
 
-export default CourseYoutube;
+export default AllYoutube;

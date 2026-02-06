@@ -1,51 +1,54 @@
+import { BASE_URL } from "@/api/base-url";
+import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { EnroolCardCarousel } from "./enrool-carousel";
 
-import { BASE_URL } from "@/api/base-url";
-import SectionHeading from "@/components/SectionHeading/SectionHeading";
-import { CardCarousel } from "@/components/ui/card-carousel";
-import axios from "axios";
-
-const CourseTopStudent = ({
-  courseSlug,
-  title,
-  needPrefix,
-  subtitle = "Our successful graduates making a difference in the industry",
-}) => {
-  console.log(courseSlug, "courseSlug");
+const EnroolTopStudent = () => {
   const {
-    data: camsPassoutData,
+    data: EnrolTopData,
     isLoading,
     isError,
     refetch,
   } = useQuery({
-    queryKey: ["recent-passout-students"],
+    queryKey: ["get-allstudent-top-data"],
     queryFn: async () => {
-      const res = await axios.get(
-        `${BASE_URL}/api/getTopStudentbyCourse/${courseSlug}`,
-      );
+      const res = await axios.get(`${BASE_URL}/api/getAllPassoutStudents`);
       return res.data;
     },
   });
+  console.log(EnrolTopData);
 
   const studentData = React.useMemo(() => {
-    if (!camsPassoutData?.data) return [];
+    if (!EnrolTopData?.data) return [];
 
-    const studentImageUrlObj = camsPassoutData.image_url?.find(
+    const studentImageUrlObj = EnrolTopData.image_url?.find(
       (item) => item.image_for === "Student",
-    );
-    const studentNoImageUrlObj = camsPassoutData.image_url?.find(
-      (item) => item.image_for === "No Image",
     );
     const studentImageUrl = studentImageUrlObj?.image_url || "";
 
-    return camsPassoutData.data.map((student) => ({
-      src: `${student.student_marks_image ? studentImageUrl + student.student_marks_image : studentNoImageUrlObj?.image_url || ""}`,
-      alt: student.student_marks_image_alt || "Marks Image",
+    const companyImageUrlObj = EnrolTopData.image_url?.find(
+      (item) => item.image_for === "Student Company",
+    );
+    const companyImageUrl = companyImageUrlObj?.image_url || "";
+
+    return EnrolTopData.data.map((student) => ({
+      src: `${studentImageUrl}${student.student_image}`,
+      alt: student.student_image_alt || "Marks Image",
+      name: student.student_name,
+      course: student.student_course,
+      designation: student.student_designation,
+      companyName: student.student_company_name,
+      companyLogo: `${companyImageUrl}${student.student_company_image}`,
+      companyLogoAlt: student.student_company_image_alt,
+      marks: student.student_marks,
+      country: student.country_name,
+      city: student.country_city,
     }));
-  }, [camsPassoutData]);
+  }, [EnrolTopData]);
 
   if (isLoading) {
     return (
@@ -117,8 +120,9 @@ const CourseTopStudent = ({
       </div>
 
       <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-        <SectionHeading title={title} description={subtitle} align="center" />
-        <CardCarousel
+        <SectionHeading title="From Enroll Course" align="center" />
+
+        <EnroolCardCarousel
           studentData={studentData}
           autoplayDelay={3000}
           showPagination={true}
@@ -144,7 +148,7 @@ const CourseTopStudent = ({
         .showcase-student-carousel .swiper-slide img {
           display: block;
           width: 100%;
-          height: 350px;
+          height: 300px;
           object-fit: cover;
           border-radius: 8px;
           transform: translateZ(0);
@@ -180,4 +184,4 @@ const CourseTopStudent = ({
   );
 };
 
-export default CourseTopStudent;
+export default EnroolTopStudent;

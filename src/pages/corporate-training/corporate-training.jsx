@@ -11,6 +11,7 @@ import CorporateReview from "@/components/corporate-training/corporate-review";
 import CorporateTrainer from "@/components/corporate-training/corporate-trainer";
 import CorporateWhy from "@/components/corporate-training/corporate-why";
 import CamsConnection from "@/components/courses/cams/cams-connection";
+import HomeCorporatePartner from "@/components/home/home-corporate-partner";
 
 const CorporateTraining = () => {
   return (
@@ -18,7 +19,8 @@ const CorporateTraining = () => {
       <CorporateBanner />
       <CorporateWhy />
       <CorporateCourse />
-      <AboutPartner />
+      {/* <AboutPartner /> */}
+      <HomeCorporatePartner />
       <CorporateQuote />
       <CorporateDeliver />
       <CorporateCarousel />

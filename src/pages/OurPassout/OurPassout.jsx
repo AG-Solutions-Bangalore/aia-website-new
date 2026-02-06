@@ -1,3 +1,4 @@
+import AllYoutube from "@/components/common/get-all-youtube";
 import PopUp from "@/components/common/pop-up";
 import CourseYoutube from "@/components/courses/common/course-youtube";
 import HomeAlumniWork from "@/components/home/home-alumini-work";
@@ -14,7 +15,7 @@ const OurPassout = () => {
       <PassoutResult />
       <PassoutSucess />
       <HomeAlumniWork />
-      <CourseYoutube courseSlug="Passed-Out" />
+      <AllYoutube />
       <HomeReview />
     </div>
   );
