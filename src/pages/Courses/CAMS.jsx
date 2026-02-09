@@ -1,29 +1,23 @@
-import CamsHighlight from "@/components/courses/cams/cams-highlight";
-import CamsWhyAia from "@/components/courses/cams/cams-why-aia";
-
 import AboutTrainerSection from "@/components/about/about-trainer-section";
-import HomeAlumniWork from "@/components/home/home-alumini-work";
-
-import CamsFaq from "@/components/courses/cams/cams-faq";
-
-import CamsAchivers from "@/components/courses/cams/cams-achivers";
-import CamsUnique from "@/components/courses/cams/cams-unique";
-
-import CamsConnection from "@/components/courses/cams/cams-connection";
-import CourseHero from "@/components/courses/common/course-hero";
-
-import CourseYoutube from "@/components/courses/common/course-youtube";
-
+import CourseReview from "@/components/common/course-review";
 import PopUp from "@/components/common/pop-up";
 import CamsAbout from "@/components/courses/cams/cams-about";
+import CamsAchivers from "@/components/courses/cams/cams-achivers";
+import CamsConnection from "@/components/courses/cams/cams-connection";
 import CamsCourseCurriculum from "@/components/courses/cams/cams-course-curriculum";
+import CamsFaq from "@/components/courses/cams/cams-faq";
+import CamsHighlight from "@/components/courses/cams/cams-highlight";
 import CamsJourney from "@/components/courses/cams/cams-journey";
+import CamsUnique from "@/components/courses/cams/cams-unique";
+import CamsWhyAia from "@/components/courses/cams/cams-why-aia";
 import CfeCourseLms from "@/components/courses/cfe-curriculam/cfe-course-lms";
+import CourseHero from "@/components/courses/common/course-hero";
 import CourseMap from "@/components/courses/common/course-map";
 import CourseResult from "@/components/courses/common/course-result";
 import CourseTopStudent from "@/components/courses/common/course-top-student";
+import CourseYoutube from "@/components/courses/common/course-youtube";
 import CourseYoutubeLecture from "@/components/courses/common/course-youtube-lecture";
-import CourseReview from "@/components/common/course-review";
+import HomeAlumniWork from "@/components/home/home-alumini-work";
 
 const CAMS = () => {
   return (
@@ -37,7 +31,6 @@ const CAMS = () => {
         title="From CAMS Course"
       />
       <CamsCourseCurriculum />
-      {/* <CamsResult /> */}
       <CourseResult
         course="CAMS"
         queryKey="cams-certificates"
@@ -47,10 +40,9 @@ const CAMS = () => {
       <CamsWhyAia />
       <CamsHighlight />
       <CourseMap courseCode="CAMS" />
-      {/* <CamsReview /> */}
-      <CourseReview slug="CAMS" />
-      <CourseYoutubeLecture courseSlug="cams" />
       <CourseYoutube courseSlug="cams" />
+      <CourseYoutubeLecture courseSlug="cams" />
+      <CourseReview slug="CAMS" />
       <AboutTrainerSection path="faculty_cams.webp" />
       <CfeCourseLms />
       <CamsUnique />

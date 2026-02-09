@@ -33,7 +33,6 @@ const CIAChallenge = () => {
         subtitle="Meet our Latest CIA Challenge Achievers of November 2025!"
       />
       <CiaCourseCurriculum />
-      {/* <CiaResult /> */}
       <CourseResult
         course="CIAC"
         queryKey="cia-challenge-certificates"
@@ -43,9 +42,8 @@ const CIAChallenge = () => {
       <CiaWhyAia />
       <CiaHighlight />
       <CourseMap courseCode="CIAC" />
-      <CourseYoutubeLecture courseSlug="ciac" />
       <CourseYoutube courseSlug="ciac" />
-      {/* <CiaRevew /> */}
+      <CourseYoutubeLecture courseSlug="ciac" />
       <CourseReview slug="CIAC" />
       <AboutTrainerSection path="faculty_cia_challenge.webp" />
       <CiaCourseLms />
