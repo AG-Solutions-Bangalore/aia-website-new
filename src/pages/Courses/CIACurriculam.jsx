@@ -43,9 +43,8 @@ const CIACurriculam = () => {
       <CiaCurrWhyAia />
       <CiaCurrHighlight />
       <CourseMap courseCode="CIA" />
-      <CourseYoutubeLecture courseSlug="cia" />
       <CourseYoutube courseSlug="cia" />
-      {/* <CiaCurrReview /> */}
+      <CourseYoutubeLecture courseSlug="cia" />
       <CourseReview slug="CIA" />
       <AboutTrainerSection path="faculty_cia.webp" />
       <CiaCurrCourseLms />

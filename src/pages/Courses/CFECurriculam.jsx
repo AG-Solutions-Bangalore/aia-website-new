@@ -46,9 +46,8 @@ const CFECurriculam = () => {
       <CfeWhyAia />
       <CfeHighlight />
       <CourseMap courseCode="CFE" />
-      {/* <CourseYoutubeLecture courseSlug="cfe" /> */}
       <CourseYoutube courseSlug="cfe" />
-      {/* <CfeReview /> */}
+      <CourseYoutubeLecture courseSlug="cfe" />
       <CourseReview slug="CFE" />
       <AboutTrainerSection path="faculty_cfe.webp" />
       <CfeCourseLms />
