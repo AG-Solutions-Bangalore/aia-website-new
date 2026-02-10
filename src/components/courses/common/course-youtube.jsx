@@ -1,4 +1,3 @@
-
 import React from "react";
 
 import { BASE_URL } from "@/api/base-url";
@@ -8,6 +7,7 @@ import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 const CourseYoutube = ({ courseSlug }) => {
+  console.log(courseSlug, "cfe");
   const {
     data: certificatesData,
     isLoading: isLoadingPassout,
@@ -39,6 +39,7 @@ const CourseYoutube = ({ courseSlug }) => {
       course: item.student_course,
     }));
   }, [certificatesData]);
+  console.log(testimonials);
 
   if (isLoadingPassout) {
     return (

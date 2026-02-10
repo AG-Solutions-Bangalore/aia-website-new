@@ -89,27 +89,30 @@ const Blog = () => {
     return (
       <div
         onClick={() => handleBlogClick(blog.blog_slug)}
-        className=" rounded-none hover:border-[#0F3652] transition-colors duration-200 cursor-pointer group"
+        className="h-full flex flex-col cursor-pointer group border transition-colors duration-200"
       >
+        {/* Image */}
         <div className="relative overflow-hidden rounded-md">
-          <div className="h-48 bg-linear-to-r from-[#0F3652]/10 to-[#0F3652]/20">
+          <div className="h-[156px] bg-gradient-to-r from-[#0F3652]/10 to-[#0F3652]/20 flex items-center justify-center">
             <img
               src={`${imageBaseUrl}${blog.blog_images}`}
               alt={blog.blog_images_alt || blog.blog_heading}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
               onError={(e) => {
-                e.target.src = `${IMAGE_PATH}/no_image.jpg`;
+                e.currentTarget.src = `${IMAGE_PATH}/no_image.jpg`;
               }}
             />
           </div>
-          <div className="absolute top-3 left-3">
+
+          <div className="absolute top-1.5 left-2">
             <span className="bg-[#0F3652] text-white text-xs font-medium px-3 py-1.5 rounded border border-[#0F3652]">
               {blog.blog_course}
             </span>
           </div>
         </div>
 
-        <div className="p-5">
+        {/* Content */}
+        <div className="p-5 flex flex-col flex-1">
           <div className="flex items-center justify-between text-xs text-[#0F3652] mb-4">
             <div className="flex items-center gap-1">
               <Calendar className="w-3 h-3" />
@@ -120,17 +123,18 @@ const Blog = () => {
             </div>
           </div>
 
-          <h3 className="text-lg font-semibold text-[#0F3652] hover:text-[#F3831C] mb-3 line-clamp-2 group-hover:text-[#0F3652]">
+          <h3 className="text-lg font-semibold text-[#0F3652] mb-3 line-clamp-2">
             {blog.blog_heading}
           </h3>
 
-          <p className="text-[#0F3652] text-sm mb-5 line-clamp-3 leading-relaxed">
+          <p className="text-[#0F3652] text-sm line-clamp-3 leading-relaxed">
             {blog.blog_short_description}
           </p>
 
-          <div className="flex items-center gap-2 text-[#F3831C] group/readmore">
+          {/* Push to bottom */}
+          <div className="mt-auto pt-4 flex items-center gap-2 text-[#F3831C]">
             <span className="text-sm font-medium">Read Article</span>
-            <ArrowRight className="w-4 h-4 group-hover/readmore:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </div>
         </div>
       </div>
@@ -149,7 +153,7 @@ const Blog = () => {
               <img
                 src={`${imageBaseUrl}${blog.blog_images}`}
                 alt={blog.blog_images_alt || blog.blog_heading}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 onError={(e) => {
                   e.target.src = `${IMAGE_PATH}/no_image.jpg`;
                 }}
