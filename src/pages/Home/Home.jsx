@@ -33,7 +33,6 @@ export default function Home() {
       <HomeCorporatePartner />
       <HomePrCarousel />
       <HomeAlumniWork />
-      {/* <HomeYoutube /> */}
       <CourseYoutubeLecture
         courseSlug="home"
         title="Watch & Learn Everything You Need to Crack the CFE, CIA & CAMS"
