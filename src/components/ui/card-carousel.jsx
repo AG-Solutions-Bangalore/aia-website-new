@@ -23,7 +23,7 @@ export const CardCarousel = ({
         <div className="relative mx-auto flex w-full flex-col">
           <div className="flex w-full items-center justify-center">
             <div className="w-full max-w-6xl">
-              <Swiper
+              {/* <Swiper
                 autoplay={{
                   delay: autoplayDelay,
                   disableOnInteraction: false,
@@ -60,16 +60,67 @@ export const CardCarousel = ({
                   0: { spaceBetween: 10 },
                   640: { spaceBetween: 50 },
                 }}
+              > */}
+              <Swiper
+                autoplay={
+                  studentData.length > 1
+                    ? {
+                        delay: autoplayDelay,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true,
+                      }
+                    : false
+                }
+                effect={"coverflow"}
+                grabCursor={true}
+                centeredSlides={studentData.length > 1}
+                loop={studentData.length > 3}
+                slidesPerView={studentData.length < 3 ? studentData.length : 3}
+                speed={800}
+                coverflowEffect={{
+                  rotate: 0,
+                  stretch: 0,
+                  depth: studentData.length <= 5 ? 80 : 120,
+                  modifier: 2.8,
+                  slideShadows: false,
+                }}
+                pagination={showPagination ? { clickable: true } : false}
+                navigation={
+                  showNavigation
+                    ? {
+                        nextEl: `.${className} .swiper-button-next`,
+                        prevEl: `.${className} .swiper-button-prev`,
+                      }
+                    : false
+                }
+                modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
+                watchSlidesProgress={true}
+                resistanceRatio={0.85}
+                threshold={15}
+                updateOnWindowResize={true}
+                breakpoints={{
+                  0: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                  },
+                  640: {
+                    slidesPerView: studentData.length < 2 ? 1 : 2,
+                    spaceBetween: 30,
+                  },
+                  1024: {
+                    slidesPerView:
+                      studentData.length < 3 ? studentData.length : 3,
+                    spaceBetween: 40,
+                  },
+                }}
               >
                 {studentData.map((student, index) => (
-                  <SwiperSlide key={index} className="max-w-xs">
+                  <SwiperSlide key={index} >
                     <div className="relative bg-white shadow-lg shadow-gray-200/50 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-300/50">
                       <div className=" border !rounded-none border-[#0F3652]">
                         <img
                           src={student.src}
-                          width={400}
-                          height={300}
-                          className="w-full h-48 object-cover !rounded-none "
+                          className="w-full h-auto object-conatin !rounded-none "
                           alt={student.alt}
                           loading="lazy"
                         />

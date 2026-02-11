@@ -54,9 +54,13 @@ const CIACurriculam = () => {
         title="From Aspirants to Certified Internal Auditors - Our Recent CIA Achievers"
       />
       <CamsConnection
-        path="how_it_works_cia.webp"
         title="The Right Certification Starts With the Right Choice"
         description="Find the certification that aligns with your background and carrer stage"
+        images={[
+          { image: "hiw_cfe.webp", link: "/cfe-curriculum" },
+          { image: "hiw_ciac.webp", link: "/cia-challenge-curriculum" },
+          { image: "hiw_cams.webp", link: "/cams" },
+        ]}
       />
       <HomeAlumniWork />
       <CiaCurrFaq />

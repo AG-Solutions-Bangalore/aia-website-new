@@ -85,7 +85,7 @@ const CourseYoutubeLecture = ({ courseSlug, title }) => {
   if (filteredVideos.length === 0) return null;
 
   return (
-    <div className="w-full  px-4 sm:px-6 lg:px-8 mt-4">
+    <div className="w-full  px-4 sm:px-6 lg:px-8 md:py-18">
       <div className="max-w-340 mx-auto">
         <SectionHeading
           title={title || "Visit Our Youtube Channel"}

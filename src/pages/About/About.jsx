@@ -8,11 +8,11 @@ import AboutTrainerSection from "@/components/about/about-trainer-section";
 import AboutHighlight from "@/components/about/about-highlight";
 import AboutJourney from "@/components/about/about-journey";
 import PopUp from "@/components/common/pop-up";
+import CourseYoutubeLecture from "@/components/courses/common/course-youtube-lecture";
 import HomeCorporatePartner from "@/components/home/home-corporate-partner";
 import HomeCourses from "@/components/home/home-courses";
 import HomePrCarousel from "@/components/home/home-pr-carousel";
 import HomeReview from "@/components/home/home-review";
-import CourseYoutubeLecture from "@/components/courses/common/course-youtube-lecture";
 
 const AboutPage = () => {
   return (

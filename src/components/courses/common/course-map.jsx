@@ -88,7 +88,7 @@ const CourseMap = ({ courseCode }) => {
     L.tileLayer(
       "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
       {
-        attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
+        // attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
         subdomains: "abcd",
         minZoom: 2,
         maxZoom: 20,
@@ -247,8 +247,8 @@ const CourseMap = ({ courseCode }) => {
   }
 
   return (
-    <>
-      <div className="mb-3">
+    <div className="mb-10">
+      <div className="mb-8">
         <SectionHeading
           title="Trusted by Professionals Across 36+ Countries Around the World"
           description="AIA’s global learning community brings together working professionals, helping them build practical expertise that delivers real-world impact."
@@ -261,7 +261,7 @@ const CourseMap = ({ courseCode }) => {
         className="mx-auto"
       />
       ;
-    </>
+    </div>
   );
 };
 

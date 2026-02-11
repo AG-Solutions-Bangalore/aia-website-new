@@ -57,9 +57,13 @@ const CFECurriculam = () => {
       />
 
       <CamsConnection
-        path="how_it_works_cfe.webp"
         title="The Right Certification Starts With the Right Choice"
         description="Find the certification that aligns with your background and carrer stage"
+        images={[
+          { image: "hiw_cia.webp", link: "/cia-curriculum" },
+          { image: "hiw_ciac.webp", link: "/cia-challenge-curriculum" },
+          { image: "hiw_cams.webp", link: "/cams" },
+        ]}
       />
       <HomeAlumniWork />
       <CfeFaq />

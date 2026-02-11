@@ -59,7 +59,7 @@ const HomeBlog = () => {
   }
 
   return (
-    <div className="w-full max-w-full mx-auto border bg-[#0F3652] p-4 shadow-sm md:p-6">
+    <div className="w-full max-w-full mx-auto border bg-[#0F3652] p-4 shadow-sm md:p-6 md:mb-18">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
         <div className="flex flex-col items-center text-center lg:col-span-3 lg:items-start lg:text-left">
           <div className="flex flex-col h-full justify-center">

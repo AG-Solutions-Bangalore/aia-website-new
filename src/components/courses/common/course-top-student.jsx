@@ -143,7 +143,7 @@ const CourseTopStudent = ({
         .showcase-student-carousel .swiper-slide img {
           display: block;
           width: 100%;
-          height: 350px;
+          height: auto;
           object-fit: cover;
           border-radius: 8px;
           transform: translateZ(0);

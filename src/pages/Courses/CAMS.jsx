@@ -50,10 +50,15 @@ const CAMS = () => {
         slug="CAMS"
         title="Meet the Professionals Who Successfully Cleared the CAMS with AIA"
       />
+
       <CamsConnection
-        path="how_it_works_cams.webp"
         title="The Right Certification Starts With the Right Choice"
         description="Find the certification that aligns with your background and carrer stage"
+        images={[
+          { image: "hiw_cfe.webp", link: "/cfe-curriculum" },
+          { image: "hiw_cia.webp", link: "/cia-curriculum" },
+          { image: "hiw_ciac.webp", link: "/cia-challenge-curriculum" },
+        ]}
       />
       <HomeAlumniWork />
       <CamsFaq />

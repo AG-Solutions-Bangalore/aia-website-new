@@ -54,9 +54,13 @@ const CIAChallenge = () => {
       />
 
       <CamsConnection
-        path="how_it_works_cia_challenge.webp"
         title="The Right Certification Starts With the Right Choice"
         description="Find the certification that aligns with your background and carrer stage"
+        images={[
+          { image: "hiw_cfe.webp", link: "/cfe-curriculum" },
+          { image: "hiw_cia.webp", link: "/cia-curriculum" },
+          { image: "hiw_cams.webp", link: "/cams" },
+        ]}
       />
       <HomeAlumniWork />
       <CiaFaq />

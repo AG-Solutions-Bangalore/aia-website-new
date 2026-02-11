@@ -21,8 +21,8 @@ const CourseCurriculum = ({ title, curriculumData, description }) => {
             }}
           />
         )}
-
-        <div className="flex flex-col md:flex-row  max-w-5xl mx-auto justify-center gap-4">
+        <div className="flex flex-col md:flex-row max-w-5xl mx-auto justify-center gap-4 items-stretch">
+          {/* <div className="flex flex-col md:flex-row  max-w-5xl mx-auto justify-center gap-4"> */}
           <div className="w-full md:w-[30%] space-y-2">
             {curriculumData.map((item) => (
               <button
@@ -56,7 +56,8 @@ const CourseCurriculum = ({ title, curriculumData, description }) => {
           </div>
 
           <div className="w-full md:w-[70%]">
-            <div className="bg-white rounded-br-3xl  rounded-tl-3xl p-4  shadow-lg shadow-black/20 border border-[#F3831C]/20 h-[350px]">
+            <div className="bg-white rounded-br-3xl rounded-tl-3xl p-4 shadow-lg shadow-black/20 border border-[#F3831C]/20 h-full">
+              {/* <div className="bg-white rounded-br-3xl  rounded-tl-3xl p-4  shadow-lg shadow-black/20 border border-[#F3831C]/20 h-[350px]"> */}
               {activeContent?.content?.length ? (
                 <div className="space-y-1">
                   <div className="mb-3">
@@ -84,7 +85,7 @@ const CourseCurriculum = ({ title, curriculumData, description }) => {
                     {activeContent.content.map((text, index) =>
                       text
                         .split(/\n+/)
-                        .filter(Boolean) 
+                        .filter(Boolean)
                         .map((paragraph, pIndex) => (
                           <div
                             key={`${index}-${pIndex}`}
