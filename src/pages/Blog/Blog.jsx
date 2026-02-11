@@ -20,6 +20,7 @@ const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("ALL");
   const [showAllTrending, setShowAllTrending] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,12 +45,24 @@ const Blog = () => {
       setLoading(false);
     }
   };
+  const filteredBlogs = blogs.filter((blog) => {
+    if (!searchTerm.trim()) return true;
+
+    const search = searchTerm.toLowerCase();
+
+    return (
+      blog.blog_heading?.toLowerCase().includes(search) ||
+      blog.blog_short_description?.toLowerCase().includes(search) ||
+      blog.blog_course?.toLowerCase().includes(search)
+    );
+  });
 
   const uniqueCategories = [
     ...new Set(blogs.map((blog) => blog.blog_course).filter(Boolean)),
   ];
-  const trendingBlogs = blogs.filter((blog) => blog.blog_trending === "yes");
-
+  const trendingBlogs = filteredBlogs.filter(
+    (blog) => blog.blog_trending === "yes",
+  );
   const COURSE_NAME_MAP = {
     CFE: "Certified Fraud Examiner",
     CIA: "Certified Internal Auditor",
@@ -265,8 +278,16 @@ const Blog = () => {
               <div className="relative">
                 <input
                   type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                   placeholder=" Search smart. Learn Audit, Fraud & AML with AIA..."
-                  className="w-full px-6 py-2 pr-12 text-lg rounded-2xl focus:outline-none shadow-sm bg-white text-[#0F3652] border border-[#0F3652]/20"
+                  className="w-full px-6 py-3 pr-14 text-base md:text-lg rounded-full 
+bg-white/90 backdrop-blur-sm 
+border border-[#0F3652]/20 
+shadow-md 
+text-[#0F3652] placeholder:text-[#0F3652]/50
+focus:outline-none focus:ring-2 focus:ring-[#F3831C] focus:border-[#F3831C]
+transition-all duration-300"
                 />
                 <button className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 hover:bg-[#0F3652]/10 rounded-full transition-colors">
                   <Search className="w-6 h-6 text-[#0F3652]" />
@@ -380,7 +401,7 @@ const Blog = () => {
 
           {selectedCategory === "ALL"
             ? uniqueCategories.map((category) => {
-                const categoryBlogs = blogs
+                const categoryBlogs = filteredBlogs
                   .filter((blog) => blog.blog_course === category)
                   .slice(0, 4);
                 if (categoryBlogs.length === 0) return null;
@@ -407,6 +428,14 @@ const Blog = () => {
                 );
               })
             : null}
+          {filteredBlogs.length === 0 && (
+            <div className="text-center py-12 border border-[#0F3652]/20 rounded-md bg-[#0F3652]/5">
+              <BookOpen className="w-12 h-12 text-[#0F3652] mx-auto mb-4" />
+              <p className="text-[#0F3652] text-lg font-medium">
+                No blogs found for "{searchTerm}"
+              </p>
+            </div>
+          )}
 
           <div className="flex flex-col items-center justify-center bg-white px-4">
             <SectionHeading

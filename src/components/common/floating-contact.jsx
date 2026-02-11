@@ -31,7 +31,7 @@ const FloatingContactRight = () => {
   ];
 
   return (
-    <div className="fixed bottom-30 right-6 z-[9999]">
+    <div className="fixed bottom-40 right-4 z-[9999]">
       <div
         className="relative flex items-center gap-2.5"
         onMouseEnter={() => setOpen(true)}

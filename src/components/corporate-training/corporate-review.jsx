@@ -1,10 +1,11 @@
 import React from "react";
+import SectionHeading from "../SectionHeading/SectionHeading";
 
 const CorporateReview = () => {
   const reviews = [
     {
       text: "Thank you, AIA It wouldn't be possible without your support & guidance.",
-      author: "HRT BARRINGAYA, CFE, KPMG",
+      author: "HET BARRINGAYA, CFE, KPMG",
     },
     {
       text: "Puneet Sir's CFE classes are outstanding-clear, focused, and incredibly helpful for exam prep. Highly recommended! Thankyou Sir...",
@@ -37,9 +38,7 @@ const CorporateReview = () => {
       <div className="max-w-340 mx-auto">
         <div className="grid md:grid-cols-2">
           <div className="p-2 rounded-lg">
-            <h2 className="text-3xl font-bold text-[#0F3652] mb-6">
-              Straight From the Learners & Organizations Who Experience Us
-            </h2>
+            <SectionHeading title="Straight From the Learners & Organizations Who Experience Us" />
 
             <div className="space-y-4 text-[#0F3652]">
               <p className="font-semibold">

@@ -130,11 +130,11 @@ const ContactHero = () => {
                 <span className="text-[#fa8017] font-semibold">Let's talk</span>
               </p>
 
-              <div className="absolute top-[20%] left-[65%]">
+              <div className="absolute top-[20%] left-[68%]">
                 <img
                   src={`${IMAGE_PATH}/arrow.png`}
                   alt="arrow"
-                  className="w-[240px] h-auto"
+                  className="w-[200px] h-auto"
                 />
               </div>
 
@@ -285,7 +285,8 @@ const ContactHero = () => {
                   <button
                     type="button"
                     onClick={handleSubmit}
-                    className="bg-[#337ab7] hover:bg-[#2868a6] cursor-pointer text-white py-3 px-8 rounded font-medium transition-colors duration-200 flex items-center justify-center gap-2 min-w-[200px]"
+                    className="bg-[#F3831C] text-white text-center px-6 py-3 cursor-pointer  font-semibold hover:opacity-90 transition-all"
+                    // className="bg-[#337ab7] hover:bg-[#2868a6] cursor-pointer text-white py-3 px-8 rounded font-medium transition-colors duration-200 flex items-center justify-center gap-2 min-w-[200px]"
                     disabled={loader}
                   >
                     {loader ? (

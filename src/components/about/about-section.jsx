@@ -27,7 +27,7 @@ const AboutSection = () => {
                 practical ability required to perform in real-world audit and
                 risk environments.
               </p>
-              <span className="list-disc pl-6 space-y-2 text-[#0F3652]">
+              <div className="list-disc pl-6 text-[#0F3652] mb-4">
                 <span>
                   <strong>
                     <em>
@@ -36,7 +36,7 @@ const AboutSection = () => {
                     </em>
                   </strong>
                 </span>
-              </span>
+              </div>
 
               <p className="text-justify">
                 This belief shapes everything we do. Our programs are designed

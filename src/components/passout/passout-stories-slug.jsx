@@ -279,7 +279,7 @@ const PassoutStoriesSlug = () => {
 
                     <div className="py-2 mt-4">
                       <h2 className="text-base font-medium text-[#0F3652] mb-1">
-                        Subscribe to newsletter -- back -1
+                        Subscribe to Newsletter
                       </h2>
 
                       <form onSubmit={handleSubscribe} className="space-y-3">
