@@ -28,7 +28,7 @@ const FreeResources = () => {
 
       <CourseAchivers
         slug="cfe"
-        title="From Aspirants to Certified Internal Auditors - Our Recent CIA Achievers"
+        title="From Aspirants to Certified Internal Auditors - Our Recent CFE Achievers"
         description="Professionals who strengthened and advanced their careers through CFE preparation with AIA"
       />
       <HomeAlumniWork />
