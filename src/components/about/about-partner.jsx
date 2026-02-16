@@ -33,7 +33,7 @@ const AboutPartner = () => {
       <div className="max-w-full mx-auto">
         <div className="max-w-full mx-auto">
           <section className="relative space-y-10 bg-[#0F3652] p-8 overflow-hidden">
-            <div className="absolute right-0 top-0 h-full w-1/2 opacity-30">
+            {/* <div className="absolute right-0 top-0 h-full w-1/2 opacity-30">
               <div className="absolute right-0 top-0 h-full w-full">
                 <div className="absolute right-0 top-0 border-r-300 border-t-400 border-r-transparent border-t-[#F3831C] sm:border-r-400 sm:border-t-500 md:border-r-500 md:border-t-600"></div>
               </div>
@@ -43,7 +43,7 @@ const AboutPartner = () => {
               <div className="absolute right-0 top-0 h-full w-full">
                 <div className="absolute right-0 top-0 border-r-200 border-t-300 border-r-transparent border-t-[#F3831C] sm:border-r-300 sm:border-t-400 md:border-r-400 md:border-t-500"></div>
               </div>
-            </div>
+            </div> */}
 
             <div className="relative z-10 max-w-340 mx-auto">
               <h2 className="text-3xl max-w-340 mx-auto md:text-4xl font-bold text-white">
@@ -101,7 +101,7 @@ const AboutPartner = () => {
           </section>
 
           <section className="relative bg-[#0F3652] p-8 overflow-hidden">
-            <div className="absolute right-0 top-0 h-full w-1/2 opacity-30">
+            {/* <div className="absolute right-0 top-0 h-full w-1/2 opacity-30">
               <div className="absolute right-0 top-0 h-full w-full">
                 <div className="absolute right-0 top-0 border-r-300 border-t-400 border-r-transparent border-t-[#F3831C] sm:border-r-400 sm:border-t-500 md:border-r-500 md:border-t-600"></div>
               </div>
@@ -111,7 +111,7 @@ const AboutPartner = () => {
               <div className="absolute right-0 top-0 h-full w-full">
                 <div className="absolute right-0 top-0 border-r-200 border-t-300 border-r-transparent border-t-[#F3831C] sm:border-r-300 sm:border-t-400 md:border-r-400 md:border-t-500"></div>
               </div>
-            </div>
+            </div> */}
 
             <div className="relative z-10 max-w-340 mx-auto">
               <div className="grid md:grid-cols-2 gap-8 items-center">

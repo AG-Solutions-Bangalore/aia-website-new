@@ -52,7 +52,7 @@ const Navbar = () => {
       submenu: null,
     },
     {
-      title: "About us",
+      title: "About Us",
       link: "/about-us",
       submenu: null,
     },

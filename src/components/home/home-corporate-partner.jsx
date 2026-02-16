@@ -53,7 +53,7 @@ const HomeCorporatePartner = () => {
         <section className="relative w-full overflow-hidden bg-background">
           <div className="relative z-10 w-full px-8 pb-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-340 mx-auto">
             <div>
-              <h3 className="text-xl font-semibold text-[#0F3652]">
+              <h3 className="text-3xl font-semibold text-[#F3831C]">
                 {currentTitle}
               </h3>
               <p className="text-base md:text-lg text-[#0F3652] my-4 text-justify">

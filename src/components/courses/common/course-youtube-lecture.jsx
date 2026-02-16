@@ -7,7 +7,7 @@ import { BASE_URL } from "@/api/base-url";
 import "react-loading-skeleton/dist/skeleton.css";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 
-const CourseYoutubeLecture = ({ courseSlug, title }) => {
+const CourseYoutubeLecture = ({ courseSlug, title ,highlight1}) => {
   const [activeTab, setActiveTab] = useState("");
   const scrollContainerRef = useRef(null);
 
@@ -89,6 +89,7 @@ const CourseYoutubeLecture = ({ courseSlug, title }) => {
       <div className="max-w-340 mx-auto">
         <SectionHeading
           title={title || "Visit Our Youtube Channel"}
+          highlight1={highlight1}
           align="center"
         />
         {tabs.length > 0 && (

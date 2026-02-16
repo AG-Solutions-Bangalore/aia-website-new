@@ -79,7 +79,7 @@ const NotificationPopup = () => {
     } else {
       return {
         type: "outgoing",
-        text: "Tell me more",
+        text: popup.side_popup_heading,
       };
     }
   };
