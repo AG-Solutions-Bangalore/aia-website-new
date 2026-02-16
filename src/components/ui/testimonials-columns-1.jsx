@@ -1,15 +1,29 @@
-/* eslint-disable no-unused-vars */
 import React from "react";
 import { motion } from "framer-motion";
 
 export const TestimonialsColumn = (props) => {
-  
   const getCourseName = (course) => {
-    switch(course) {
-      case "CFE": return "CFE";
-      case "CIAC": return "CIA";
-      case "CAMS": return "CAMS";
-      default: return course;
+    switch (course) {
+      case "CFE":
+        return "CFE";
+      case "CIAC":
+        return "CIA";
+      case "CAMS":
+        return "CAMS";
+      default:
+        return course;
+    }
+  };
+  const getCourseStyles = (course) => {
+    switch (course) {
+      case "CFE":
+        return "bg-[#F3831C]/15 text-[#F3831C]";
+      case "CIAC":
+        return "bg-[#0F3652]/15 text-[#0F3652]";
+      case "CAMS":
+        return "bg-[#16A34A]/15 text-[#16A34A]";
+      default:
+        return "bg-gray-100 text-gray-600";
     }
   };
 
@@ -30,44 +44,59 @@ export const TestimonialsColumn = (props) => {
         {[
           ...new Array(2).fill(0).map((_, index) => (
             <React.Fragment key={index}>
-              {props.testimonials.map(({ name, image, alt, student_designation, comapany_image, company_alt, course }, i) => (
-                <div
-                  className="rounded-md border border-[#F3831C]/20 bg-white max-w-xs w-full overflow-hidden"
-                  key={i}
-                >
-                  <div className="h-48  md:h-56 w-full relative">
-                    <img
-                      src={image}
-                      alt={alt}
-                      decoding="async"
-                      className="h-full w-full object-top object-cover"
-                    />
-                    <div className="absolute top-2 right-2 bg-[#0F3652]/10 backdrop-blur-sm text-black px-3 py-1 rounded-md text-xs font-semibold">
-                      {getCourseName(course)}
-                    </div>
-                  </div>
-                  
-                  <div className="p-4 flex flex-col gap-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex flex-col">
-                        <span className="text-sm font-semibold tracking-tight text-[#0F3652]">
-                          {name}
-                        </span>
-                        <span className="text-xs opacity-60 text-[#0F3652]">
-                          {student_designation}
-                        </span>
-                      </div>
-                      
+              {props.testimonials.map(
+                (
+                  {
+                    name,
+                    image,
+                    alt,
+                    student_designation,
+                    comapany_image,
+                    company_alt,
+                    course,
+                  },
+                  i,
+                ) => (
+                  <div
+                    className="rounded-md border border-[#F3831C]/20 bg-white max-w-xs w-full overflow-hidden"
+                    key={i}
+                  >
+                    <div className="h-48  md:h-56 w-full relative">
                       <img
-                        src={comapany_image}
-                        alt={company_alt}
+                        src={image}
+                        alt={alt}
                         decoding="async"
-                        className="h-8 w-8 object-contain"
+                        className="h-full w-full object-top object-cover"
                       />
+                      <div
+                        className={`absolute top-2 right-2 backdrop-blur-sm px-3 py-1 rounded-md text-xs font-semibold ${getCourseStyles(course)}`}
+                      >
+                        {getCourseName(course)}
+                      </div>
+                    </div>
+
+                    <div className="p-4 flex flex-col gap-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex flex-col">
+                          <span className="text-sm font-semibold tracking-tight text-[#0F3652]">
+                            {name}
+                          </span>
+                          <span className="text-xs opacity-60 text-[#0F3652]">
+                            {student_designation}
+                          </span>
+                        </div>
+
+                        <img
+                          src={comapany_image}
+                          alt={company_alt}
+                          decoding="async"
+                          className="h-8 w-8 object-contain"
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ),
+              )}
             </React.Fragment>
           )),
         ]}

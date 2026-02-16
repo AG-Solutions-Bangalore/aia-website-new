@@ -2,11 +2,14 @@ import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { TestimonialCardCourse } from "./testimonial-card-course";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 export function TestimonialsSectionCourse({
   title,
   description,
   testimonials,
   className,
+  sucessstory,
 }) {
   const marqueeRef = useRef(null);
   const [duration, setDuration] = useState(40);
@@ -70,6 +73,26 @@ export function TestimonialsSectionCourse({
           <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background" />
         </div>
       </div>
+      {sucessstory && (
+        <div className="flex justify-center mt-4">
+          <Button
+            className=" mb-4  relative cursor-pointer overflow-hidden group  px-4 py-2  text-xs bg-[#F3831C] text-white rounded-none hover:bg-[#0F3652] transition-colors duration-300 "
+            variant="ghost"
+            aria-label="View All Success Stories"
+          >
+            <Link
+              to={
+                "https://www.youtube.com/playlist?list=PLHH4EQbbvYIZSnYeZNB3-zoHdVGS6BvWV"
+              }
+              target="_blank"
+            >
+              <span className="relative z-10 text-white">
+                <span>View All Success Stories</span>
+              </span>
+            </Link>
+          </Button>{" "}
+        </div>
+      )}
     </section>
   );
 }

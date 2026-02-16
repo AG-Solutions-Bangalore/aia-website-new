@@ -35,7 +35,8 @@ export default function Home() {
       <HomeAlumniWork />
       <CourseYoutubeLecture
         courseSlug="home"
-        title="Watch & Learn Everything You Need to Crack the CFE, CIA & CAMS"
+        title="Watch & Learn Everything You Need to"
+        highlight1="Crack the CFE, CIA & CAMS"
       />
       <HomeBlogs />
       <HomeFaq />

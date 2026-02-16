@@ -130,7 +130,6 @@ const CourseReview = ({ slug }) => {
   if (isError || testimonials.length === 0) {
     return null;
   }
-  console.log(scrollFinished, "scrollFinished");
   return (
     <div className="max-w-340 mx-auto px-4">
       <div

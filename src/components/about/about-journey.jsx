@@ -9,6 +9,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import CountUp from "../common/count-up";
 import SectionHeading from "../SectionHeading/SectionHeading";
+import { IMAGE_PATH } from "@/api/base-url";
 
 const processSteps = [
   {
@@ -159,8 +160,7 @@ const AboutJourney = () => {
             </div>
           </div>
 
-          <div ref={processRef} className="py-16 hidden md:block relative">
-            {/* SVG Path */}
+          {/* <div ref={processRef} className="py-16 hidden md:block relative">
             <div className="absolute top-1/2 left-0 w-full h-64 -translate-y-1/2 pointer-events-none">
               <svg
                 className="w-full h-full"
@@ -254,6 +254,13 @@ const AboutJourney = () => {
                 })}
               </div>
             </div>
+          </div> */}
+          <div className="mt-10">
+            <img
+              src={`${IMAGE_PATH}/certified.webp`}
+              alt="Our Journey"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </div>

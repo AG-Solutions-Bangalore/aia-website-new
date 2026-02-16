@@ -7,11 +7,11 @@ const AboutSection = () => {
       <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="">
           <div>
-            <div className="flex items-center gap-3 mb-3">
+            {/* <div className="flex items-center gap-3 mb-3">
               <span className="text-sm font-medium text-[#F3831C] uppercase tracking-wider">
                 Academy of Internal Audit
               </span>
-            </div>
+            </div> */}
 
             <SectionHeading
               title="About AIA - Where Certifications Meet Real-World Capability"
@@ -27,7 +27,7 @@ const AboutSection = () => {
                 practical ability required to perform in real-world audit and
                 risk environments.
               </p>
-              <div className="list-disc pl-6 text-[#0F3652] mb-4">
+              <div className="list-disc pl-6 text-[#0F3652] mb-4 text-xl">
                 <span>
                   <strong>
                     <em>
