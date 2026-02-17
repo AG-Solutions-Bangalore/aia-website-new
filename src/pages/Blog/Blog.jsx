@@ -2,6 +2,7 @@ import { BASE_URL, IMAGE_PATH } from "@/api/base-url";
 import BannerBlogCard from "@/components/blog/banner-blog-card";
 import BlogCard from "@/components/blog/blog-card";
 import PopUp from "@/components/common/pop-up";
+import CourseTopStudent from "@/components/home/home-pr-carousel";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import axios from "axios";
 import {
@@ -32,7 +33,7 @@ const Blog = () => {
       setBlogs(response.data.data || []);
 
       const blogImageConfig = response.data.image_url?.find(
-        (item) => item.image_for === "Blog"
+        (item) => item.image_for === "Blog",
       );
       if (blogImageConfig) {
         setImageBaseUrl(blogImageConfig?.image_url);
@@ -65,7 +66,7 @@ const Blog = () => {
     ...new Set(blogs.map((blog) => blog.blog_course).filter(Boolean)),
   ];
   const trendingBlogs = filteredBlogs.filter(
-    (blog) => blog.blog_trending === "yes"
+    (blog) => blog.blog_trending === "yes",
   );
 
   const searchSuggestions = searchTerm.trim()
@@ -108,7 +109,7 @@ const Blog = () => {
     if (!showAllTrending && trendingBlogs.length > 1) {
       const interval = setInterval(() => {
         setCurrentSlide(
-          (prev) => (prev + 1) % Math.min(4, trendingBlogs.length)
+          (prev) => (prev + 1) % Math.min(4, trendingBlogs.length),
         );
       }, 5000);
 
@@ -425,6 +426,7 @@ const Blog = () => {
             </div>
           </div>
         </div>
+        <CourseTopStudent />
       </section>
     </>
   );

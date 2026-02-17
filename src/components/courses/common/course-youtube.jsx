@@ -8,7 +8,6 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { TestimonialsSectionCourse } from "./testimonials-with-marquee-course";
 const CourseYoutube = ({ courseSlug }) => {
-  console.log(courseSlug, "cfe");
   const {
     data: certificatesData,
     isLoading: isLoadingPassout,
@@ -80,6 +79,7 @@ const CourseYoutube = ({ courseSlug }) => {
     <TestimonialsSectionCourse
       title="Meet Recently Qualified on YouTube "
       testimonials={testimonials}
+      sucessstory={true}
     />
     // <TestimonialsSection
     //   title="Meet Recently Qualified on YouTube "

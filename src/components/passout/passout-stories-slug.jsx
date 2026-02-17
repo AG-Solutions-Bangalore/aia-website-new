@@ -2,7 +2,8 @@ import { BASE_URL } from "@/api/base-url";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Button } from "../ui/button";
 
 const PassoutStoriesSlug = () => {
   const { slug } = useParams();
@@ -98,6 +99,15 @@ const PassoutStoriesSlug = () => {
       </div>
     );
   }
+  const courseRoutes = {
+    CAMS: "/cams",
+    CFE: "/cfe-curriculum",
+    CIA: "/cia-curriculum",
+    "CIA Part 1": "/cia-curriculum",
+    "CIA Part 2": "/cia-curriculum",
+    "CIA Part 3": "/cia-curriculum",
+    CIAC: "/cia-challenge-curriculum",
+  };
 
   const {
     student_story_banner_image,
@@ -107,6 +117,7 @@ const PassoutStoriesSlug = () => {
     student_designation,
     student_linkedin_link,
     student_story_details,
+    student_story_short_description,
     company,
     country,
     student_story_box_title1,
@@ -118,7 +129,6 @@ const PassoutStoriesSlug = () => {
     student_story_box_details3,
     student_story_box_details4,
   } = storyData.data;
-
   const companyImageUrl =
     storyData.image_url.find((img) => img.image_for === "Student Company")
       ?.image_url + company?.student_company_image;
@@ -208,10 +218,7 @@ const PassoutStoriesSlug = () => {
                         </div>
                       </div>
                       <p className="text-sm text-[#0F3652]">
-                        {student_name}, a {student_course} graduate, currently
-                        serves as {student_designation} at{" "}
-                        {company?.student_company_name} in{" "}
-                        {country?.country_name}.
+                        {student_story_short_description}
                       </p>
                     </div>
 
@@ -274,6 +281,21 @@ const PassoutStoriesSlug = () => {
                             View
                           </p>
                         </a>
+                      </div>
+                      <div className="flex  mt-4">
+                        <Button
+                          className=" mb-4  relative cursor-pointer overflow-hidden group  px-4 py-2  text-xs bg-[#F3831C] text-white rounded-none hover:bg-[#0F3652] transition-colors duration-300 "
+                          variant="ghost"
+                          aria-label="View All Success Stories"
+                        >
+                          <Link
+                            to={courseRoutes[student_course] || "/courses"}
+                          >
+                            <span className="relative z-10 text-white">
+                              <span>Explore {student_course}</span>
+                            </span>
+                          </Link>
+                        </Button>{" "}
                       </div>
                     </div>
 

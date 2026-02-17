@@ -1,6 +1,7 @@
 import CourseAbout from "../common/course-about";
+import CfeJoinDialog from "./join-prep";
 
-const CfeAbout = () => {
+const CfeAbout = ({}) => {
   return (
     <>
       <CourseAbout
@@ -30,6 +31,10 @@ Certified Fraud Examiner (CFE) is a globally respected credential awarded by the
             show: "true",
           },
         ]}
+        formtitle="Join AiA CFE Prep Course"
+        formsubtitle="Certified Fraud Examiner Course"
+        formcourse="CFE"
+        formbuttonlabel="Join the Course"
       />
     </>
   );

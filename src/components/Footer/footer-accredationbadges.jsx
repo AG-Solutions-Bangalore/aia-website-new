@@ -1,0 +1,88 @@
+import { IMAGE_PATH } from "@/api/base-url";
+
+const AccreditationBadges = () => {
+  const badges = [
+    {
+      img: `${IMAGE_PATH}/iao-seal.png`,
+      alt: "IAO",
+      href: "https://www.iao.org/India-Haryana/Academy-of-Internal-Audit",
+    },
+    { img: `${IMAGE_PATH}/IIA.png`, alt: "IIA" },
+    { img: `${IMAGE_PATH}/ISO.png`, alt: "ISO" },
+    { img: `${IMAGE_PATH}/Gleim.png`, alt: "Gleim" },
+    {
+      img: `${IMAGE_PATH}/GSAAA.png`,
+      alt: "GSAAA",
+      href: "https://www.gsaaa.org/india/academy-of-internal-audit",
+    },
+  ];
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-2 items-center">
+      {badges.map(({ img, alt, href }) => {
+        const inner = (
+          <div className="bg-white/10 border border-gray-700 rounded-lg p-2 w-full h-20 flex items-center justify-center transition-all duration-200 group-hover:border-[#fa8017] group-hover:bg-white/20 group-hover:scale-105">
+            <img src={img} alt={alt} className="w-full h-full object-contain" />
+          </div>
+        );
+        return href ? (
+          <a
+            key={alt}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group"
+            title={alt}
+          >
+            {inner}
+          </a>
+        ) : (
+          <div key={alt} className="group" title={alt}>
+            {inner}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const SectionLabel = ({ children }) => (
+  <h4 className="text-[#fa8017] font-bold text-xl mb-6 relative inline-block">
+    {children}
+    <span className="absolute bottom-0 left-0 w-12 h-0.5 bg-[#fa8017] -mb-2"></span>
+  </h4>
+);
+
+export const PaymentAccreditation = () => (
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+    <div>
+      <SectionLabel>Payment & Contact</SectionLabel>
+
+      <div className="grid grid-cols-2 gap-3">
+        <div className="p-3 flex items-center justify-center hover:border-[#fa8017]/40 transition-all duration-200">
+          <img
+            src={`${IMAGE_PATH}/payment.png`}
+            alt="Payment methods"
+            className="w-full h-20 object-contain"
+          />
+        </div>
+
+        <a
+          href="tel:+18001200255"
+          className="grouprounded-xl p-3 flex items-center justify-center hover:border-[#fa8017]/40 transition-all duration-200"
+        >
+          <img
+            src={`${IMAGE_PATH}/toll free.png`}
+            alt="Toll Free"
+            className="w-full h-20 object-contain group-hover:scale-105 transition-transform duration-200"
+          />
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <SectionLabel>Accreditations</SectionLabel>
+      <AccreditationBadges />
+    </div>
+  </div>
+);

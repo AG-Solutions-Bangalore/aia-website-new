@@ -1,6 +1,7 @@
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
 import React from "react";
 import { Link } from "react-router-dom";
+import CfeJoinDialog from "../cfe-curriculam/join-prep";
 
 const CourseAbout = ({
   badgeText,
@@ -9,7 +10,12 @@ const CourseAbout = ({
   aboutStats,
   buttonText,
   buttonLink,
+  formtitle,
+  formsubtitle,
+  formcourse,
+  formbuttonlabel,
 }) => {
+  console.log(badgeText,"formtitle")
   return (
     <section className="py-18">
       <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,7 +76,6 @@ const CourseAbout = ({
               >
                 <div className="text-xl font-bold mb-1 text-[#0F3652]">
                   {stat.display}
-                
                 </div>
                 {stat.show == "true" && (
                   <h4 className="text-base font-normal text-[#0F3652]">
@@ -97,6 +102,12 @@ const CourseAbout = ({
           </div>
         </div>
       </div>
+      <CfeJoinDialog
+        title={formtitle}
+        subtitle={formsubtitle}
+        course={formcourse}
+        buttonlabel={formbuttonlabel}
+      />
     </section>
   );
 };

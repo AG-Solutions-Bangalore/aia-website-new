@@ -23,6 +23,10 @@ const CamsAbout = () => {
           },
           { display: "CAMS Qualified Trainer", title: "Served" },
         ]}
+        formtitle="Join AiA CAMS LMS"
+        formsubtitle="Online Training and Certification Course"
+        formcourse="CAMS"
+        formbuttonlabel="Join the Course"
       />
     </>
   );

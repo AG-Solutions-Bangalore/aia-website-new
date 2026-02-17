@@ -1,7 +1,8 @@
 import React from "react";
 import CourseLms from "../common/course-lms";
+import CfeJoinDialog from "./join-prep";
 
-const CfeCourseLms = ({image}) => {
+const CfeCourseLms = ({ title, subtitle, course, buttonlabel, image }) => {
   const courseFeatures = [
     {
       title: "CFE Personalised Study Material",
@@ -45,11 +46,20 @@ const CfeCourseLms = ({image}) => {
     },
   ];
   return (
-    <CourseLms
-      cardTitle="What's Included in the AIA CFE Prep Course"
-      courseFeatures={courseFeatures}
-      image={image}
-    />
+    <>
+      <CourseLms
+        cardTitle="What's Included in the AIA CFE Prep Course"
+        courseFeatures={courseFeatures}
+        image={image}
+      />
+
+      <CfeJoinDialog
+        title={title}
+        subtitle={subtitle}
+        course={course || "CFE"}
+        buttonlabel={buttonlabel || "Access the Course"}
+      />
+    </>
   );
 };
 

@@ -14,9 +14,9 @@ const OurPassout = () => {
       <PassoutBanner />
       <PassoutResult />
       <PassoutSucess />
-      <HomeAlumniWork />
       <AllYoutube />
       <HomeReview />
+      <HomeAlumniWork />
     </div>
   );
 };

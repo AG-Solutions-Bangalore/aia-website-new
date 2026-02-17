@@ -44,7 +44,13 @@ const CAMS = () => {
       <CourseYoutube courseSlug="cams" />
       <AboutTrainerSection path="faculty_cams.webp" />
       <CourseYoutubeLecture courseSlug="cams" />
-      <CfeCourseLms />
+      <CfeCourseLms
+        title="Join AiA CAMS LMS"
+        subtitle="Online Training and Certification Course"
+        course="CAMS"
+        buttonlabel="Begin Your Journey"
+      />
+
       <CamsUnique />
       <CourseAchivers
         slug="CAMS"
@@ -59,6 +65,7 @@ const CAMS = () => {
           { image: "hiw_cia.webp", link: "/cia-curriculum" },
           { image: "hiw_ciac.webp", link: "/cia-challenge-curriculum" },
         ]}
+        buttonColors={["#a8e6f3", "#fee1c6", "#e2ffdc"]}
       />
       <HomeAlumniWork />
       <CamsFaq />

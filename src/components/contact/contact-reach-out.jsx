@@ -32,6 +32,14 @@ const ContactReachOut = () => {
         { text: "1800-1200-2555", link: "tel:+180012002555", isTollFree: true },
       ],
     },
+    {
+      icon: <Phone className="w-6 h-6" />,
+      title: "Vietnam & Indonesia",
+      details: [
+        { text: "+84-911677672", link: "tel:+84-911677672" },
+        { text: "+62-8117991185", link: "tel:+62-8117991185" },
+      ],
+    },
   ];
 
   return (
@@ -49,7 +57,7 @@ const ContactReachOut = () => {
           </h2>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8 px-5 pb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-8 px-5">
           {contactMethods.map((method, index) => (
             <div
               key={index}

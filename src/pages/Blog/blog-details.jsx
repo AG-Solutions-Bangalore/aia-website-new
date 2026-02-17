@@ -385,7 +385,7 @@ const BlogDetails = () => {
                 </p>
               )}
               
-              <div className="flex flex-wrap items-center gap-4 text-[#0F3652] text-sm">
+              <div className="flex flex-wrap items-end gap-4 text-[#0F3652] text-sm min-h-16">
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
                   <time dateTime={blog.blog_created}>
@@ -396,6 +396,10 @@ const BlogDetails = () => {
                 <div className="flex items-center gap-2">
                   <Clock className="w-4 h-4" />
                   <span>5 min read</span>
+                </div>
+                <span className="hidden sm:inline">•</span>
+                <div className="flex items-center gap-2">
+                  <span>Published by AIA</span>
                 </div>
               </div>
             </div>

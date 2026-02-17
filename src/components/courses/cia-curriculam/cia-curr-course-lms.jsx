@@ -1,5 +1,6 @@
 import React from "react";
 import CourseLms from "../common/course-lms";
+import CfeJoinDialog from "../cfe-curriculam/join-prep";
 
 const CiaCurrCourseLms = () => {
   const courseFeatures = [
@@ -46,10 +47,19 @@ const CiaCurrCourseLms = () => {
   ];
 
   return (
-    <CourseLms
-      cardTitle="AIA CIA Prep Course - What you will get"
-      courseFeatures={courseFeatures}
-    />
+    <>
+      <CourseLms
+        cardTitle="AIA CIA Prep Course - What you will get"
+        courseFeatures={courseFeatures}
+      />
+
+      <CfeJoinDialog
+        title="Join AiA CIA LMS"
+        subtitle="Online Training and Certification Course"
+        course="CIA"
+        buttonlabel="Access the Course"
+      />
+    </>
   );
 };
 

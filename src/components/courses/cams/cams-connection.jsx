@@ -9,6 +9,8 @@ const CamsConnection = ({
   images = [],
   description,
   description1,
+  buttonText = "Know More",
+  buttonColors = [],
 }) => {
   const navigate = useNavigate();
 
@@ -28,14 +30,32 @@ const CamsConnection = ({
             {images.map((item, index) => (
               <div
                 key={index}
-                onClick={() => navigate(item.link)}
-                className="cursor-pointer overflow-hidden rounded-lg"
+                className="relative overflow-hidden rounded-lg group"
               >
                 <img
                   src={`${IMAGE_PATH}/${item.image}`}
                   alt={`Cams Image ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+
+                <button
+                  style={{
+                    backgroundColor: buttonColors[index] || "#fee1c6",
+                  }}
+                  onClick={() => navigate(item.link)}
+                  className="
+                    absolute bottom-14 left-9 group
+                    px-5 py-2 text-sm font-semibold
+                    rounded-full
+                    shadow-md
+                    transition-all duration-300
+                    hover:opacity-90
+                    cursor-pointer 
+                    group-hover:scale-105
+                  "
+                >
+                  {buttonText}
+                </button>
               </div>
             ))}
           </div>

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -36,13 +35,28 @@ const NotificationPopup = () => {
 
     return () => clearTimeout(timer);
   }, []);
+  const flattenedMessages = React.useMemo(() => {
+    if (!popupData || popupData.length === 0) return [];
+
+    return popupData.flatMap((popup) => [
+      {
+        type: "outgoing",
+        text: popup.side_popup_heading,
+      },
+      {
+        type: "incoming",
+        text: popup.side_popup_description,
+        link: popup.side_popup_link,
+      },
+    ]);
+  }, [popupData]);
 
   useEffect(() => {
-    if (!isVisible || popupData.length === 0) return;
+    if (!isVisible || flattenedMessages.length === 0) return;
 
     const messageInterval = setInterval(() => {
       setCurrentMessageIndex((prev) => {
-        if (prev >= popupData.length * 2 - 1) {
+        if (prev >= flattenedMessages.length - 1) {
           return 0;
         }
         return prev + 1;
@@ -50,7 +64,7 @@ const NotificationPopup = () => {
     }, 3500);
 
     return () => clearInterval(messageInterval);
-  }, [isVisible, popupData]);
+  }, [isVisible, flattenedMessages]);
 
   const handleClose = () => {
     setIsClosing(true);
@@ -61,31 +75,29 @@ const NotificationPopup = () => {
 
   if (!isVisible) return null;
 
-  const getMessage = (index) => {
-    const popupIndex = Math.floor(index / 2);
-    const messageType = index % 2 === 0 ? "incoming" : "outgoing";
+  // const getMessage = (index) => {
+  //   const popupIndex = Math.floor(index / 2);
+  //   const messageType = index % 2 == 0 ? "incoming" : "outgoing";
 
-    if (popupIndex >= popupData.length) return null;
+  //   if (popupIndex >= popupData.length) return null;
 
-    const popup = popupData[popupIndex];
+  //   const popup = popupData[popupIndex];
+  //   if (messageType === "incoming") {
+  //     return {
+  //       type: "incoming",
+  //       text: popup.side_popup_description,
+  //       avatar: "https://i.pravatar.cc/40?img=12",
+  //       link: popup.side_popup_link,
+  //     };
+  //   } else {
+  //     return {
+  //       type: "outgoing",
+  //       text: popup.side_popup_heading,
+  //     };
+  //   }
+  // };
 
-    if (messageType === "incoming") {
-      return {
-        type: "incoming",
-        text: popup.side_popup_description,
-        avatar: "https://i.pravatar.cc/40?img=12",
-        link: popup.side_popup_link,
-      };
-    } else {
-      return {
-        type: "outgoing",
-        text: popup.side_popup_heading,
-      };
-    }
-  };
-
-  const currentMessage = getMessage(currentMessageIndex);
-
+  const currentMessage = flattenedMessages[currentMessageIndex];
   return (
     <motion.div
       initial={{ y: 100, opacity: 0, scale: 0.95 }}
@@ -234,7 +246,7 @@ const NotificationPopup = () => {
           !isError &&
           currentMessage &&
           currentMessage.type === "outgoing" &&
-          currentMessageIndex < popupData.length * 2 - 1 && (
+          currentMessageIndex < flattenedMessages.length * 2 - 1 && (
             <motion.div
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}

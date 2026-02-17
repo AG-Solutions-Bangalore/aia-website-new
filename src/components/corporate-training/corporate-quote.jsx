@@ -116,7 +116,7 @@ const CorporateQuote = () => {
   return (
     <>
       <div className="relative px-6 py-10 md:py-12 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1E5A7A] via-[#F3831C]/90 to-[#F3831C]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1E5A7A] via-[#F3831C]/90 to-[#F3831C]"></div>
         {/* <span className="bg-gradient-to-r from-[#0F3652] via-[#1E5A7A] to-[#4FA3C7] bg-clip-text text-transparent"> */}
 
         
@@ -131,10 +131,10 @@ const CorporateQuote = () => {
               <animate attributeName="cx" values="800;200;800" dur="15s" repeatCount="indefinite" begin="2s"/>
             </circle>
           </svg>
-          0F3652
+          {/* 0F3652 */}
         </div>
         
-        <div className="max-w-5xl mx-auto relative z-10">
+        <div className="mx-auto relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="relative flex-1">
               <div className="absolute -top-4 -left-2 text-white/30 text-5xl font-serif">"</div>

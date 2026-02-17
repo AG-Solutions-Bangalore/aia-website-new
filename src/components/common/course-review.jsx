@@ -6,6 +6,8 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { BASE_URL, IMAGE_PATH } from "@/api/base-url";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
+import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 const ServiceCard = ({ testimonial, i, progress, total, imageUrl }) => {
   const start = i / total;
   const end = (i + 1) / total;
@@ -146,12 +148,32 @@ const CourseReview = ({ slug }) => {
 
       <div className="grid md:grid-cols-2 gap-12">
         <div className="md:sticky md:top-20 md:h-screen md:flex md:items-center md:justify-center">
-          <img
-            src={`${IMAGE_PATH}/rated.jpg`}
-            alt="Rated testimonial"
-            className="w-full max-w-full object-contain transform -scale-x-100"
-            style={{ maxHeight: "70vh" }}
-          />
+          <div>
+            <img
+              src={`${IMAGE_PATH}/rated.jpg`}
+              alt="Rated testimonial"
+              className="w-full max-w-full object-contain transform -scale-x-100 mb-0"
+              style={{ maxHeight: "62vh" }}
+            />
+
+            <div className="flex justify-center">
+              <Link
+                to="https://g.co/kgs/npmpnK1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+        bg-[#F3831C] text-white
+        px-6 py-2.5 rounded-none
+        font-semibold
+        hover:bg-[#F3831C]/90
+        transition-all
+        cursor-pointer
+      "
+              >
+                Check All Google Reviews
+              </Link>
+            </div>
+          </div>
         </div>
 
         <div ref={containerRef} className="relative">
