@@ -63,6 +63,7 @@ const CFECurriculam = () => {
           { image: "hiw_ciac.webp", link: "/cia-challenge-curriculum" },
           { image: "hiw_cams.webp", link: "/cams" },
         ]}
+        buttonColors={["#fee1c6", "#e2ffdc", "#ffe38f"]}
       />
       <HomeAlumniWork />
       <CfeFaq />

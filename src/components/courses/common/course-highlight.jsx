@@ -189,7 +189,7 @@ const CourseHighLight = ({ badgeText, title, description, stats, logos }) => {
           </svg>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-1 max-w-340 mx-auto mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-1 max-w-340 mx-auto">
           {stats.map((stat, index) => (
             <div
               key={index}
@@ -204,16 +204,16 @@ const CourseHighLight = ({ badgeText, title, description, stats, logos }) => {
         </div>
 
         {logos.length > 0 && (
-            <div className=" max-w-340 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6 py-10 px-2 mx-auto  ">
+            <div className=" max-w-340 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6  px-2 mx-auto">
               {logos.map((logo, index) => (
                 <div
                   key={index}
-                  className="rounded-xl p-8 text-center transition-all duration-300 cursor-pointer  flex items-center justify-center hover:scale-150"
+                  className="rounded-xl p-8 text-center transition-all duration-300 cursor-pointer  flex items-center justify-center hover:scale-125"
                 >
                   <img
                     src={logo.img}
                     alt="Brand logo"
-                    className="max-w-full max-h-20 object-contain"
+                    className="max-w-full max-h-32 object-contain"
                   />
                 </div>
               ))}

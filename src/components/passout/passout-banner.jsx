@@ -40,7 +40,6 @@ const PassoutBanner = () => {
     }));
   }, [passOutCarouselData]);
 
-  /* ✅ SPLIT IMAGES INTO TWO HALVES */
   const mid = Math.ceil(images.length / 2);
   const leftImages = images.slice(0, mid);
   const rightImages = images.slice(mid).reverse();
@@ -80,8 +79,8 @@ const PassoutBanner = () => {
 
   return (
     <section className="bg-[#0F3652]/10 px-6 lg:px-12 overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
-        <div className="flex-1 max-w-xl">
+      <div className="mx-auto flex flex-col lg:flex-row items-center gap-12">
+        <div className="flex-1 max-w-5xl">
           <h1 className="text-5xl font-bold text-[#0F3652] mb-4">
             Unfiltered Reflections from AIA-Trained Professionals
           </h1>
@@ -91,19 +90,18 @@ const PassoutBanner = () => {
           </p>
         </div>
 
-        <div className="flex-1 relative h-160 w-full overflow-hidden">
-          {/* LEFT COLUMN */}
-          <div className="absolute left-0 w-1/2 pr-2">
+        <div className="flex-1 relative h-160 w-full overflow-hidden max-w-2xl">
+          <div className="absolute left-18 w-[200px] pr-2">
             <div className="animate-marquee-up">
               {[...leftImages, ...leftImages].map((img, idx) => (
                 <div
                   key={idx}
-                  className="mb-4 rounded-2xl overflow-hidden shadow-lg border border-[#F3831C]/20"
+                  className="mb-4 rounded-2xl overflow-hidden shadow-lg border border-[#F3831C]/20 w-[200px]"
                 >
                   <img
                     src={img.src}
                     alt={img.alt}
-                    className="w-full h-auto object-cover"
+                    className="w-[200px] h-auto object-cover"
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.src =
@@ -118,17 +116,17 @@ const PassoutBanner = () => {
           </div>
 
           {/* RIGHT COLUMN */}
-          <div className="absolute right-0 w-1/2 pl-2">
-            <div className="animate-marquee-down">
+          <div className="absolute right-26 w-[200px] pl-2">
+            <div className="animate-marquee-up">
               {[...rightImages, ...rightImages].map((img, idx) => (
                 <div
                   key={idx}
-                  className="mb-4 rounded-2xl overflow-hidden shadow-lg border border-[#F3831C]/20"
+                  className="mb-4 rounded-2xl overflow-hidden shadow-lg border border-[#F3831C]/20 w-[200px]"
                 >
                   <img
                     src={img.src}
                     alt={img.alt}
-                    className="w-full h-auto object-cover"
+                    className="w-[200px] h-auto object-cover"
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.src =

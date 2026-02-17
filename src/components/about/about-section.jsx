@@ -27,7 +27,7 @@ const AboutSection = () => {
                 practical ability required to perform in real-world audit and
                 risk environments.
               </p>
-              <div className="list-disc pl-6 text-[#0F3652] mb-4 text-xl">
+              <div className="list-disc pl-6 text-[#fa8017] mb-4 text-2xl">
                 <span>
                   <strong>
                     <em>

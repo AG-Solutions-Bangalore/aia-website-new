@@ -1,6 +1,8 @@
 import React from "react";
 import { Zap } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 export default function CourseUnique({
   badgeText,
@@ -53,6 +55,19 @@ export default function CourseUnique({
             {lastText}
           </div>
         </div>
+      </div>
+      <div className="flex justify-center mt-8">
+        <Button
+          className="relative cursor-pointer overflow-hidden group  px-4 py-2  text-xs bg-[#F3831C] text-white rounded-none hover:bg-[#0F3652] transition-colors duration-300 "
+          variant="ghost"
+          aria-label="Visit Our YouTube Channel"
+        >
+          <Link to="/contact">
+            <span className="relative z-10 text-white">
+              <span>Get in Touch</span>
+            </span>
+          </Link>
+        </Button>{" "}
       </div>
     </section>
   );

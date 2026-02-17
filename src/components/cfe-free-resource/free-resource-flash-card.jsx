@@ -10,6 +10,8 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
+import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 const FreeResourceFlashCard = () => {
   const [openDrawer, setOpenDrawer] = useState(null);
@@ -171,28 +173,32 @@ const FreeResourceFlashCard = () => {
       <div className="mx-auto max-w-5xl cursor-pointer">
         <div className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4 md:gap-10">
           {modules.map((module) => (
-            <div key={module.id} className="flex flex-col items-center">
+            <div
+              key={module.id}
+              className="flex flex-col items-center h-full text-center"
+            >
               <div className="relative group">
-                {/* Tooltip */}
-                <div className="absolute -top-9 left-1/2 w-20 -translate-x-1/2 scale-0 rounded bg-black px-3 py-1 text-xs text-white transition-all duration-300 group-hover:scale-100">
-                  Click here
-                </div>
-
-                <button
-                  onClick={() => setOpenDrawer(module.id)}
-                  className="cursor-pointer relative mb-3 flex h-28 w-28 items-center justify-center rounded-full transition-all duration-300 hover:scale-110 hover:shadow-xl sm:h-32 sm:w-32 md:h-36 md:w-36"
-                >
+                <button className="cursor-pointer relative mb-3 flex h-28 w-28 items-center justify-center rounded-full transition-all duration-300 hover:scale-110 hover:shadow-xl sm:h-32 sm:w-32 md:h-36 md:w-36">
                   <span className="relative z-10 text-8xl">{module.icon}</span>
                 </button>
               </div>
-
-              <div className="text-center">
-                <p className="text-xs font-semibold sm:text-sm text-[#0F3652]">
+              <div className="flex flex-col flex-1 items-center w-full">
+                <p className="text-xs font-semibold sm:text-sm text-[#0F3652] min-h-[40px]">
                   {module.title}
                 </p>
+
                 <p className="mt-1 text-xs font-bold sm:text-sm text-[#F3831C]">
                   {module.number}
                 </p>
+
+                <Button
+                  className="mt-auto mb-2 px-4 py-2 text-xs mt-4 bg-[#F3831C] cursor-pointer text-white rounded-lg hover:bg-[#0F3652] hover:text-white transition-colors duration-300"
+                  variant="ghost"
+                  aria-label="Click Here"
+                  onClick={() => setOpenDrawer(module.id)}
+                >
+                  Click Here
+                </Button>
               </div>
             </div>
           ))}

@@ -1,3 +1,4 @@
+import CfeJoinDialog from "../cfe-curriculam/join-prep";
 import CourseCurriculum from "../common/course-curriculam";
 
 const curriculumData = [
@@ -37,12 +38,20 @@ const curriculumData = [
 
 const CiaCurrCourseCurriculum = () => {
   return (
-    <CourseCurriculum
-      title="CIA Course Curriculum"
-       description={`The Certified Internal Auditor (CIA) is a globally recognized professional certification across 170+ countries, awarded by IIA. This program covers key areas such as internal controls, risk assessment, fraud risks, information technology, and professional ethics, equipping candidates with the skills needed to operate in complex business environments.  <br/> \nWith its global standards-based approach, CIA prepares professionals to add value, strengthen governance, and support organizational integrity. AIA’s CIA preparation program supports candidates across all three parts of the CIA exam, aligned with the latest IIA syllabus updates for 2026, with a strong focus on concept clarity, practical application, and exam readiness.
+    <>
+      <CourseCurriculum
+        title="CIA Course Curriculum"
+        description={`The Certified Internal Auditor (CIA) is a globally recognized professional certification across 170+ countries, awarded by IIA. This program covers key areas such as internal controls, risk assessment, fraud risks, information technology, and professional ethics, equipping candidates with the skills needed to operate in complex business environments.  <br/> \nWith its global standards-based approach, CIA prepares professionals to add value, strengthen governance, and support organizational integrity. AIA’s CIA preparation program supports candidates across all three parts of the CIA exam, aligned with the latest IIA syllabus updates for 2026, with a strong focus on concept clarity, practical application, and exam readiness.
 `}
-      curriculumData={curriculumData}
-    />
+        curriculumData={curriculumData}
+      />
+      <CfeJoinDialog
+        title="Join AiA CIA LMS"
+        subtitle="Online Training and Certification Course"
+        course="CIA"
+        buttonlabel="Start Learning"
+      />
+    </>
   );
 };
 

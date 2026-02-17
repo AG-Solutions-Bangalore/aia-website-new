@@ -68,18 +68,26 @@ const PassoutSuccess = () => {
 
     return course || "Other";
   };
+  const courseFullForms = {
+    CAMS: "Certified Anti-Money Laundering Specialist",
+    CFE: "Certified Fraud Examiner",
+    CIA: "Certified Internal Auditor",
+    CIAC: "Certified Internal Audit Challenge",
+  };
+
   const groupStoriesByCourse = () => {
     const stories = transformStories();
-    const grouped = stories.reduce((acc, story) => {
+
+    return stories.reduce((acc, story) => {
       const course = normalizeCourseName(story.course);
+
       if (!acc[course]) {
         acc[course] = [];
       }
+
       acc[course].push(story);
       return acc;
     }, {});
-
-    return grouped;
   };
 
   const getVisibleCount = (course, total) => {
@@ -101,12 +109,6 @@ const PassoutSuccess = () => {
       ...prev,
       [course]: ITEMS_PER_LOAD,
     }));
-    // setTimeout(() => {
-    //   courseRefs.current[course]?.scrollIntoView({
-    //     behavior: "smooth",
-    //     block: "start",
-    //   });
-    // }, 50);
   };
 
   const groupedStories = groupStoriesByCourse();
@@ -148,11 +150,7 @@ const PassoutSuccess = () => {
           align="center"
         />
         {Object.entries(groupedStories).map(([course, stories]) => (
-          <div
-            key={course}
-            // ref={(el) => (courseRefs.current[course] = el)}
-            className="mb-12 p-4 border-2 rounded-lg mt-4"
-          >
+          <div key={course} className="mb-12 p-4 border-2 rounded-lg mt-4">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
                 <div className="w-6 h-6 text-[#F3831C]">
@@ -161,7 +159,9 @@ const PassoutSuccess = () => {
                   </svg>
                 </div>
                 <h2 className="text-2xl md:text-3xl font-medium text-[#0F3652]">
-                  {course}
+                  {courseFullForms[course]
+                    ? `${courseFullForms[course]}`
+                    : course}{" "}
                 </h2>
               </div>
               <span className="text-sm text-[#0F3652]">
@@ -222,7 +222,7 @@ const PassoutSuccess = () => {
                           rel="noopener noreferrer"
                           className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-2 px-4 rounded-full inline-flex items-center gap-2 transition-colors text-sm ml-auto"
                         >
-                          Learn More
+                          Read More
                           <svg
                             width="16"
                             height="16"

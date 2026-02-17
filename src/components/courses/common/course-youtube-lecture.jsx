@@ -6,8 +6,10 @@ import axios from "axios";
 import { BASE_URL } from "@/api/base-url";
 import "react-loading-skeleton/dist/skeleton.css";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
-const CourseYoutubeLecture = ({ courseSlug, title ,highlight1}) => {
+const CourseYoutubeLecture = ({ courseSlug, title, highlight1 }) => {
   const [activeTab, setActiveTab] = useState("");
   const scrollContainerRef = useRef(null);
 
@@ -166,6 +168,25 @@ const CourseYoutubeLecture = ({ courseSlug, title ,highlight1}) => {
             <p>No videos available for {activeTab}</p>
           </div>
         )}
+      </div>
+      <div className="flex justify-center mt-4">
+        <Button
+          className=" mb-4  relative cursor-pointer overflow-hidden group  px-4 py-2  text-xs bg-[#F3831C] text-white rounded-none hover:bg-[#0F3652] transition-colors duration-300 "
+          variant="ghost"
+          aria-label="Visit Our YouTube Channel"
+        >
+          <Link
+            to={
+              "https://www.youtube.com/@academyofia"
+            }
+            
+            target="_blank"
+          >
+            <span className="relative z-10 text-white">
+              <span>Visit Our YouTube Channel</span>
+            </span>
+          </Link>
+        </Button>{" "}
       </div>
     </div>
   );

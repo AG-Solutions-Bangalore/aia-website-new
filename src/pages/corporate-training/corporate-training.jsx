@@ -31,10 +31,11 @@ const CorporateTraining = () => {
       />
       <CorporateCta />
       <CorporateHighlight />
-      <CorporateTrainer />
+
       <CorporateFaq />
       <CorporateReview />
-      <CorporateWhyAia/>
+      <CorporateWhyAia />
+      <CorporateTrainer />
     </>
   );
 };
