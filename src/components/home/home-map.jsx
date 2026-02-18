@@ -7,9 +7,19 @@ import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "./home-map.css";
-import { BASE_URL, IMAGE_PATH } from "@/api/base-url";
+import { BASE_URL } from "@/api/base-url";
 
 const MAX_PHOTOS = 6;
+const SPREAD_OFFSETS = [
+  { lat: 0.0, lng: 0.0 },
+  { lat: 1.2, lng: 1.4 },
+  { lat: -1.2, lng: 1.0 },
+  { lat: 1.0, lng: -1.4 },
+  { lat: -1.0, lng: -1.2 },
+  { lat: 0.0, lng: 2.0 },
+];
+
+const SIZES = [38, 44, 36, 42, 34, 40];
 
 const HomeMap = ({ courseCode }) => {
   const [mapData, setMapData] = useState(null);
@@ -44,24 +54,6 @@ const HomeMap = ({ courseCode }) => {
     const container = L.DomUtil.get("map");
     if (container && container._leaflet_id) container._leaflet_id = null;
 
-    const makePin = () => {
-      const svg = `
-        <svg width="46" height="64" viewBox="0 0 46 64">
-          <path fill="#50648e" d="M23 0C10.3 0 0 10.3 0 23c0 16.3 18.8 36.6 22.5 40.5a1 1 0 0 0 1.4 0C27.2 59.6 46 39.3 46 23 46 10.3 35.7 0 23 0z"/>
-          <circle cx="23" cy="23" r="8" fill="#ffffff"/>
-        </svg>
-      `;
-      return L.divIcon({
-        className: "pin-icon",
-        html: svg,
-        iconSize: [26, 36],
-        iconAnchor: [13, 36],
-        popupAnchor: [0, -34],
-      });
-    };
-
-    const brandPin = makePin();
-
     const map = L.map("map", {
       center: [20, 0],
       zoom: 2,
@@ -90,10 +82,7 @@ const HomeMap = ({ courseCode }) => {
       },
     ).addTo(map);
 
-    // Plain layer group — no clustering, all pins visible at once
     const layerGroup = L.layerGroup();
-
-    // Track original lngs so we can reposition on world-copy pan
     const markerOriginalLngs = new Map();
     let lastUpdateLng = null;
 
@@ -118,33 +107,48 @@ const HomeMap = ({ courseCode }) => {
       }
     });
 
-    const galleryHTML = (regionTitle, students) => {
-      let columns = 1;
-      if (students.length === 2) columns = 2;
-      else if (students.length >= 3) columns = 3;
+    const makeAvatarIcon = (student, index) => {
+      const size = SIZES[index % SIZES.length];
+      const html = `
+        <div style="
+          width:${size}px;
+          height:${size}px;
+          border-radius:50%;
+          overflow:hidden;
+          border:2.5px solid #fff;
+          box-shadow:0 3px 10px rgba(0,0,0,0.28);
+          background:#e5e7eb;
+          cursor:pointer;
+          transition: transform 0.18s ease, box-shadow 0.18s ease;
+        " class="avatar-marker-img">
+          <img
+            src="${student.imageUrl}"
+            alt="${student.name}"
+            style="width:100%;height:100%;object-fit:cover;display:block;"
+          />
+        </div>
+      `;
+      return L.divIcon({
+        className: "avatar-icon-wrapper",
+        html,
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size / 2],
+        popupAnchor: [0, -(size / 2 + 6)],
+      });
+    };
 
-      const cards = students
-        .slice(0, MAX_PHOTOS)
-        .map(
-          (student) => `
-          <div class="card">
+    const singlePopupHTML = (student, countryName) => `
+      <div class="popup" style="min-width:120px;text-align:center;">
+        <h4>${countryName}</h4>
+        <div style="margin-top:8px;">
+          <div class="card" style="margin:auto;width:90px;">
             <img class="thumb" src="${student.imageUrl}" alt="${student.name}" loading="lazy">
             <div class="course-name">${student.course}</div>
             <div class="caption">${student.name}</div>
           </div>
-        `,
-        )
-        .join("");
-
-      return `
-        <div class="popup">
-          <h4>${regionTitle}</h4>
-          <div class="gallery cols-${columns}">
-            ${cards}
-          </div>
         </div>
-      `;
-    };
+      </div>
+    `;
 
     const groupedByCountry = {};
     mapData.forEach((student) => {
@@ -165,68 +169,68 @@ const HomeMap = ({ courseCode }) => {
       const students = groupedByCountry[country];
       if (!students.length) return;
 
-      const firstStudent = students[0];
-      const coords = [firstStudent.lat, firstStudent.lng];
-      if (isNaN(coords[0]) || isNaN(coords[1])) return;
+      const baseLat = students[0].lat;
+      const baseLng = students[0].lng;
+      if (isNaN(baseLat) || isNaN(baseLng)) return;
 
-      const popupHtml = galleryHTML(country, students);
-      let minWidth = 160,
-        maxWidth = 160;
-      if (students.length === 2) {
-        minWidth = 260;
-        maxWidth = 360;
-      } else if (students.length >= 3) {
-        minWidth = 360;
-        maxWidth = 360;
-      }
+      students.slice(0, MAX_PHOTOS).forEach((student, i) => {
+        const offset = SPREAD_OFFSETS[i] || { lat: 0, lng: 0 };
+        const coords = [baseLat + offset.lat, baseLng + offset.lng];
 
-      const marker = L.marker(coords, { icon: brandPin });
-      markerOriginalLngs.set(marker, coords[1]);
-      marker.bindPopup(popupHtml, {
-        minWidth,
-        maxWidth,
-        closeButton: true,
-        autoClose: true,
-        closeOnClick: false,
-      });
-      marker.on("click", function () {
-        map.setView(this.getLatLng(), 6, { animate: true });
-        this.openPopup();
-      });
-      marker.on("mouseover", function () {
-        this.openPopup();
-      });
-      marker.on("mouseout", function (e) {
-        const popup = this.getPopup();
-        const popupEl = popup?.getElement();
-        if (
-          popupEl &&
-          e.originalEvent?.relatedTarget &&
-          popupEl.contains(e.originalEvent.relatedTarget)
-        )
-          return;
-        this.closePopup();
-      });
+        const icon = makeAvatarIcon(student, i);
+        const popupHtml = singlePopupHTML(student, country);
 
-      marker.on("popupopen", function () {
-        const popupEl = this.getPopup()?.getElement();
-        if (!popupEl) return;
-        const self = this;
-        popupEl._mouseoutHandler = function (e) {
-          if (!popupEl.contains(e.relatedTarget)) self.closePopup();
-        };
-        popupEl.addEventListener("mouseleave", popupEl._mouseoutHandler);
-      });
+        const marker = L.marker(coords, { icon });
+        markerOriginalLngs.set(marker, coords[1]);
 
-      marker.on("popupclose", function () {
-        const popupEl = this.getPopup()?.getElement();
-        if (popupEl?._mouseoutHandler) {
-          popupEl.removeEventListener("mouseleave", popupEl._mouseoutHandler);
-        }
-      });
+        marker.bindPopup(popupHtml, {
+          minWidth: 130,
+          maxWidth: 180,
+          closeButton: false,
+          autoClose: true,
+          closeOnClick: true,
+        });
 
-      layerGroup.addLayer(marker);
-      allLatLngs.push(coords);
+        marker.on("click", function () {
+          map.setView([baseLat, baseLng], 6, { animate: true });
+          this.openPopup();
+        });
+
+        marker.on("mouseover", function () {
+          this.openPopup();
+        });
+
+        marker.on("mouseout", function (e) {
+          const popupEl = this.getPopup()?.getElement();
+          if (
+            popupEl &&
+            e.originalEvent?.relatedTarget &&
+            popupEl.contains(e.originalEvent.relatedTarget)
+          )
+            return;
+          this.closePopup();
+        });
+
+        marker.on("popupopen", function () {
+          const popupEl = this.getPopup()?.getElement();
+          if (!popupEl) return;
+          const self = this;
+          popupEl._mouseoutHandler = function (e) {
+            if (!popupEl.contains(e.relatedTarget)) self.closePopup();
+          };
+          popupEl.addEventListener("mouseleave", popupEl._mouseoutHandler);
+        });
+
+        marker.on("popupclose", function () {
+          const popupEl = this.getPopup()?.getElement();
+          if (popupEl?._mouseoutHandler) {
+            popupEl.removeEventListener("mouseleave", popupEl._mouseoutHandler);
+          }
+        });
+
+        layerGroup.addLayer(marker);
+        allLatLngs.push(coords);
+      });
     });
 
     layerGroup.addTo(map);
