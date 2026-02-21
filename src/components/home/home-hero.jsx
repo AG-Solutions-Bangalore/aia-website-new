@@ -50,7 +50,7 @@ export default function HomeHero() {
       id: index + 1,
       title: banner.banner_text,
       link: banner.banner_link,
-      buttonText: "Click Here",
+      buttonText: "Click here",
     }));
 
     setCarouselSlides(slides);

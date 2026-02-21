@@ -54,7 +54,10 @@ const CIACurriculam = () => {
         slug="CIA"
         title="From Aspirants to Certified Internal Auditors - Our Recent CIA Achievers"
       />
-      <CourseBlog course="CIA" />
+      <CourseBlog
+        course="CIA"
+        title="Expert articles, exam tips, and real-world insights for CIA aspirants."
+      />
       <CamsConnection
         title="The Right Certification Starts With the Right Choice"
         description="Find the certification that aligns with your background and carrer stage"

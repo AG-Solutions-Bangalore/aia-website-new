@@ -17,8 +17,14 @@ import { Textarea } from "@/components/ui/textarea";
 import { BASE_URL } from "@/api/base-url";
 import { X } from "lucide-react";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
-export default function CfeJoinDialog({ title, subtitle, course ,buttonlabel }) {
+export default function CfeJoinDialog({
+  title,
+  subtitle,
+  course,
+  buttonlabel,
+}) {
   const [formData, setFormData] = useState({
     userName: "",
     userMobile: "",
@@ -28,8 +34,7 @@ export default function CfeJoinDialog({ title, subtitle, course ,buttonlabel }) 
     userType: course || "",
     userCourse: course || "",
   });
-console.log(title,"title");
-
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [loader, setLoader] = useState(false);
 
@@ -73,7 +78,7 @@ console.log(title,"title");
         formData,
         {
           headers: { "Content-Type": "application/json" },
-        },
+        }
       );
       if (res.data.code == "200") {
         toast.success(res.data.msg || "Enquiry submitted successfully!");
@@ -93,7 +98,7 @@ console.log(title,"title");
       toast.error(
         error.response?.data ||
           error.message ||
-          "Something went wrong. Please try again.",
+          "Something went wrong. Please try again."
       );
     } finally {
       setLoader(false);
@@ -116,7 +121,7 @@ console.log(title,"title");
           cursor-pointer
             "
           >
-           {buttonlabel || "Join the Course"} 
+            {buttonlabel || "More Info"}
           </Button>
         </div>
       </DialogTrigger>

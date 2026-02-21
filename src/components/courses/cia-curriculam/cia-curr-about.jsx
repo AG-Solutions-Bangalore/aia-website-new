@@ -35,7 +35,7 @@ The Certified Internal Auditor (CIA) is a globally recognized professional certi
         formtitle="Join AiA CIA LMS"
         formsubtitle="Online Training and Certification Course"
         formcourse="CIA"
-        formbuttonlabel="Join the Course"
+        formbuttonlabel="More Info"
       />
     </>
   );

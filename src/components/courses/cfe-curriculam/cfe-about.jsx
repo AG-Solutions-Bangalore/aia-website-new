@@ -34,7 +34,7 @@ Certified Fraud Examiner (CFE) is a globally respected credential awarded by the
         formtitle="Join AiA CFE Prep Course"
         formsubtitle="Certified Fraud Examiner Course"
         formcourse="CFE"
-        formbuttonlabel="Join the Course"
+        formbuttonlabel="More Info"
       />
     </>
   );

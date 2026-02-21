@@ -126,7 +126,7 @@ const NotificationPopup = () => {
       <div className="relative bg-transparent p-4 w-80">
         <button
           onClick={handleClose}
-          className="absolute top-2.5 right-2.5 text-red-400 cursor-pointer hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-all duration-200 z-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full p-1 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-sm"
+          className="absolute top-2.5 right-2.5 text-[#F3831C] cursor-pointer hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-all duration-200 z-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full p-1 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-sm"
         >
           <X size={16} />
         </button>
@@ -206,7 +206,7 @@ const NotificationPopup = () => {
                     className={`text-sm px-4 py-2.5 rounded-xl max-w-[75%] relative ${
                       currentMessage.type === "incoming"
                         ? "bg-gradient-to-r from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 text-gray-800 dark:text-gray-200 rounded-tl-none"
-                        : "bg-gradient-to-r from-red-500 to-red-600 text-white rounded-tr-none"
+                        : "bg-gradient-to-r from-[#F3831C] to-[#F3831C] text-white rounded-tr-none"
                     }`}
                   >
                     {currentMessage.type === "incoming" ? (

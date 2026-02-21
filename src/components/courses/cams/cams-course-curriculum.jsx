@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import CfeJoinDialog from "../cfe-curriculam/join-prep";
 import CourseCurriculum from "../common/course-curriculam";
 
@@ -44,12 +45,28 @@ const CamsCourseCurriculum = () => {
         description={`<strong>The Certified Anti-Money Laundering Specialist (CAMS) certification is the globally recognised benchmark for professionals working in Anti-Money Laundering (AML), Counter-Terrorist Financing (CTF), and financial crime compliance. It is widely recognised across banks, financial institutions, fintechs, consulting firms, and regulatory environments. CAMS curriculum is designed to equip professionals with a practical, risk-based understanding of AML frameworks, which helps them to evaluate control effectiveness and respond appropriately to suspicious activity within complex institutional environments.<br/> \n<strong> At AIA, we design a CAMS prep program aligning with the latest CAMS Version 7 exam framework,</strong> ensuring coverage of all key knowledge areas tested in the examination, while maintaining a strong focus on practical understanding relevant to today's evolving financial crime landscape.`}
         curriculumData={curriculumData}
       />
-      <CfeJoinDialog
-        title="Join AiA CAMS LMS"
-        subtitle="Online Training and Certification Course"
-        course="CAMS"
-        buttonlabel="Start Learning"
-      />
+
+      <div className="flex justify-center gap-2">
+        <CfeJoinDialog
+          title="Join AiA CAMS LMS"
+          subtitle="Online Training and Certification Course"
+          course="CAMS"
+          buttonlabel="Know More"
+        />
+        <Button
+          className="
+              bg-[#F3831C] text-white
+              px-6 py-2.5 rounded-none
+              font-semibold
+              hover:bg-[#F3831C]/90
+              transition-all
+          cursor-pointer
+            "
+          onClick={() => navigate("/enroll-now")}
+        >
+          {"Enroll Now"}
+        </Button>
+      </div>
     </>
   );
 };

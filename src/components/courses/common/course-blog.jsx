@@ -6,7 +6,7 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { BASE_URL } from "@/api/base-url";
 
-const CourseBlog = ({ course }) => {
+const CourseBlog = ({ course,title }) => {
   const carouselRef = React.useRef(null);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["aia-blog", course],
@@ -66,8 +66,7 @@ const CourseBlog = ({ course }) => {
         <div className="flex flex-col items-center text-center lg:col-span-3 lg:items-start lg:text-left">
           <div className="flex flex-col h-full justify-center">
             <h2 className="mt-4 text-2xl font-bold text-white">
-              Expert articles, exam tips, and real-world insights for CFE, CIA,
-              and CAMS aspirants.
+           {title}
             </h2>
             <Button
               className="rounded-xl mt-6 px-5 text-base relative cursor-pointer overflow-hidden group"
@@ -76,7 +75,7 @@ const CourseBlog = ({ course }) => {
               aria-label="Explore Siga"
             >
               <span className="relative z-10 text-white">
-                <span>Read All Blogs.</span>
+                <span>Read All Blogs</span>
               </span>
               <span className="absolute inset-0 bg-[#F3831C] opacity-100 transition-opacity duration-300 -skew-x-12" />
             </Button>

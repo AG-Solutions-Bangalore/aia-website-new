@@ -14,7 +14,8 @@ import { useNavigate, useParams } from "react-router-dom";
 const BlogDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const isScrollingProgrammatically = useRef(false);
+  const scrollTimeout = useRef(null);
   const [blog, setBlog] = useState(null);
   const [relatedBlogs, setRelatedBlogs] = useState([]);
   const [imageBaseUrl, setImageBaseUrl] = useState("");
@@ -96,7 +97,7 @@ const BlogDetails = () => {
     };
 
     const existingScript = document.querySelector(
-      'script[type="application/ld+json"]',
+      'script[type="application/ld+json"]'
     );
     if (existingScript) {
       existingScript.remove();
@@ -124,28 +125,37 @@ const BlogDetails = () => {
       document.title = "AIA | Academy of Internal Audit";
     };
   }, [blog, imageBaseUrl]);
-
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
+      if (isScrollingProgrammatically.current) return;
+
+      const headerOffset = 120;
+      let closestIndex = 0;
+      let closestDistance = Infinity;
 
       sectionRefs.current.forEach((section, index) => {
-        if (section) {
-          const { offsetTop, offsetHeight } = section;
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveSection(index);
-          }
+        if (!section) return;
+
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top - headerOffset);
+
+        if (distance < closestDistance && rect.bottom > headerOffset) {
+          closestDistance = distance;
+          closestIndex = index;
         }
       });
+
+      setActiveSection(closestIndex);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [blog]);
-
+  useEffect(() => {
+    return () => {
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
+  }, []);
   const fetchBlogDetails = async () => {
     try {
       setLoading(true);
@@ -157,13 +167,13 @@ const BlogDetails = () => {
       setStudents(response.data.student || []);
       setFaq(response.data.faq || []);
       const blogImageConfig = response.data.image_url?.find(
-        (item) => item.image_for === "Blog",
+        (item) => item.image_for === "Blog"
       );
       if (blogImageConfig) {
         setImageBaseUrl(blogImageConfig.image_url);
       }
       const studentImageConfig = response.data.image_url?.find(
-        (item) => item.image_for === "Student",
+        (item) => item.image_for === "Student"
       );
       if (studentImageConfig) {
         setStudentImageBaseUrl(studentImageConfig.image_url);
@@ -186,7 +196,7 @@ const BlogDetails = () => {
   useEffect(() => {
     if (faqItems.length > 0) {
       const existingScript = document.querySelector(
-        'script[type="application/ld+json"][data-faq-schema]',
+        'script[type="application/ld+json"][data-faq-schema]'
       );
       if (existingScript) {
         existingScript.remove();
@@ -242,17 +252,17 @@ const BlogDetails = () => {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
-        },
+        }
       );
 
       if (response.data.code === 200) {
         setSubscriptionStatus(
-          response.data.msg || "Successfully subscribed! Thank you.",
+          response.data.msg || "Successfully subscribed! Thank you."
         );
         setEmail("");
       } else {
         setSubscriptionStatus(
-          response.data.message || "Subscription failed. Please try again.",
+          response.data.message || "Subscription failed. Please try again."
         );
       }
     } catch (error) {
@@ -261,7 +271,7 @@ const BlogDetails = () => {
         setSubscriptionStatus(
           error.response.data.message ||
             error.response.data.error ||
-            "Subscription failed. Please try again.",
+            "Subscription failed. Please try again."
         );
       } else if (error.request) {
         setSubscriptionStatus("Network error. Please check your connection.");
@@ -274,19 +284,44 @@ const BlogDetails = () => {
     }
   };
 
-  const scrollToSection = (index) => {
-    setActiveSection(index);
-    const element = sectionRefs.current[index];
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+  // const scrollToSection = (index) => {
+  //   setActiveSection(index);
+  //   const element = sectionRefs.current[index];
+  //   if (element) {
+  //     element.scrollIntoView({ behavior: "smooth", block: "start" });
+  //   }
+  // };
 
+  const scrollToSection = (index, e) => {
+    e.stopPropagation();
+
+    if (isScrollingProgrammatically.current) return; // prevent re-entry
+
+    console.log("Clicked TOC index:", index);
+    setActiveSection(index);
+
+    isScrollingProgrammatically.current = true;
+    if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+
+    const element = sectionRefs.current[index];
+    if (!element) return;
+
+    const headerOffset = 120;
+    const elementPosition =
+      element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = elementPosition - headerOffset;
+
+    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+
+    scrollTimeout.current = setTimeout(() => {
+      isScrollingProgrammatically.current = false;
+    }, 800);
+  };
   useEffect(() => {
     if (students.length > 1) {
       const interval = setInterval(() => {
         setCurrentStudentIndex((prevIndex) =>
-          prevIndex === students.length - 1 ? 0 : prevIndex + 1,
+          prevIndex === students.length - 1 ? 0 : prevIndex + 1
         );
       }, 3000);
 
@@ -296,13 +331,13 @@ const BlogDetails = () => {
 
   const nextStudent = () => {
     setCurrentStudentIndex((prevIndex) =>
-      prevIndex === students.length - 1 ? 0 : prevIndex + 1,
+      prevIndex === students.length - 1 ? 0 : prevIndex + 1
     );
   };
 
   const prevStudent = () => {
     setCurrentStudentIndex((prevIndex) =>
-      prevIndex === 0 ? students.length - 1 : prevIndex - 1,
+      prevIndex === 0 ? students.length - 1 : prevIndex - 1
     );
   };
 
@@ -450,7 +485,7 @@ const BlogDetails = () => {
               {blog.blog_course && (
                 <span
                   className={`inline-block ${getCourseColor(
-                    blog.blog_course,
+                    blog.blog_course
                   )} text-sm font-medium px-3 py-1.5 rounded border mb-4 w-fit`}
                 >
                   {blog.blog_course}
@@ -517,11 +552,11 @@ const BlogDetails = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {blog.web_blog_subs?.length > 0 && (
             <aside className="lg:w-1/4">
-              <div
-                className="sticky top-28 overflow-y-auto"
-                style={{ maxHeight: "calc(100vh - 7rem)" }}
-              >
-                <nav className="bg-[#0F3652]/5 rounded-md p-4 border border-[#0F3652]/20">
+              <div className="sticky top-28">
+                <nav
+                  className="bg-[#0F3652]/5 rounded-md p-4 border border-[#0F3652]/20 overflow-y-auto"
+                  style={{ maxHeight: "calc(100vh - 12rem)" }}
+                >
                   <h3 className="font-semibold text-[#0F3652] mb-1 pb-1 border-b">
                     Table of Contents
                   </h3>
@@ -529,7 +564,7 @@ const BlogDetails = () => {
                     {blog.web_blog_subs.map((sub, index) => (
                       <li key={sub.id}>
                         <button
-                          onClick={() => scrollToSection(index)}
+                          onClick={(e) => scrollToSection(index, e)}
                           className={`w-full text-left p-1 rounded text-sm transition-colors ${
                             activeSection === index
                               ? "bg-[#F3831C]/10 text-[#F3831C] border-l-4 border-[#F3831C]"
@@ -544,11 +579,11 @@ const BlogDetails = () => {
                 </nav>
 
                 <div className="max-w-md mx-auto p-1 space-y-4">
-                  {/* <div className="space-y-2">
+                  <div className="space-y-2">
                     <h2 className="text-xl font-medium text-[#0F3652]">
                       Subscribe to Newsletter
                     </h2>
-                    
+
                     <form onSubmit={handleSubscribe} className="space-y-3">
                       <input
                         type="email"
@@ -558,22 +593,32 @@ const BlogDetails = () => {
                         className="w-full px-4 py-3 border border-[#0F3652]/30 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#F3831C] focus:border-transparent text-[#0F3652] placeholder-[#0F3652]/50"
                         required
                       />
-                      
+
                       <button
                         type="submit"
                         disabled={isSubscribing}
-                        className={`w-full py-3 ${isSubscribing ? 'bg-[#F3831C]/70' : 'bg-[#F3831C] hover:bg-[#F3831C]/90'} text-white font-semibold rounded-2xl transition-colors disabled:cursor-not-allowed`}
+                        className={`w-full py-3 ${
+                          isSubscribing
+                            ? "bg-[#F3831C]/70"
+                            : "bg-[#F3831C] hover:bg-[#F3831C]/90"
+                        } text-white font-semibold rounded-2xl transition-colors disabled:cursor-not-allowed`}
                       >
-                        {isSubscribing ? 'Subscribing...' : 'Subscribe'}
+                        {isSubscribing ? "Subscribing..." : "Subscribe"}
                       </button>
                     </form>
-                    
+
                     {subscriptionStatus && (
-                      <div className={`text-sm ${subscriptionStatus.includes('Success') ? 'text-[#F3831C]' : 'text-[#F3831C]'} font-medium text-center`}>
+                      <div
+                        className={`text-sm ${
+                          subscriptionStatus.includes("Success")
+                            ? "text-[#F3831C]"
+                            : "text-[#F3831C]"
+                        } font-medium text-center`}
+                      >
                         {subscriptionStatus}
                       </div>
                     )}
-                  </div> */}
+                  </div>
 
                   <div className="space-y-4">
                     <h3 className="text-xl font-medium text-[#0F3652]">
@@ -624,7 +669,11 @@ const BlogDetails = () => {
           <main
             className={`
             ${blog.web_blog_subs?.length > 0 ? "lg:w-3/4" : "w-full"} 
-            ${blog.web_blog_subs?.length > 0 && relatedBlogs.length > 0 ? "lg:w-2/4" : ""}
+            ${
+              blog.web_blog_subs?.length > 0 && relatedBlogs.length > 0
+                ? "lg:w-2/4"
+                : ""
+            }
           `}
           >
             {blog.web_blog_subs?.length > 0 ? (
@@ -634,7 +683,7 @@ const BlogDetails = () => {
                     key={sub.id}
                     id={`section-${index}`}
                     ref={(el) => (sectionRefs.current[index] = el)}
-                    className="scroll-mt-8"
+                    className="scroll-mt-[120px]"
                   >
                     <h2 className="text-2xl font-bold mb-6 text-[#0F3652] pb-3 border-b">
                       {sub.blog_sub_heading || `Section ${index + 1}`}
@@ -731,7 +780,9 @@ const BlogDetails = () => {
                         <div
                           className="flex transition-transform duration-700 ease-out"
                           style={{
-                            transform: `translateX(-${currentStudentIndex * 100}%)`,
+                            transform: `translateX(-${
+                              currentStudentIndex * 100
+                            }%)`,
                           }}
                         >
                           {students.map((student, index) => (
@@ -761,7 +812,9 @@ const BlogDetails = () => {
 
                                 {student.student_course && (
                                   <span
-                                    className={` absolute top-0 right-0 ${getCourseColor(student.student_course)} text-sm font-medium px-4 py-1.5  rounded-bl-md   border-0`}
+                                    className={` absolute top-0 right-0 ${getCourseColor(
+                                      student.student_course
+                                    )} text-sm font-medium px-4 py-1.5  rounded-bl-md   border-0`}
                                   >
                                     {student.student_course}
                                   </span>

@@ -55,7 +55,7 @@ const CAMS = () => {
         title="Join AiA CAMS LMS"
         subtitle="Online Training and Certification Course"
         course="CAMS"
-        buttonlabel="Begin Your Journey"
+        buttonlabel="Enquire Now"
       />
 
       <CamsUnique />
@@ -63,7 +63,10 @@ const CAMS = () => {
         slug="CAMS"
         title="Meet the Professionals Who Successfully Cleared the CAMS with AIA"
       />
-      <CourseBlog course="CAMS" />
+      <CourseBlog
+        course="CAMS"
+        title="Expert articles, exam tips, and real-world insights for  CAMS aspirants."
+      />
 
       <CamsConnection
         title="The Right Certification Starts With the Right Choice"

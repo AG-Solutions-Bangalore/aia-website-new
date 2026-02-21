@@ -158,11 +158,11 @@ const FreeResourceFlashCard = () => {
   }
 
   return (
-    <div className="w-full bg-white py-12 px-4 sm:py-16 sm:px-6 md:py-20 md:px-8">
+    <div className="w-full bg-white pb-12 px-4  sm:px-6  md:px-8">
       <SectionHeading
         title="CFE Free Flashcards – Module Wise"
         description="Select any module to access free flashcards that help you revise key topics, improve concept clarity, and strengthen your CFE preparation efficiently."
-      align="center"
+        align="center"
       />
 
       <div className="mx-auto max-w-5xl cursor-pointer">

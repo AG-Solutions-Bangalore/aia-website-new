@@ -66,7 +66,10 @@ const CFECurriculam = () => {
         title="Meet the Professionals Who Successfully Cleared the CFE with AIA"
         description="Meet AIA proud achievers who advance their careers by achieving the global CFE credential with structured prep and real-world expertise."
       />
-      <CourseBlog course="CFE" />
+      <CourseBlog
+        course="CFE"
+        title="Expert articles, exam tips, and real-world insights for CFE aspirants."
+      />
       <CamsConnection
         title="The Right Certification Starts With the Right Choice"
         description="Find the certification that aligns with your background and carrer stage"

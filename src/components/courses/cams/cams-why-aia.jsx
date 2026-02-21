@@ -2,6 +2,7 @@ import React from "react";
 import CourseWhyAia from "../common/course-why-aia";
 import { IMAGE_PATH } from "@/api/base-url";
 import CfeJoinDialog from "../cfe-curriculam/join-prep";
+import { Button } from "@/components/ui/button";
 
 const CamsWhyAia = () => {
   return (
@@ -31,12 +32,29 @@ const CamsWhyAia = () => {
           },
         ]}
       />
-      <CfeJoinDialog
-        title="Join AiA CAMS LMS"
-        subtitle="Online Training and Certification Course"
-        course="CAMS"
-        buttonlabel="Begin Your Journey"
-      />
+
+      <div className="flex justify-center gap-2">
+        <CfeJoinDialog
+          title="Join AiA CAMS LMS"
+          subtitle="Online Training and Certification Course"
+          course="CAMS"
+          buttonlabel="Enquire Now"
+        />
+
+        <Button
+          className="
+              bg-[#F3831C] text-white
+              px-6 py-2.5 rounded-none
+              font-semibold
+              hover:bg-[#F3831C]/90
+              transition-all
+          cursor-pointer
+            "
+          onClick={() => navigate("/enroll-now")}
+        >
+          {"Enroll Now"}
+        </Button>
+      </div>
     </>
   );
 };

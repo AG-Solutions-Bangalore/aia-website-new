@@ -32,7 +32,7 @@ const CamsAbout = () => {
         formtitle="Join AiA CAMS LMS"
         formsubtitle="Online Training and Certification Course"
         formcourse="CAMS"
-        formbuttonlabel="Join the Course"
+        formbuttonlabel="More Info"
       />
     </>
   );

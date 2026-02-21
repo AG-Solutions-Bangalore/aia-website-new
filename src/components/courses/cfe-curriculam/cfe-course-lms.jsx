@@ -1,6 +1,7 @@
 import React from "react";
 import CourseLms from "../common/course-lms";
 import CfeJoinDialog from "./join-prep";
+import { Button } from "@/components/ui/button";
 
 const CfeCourseLms = ({ title, subtitle, course, buttonlabel, image }) => {
   const courseFeatures = [
@@ -35,7 +36,7 @@ const CfeCourseLms = ({ title, subtitle, course, buttonlabel, image }) => {
         "Attempt eight full-length mock tests, two per module, designed to replicate the real CFE exam pattern and help assess readiness, improve time management, and refine exam strategy.",
     },
     {
-      title: "End-to-End CFE Exam Registration Support",
+      title: "CFE Exam Registration Support",
       description:
         "We offer complete support throughout the CFE exam registration process, guiding you step by step from application review to final exam scheduling, ensuring a smooth and stress-free experience.",
     },
@@ -53,12 +54,28 @@ const CfeCourseLms = ({ title, subtitle, course, buttonlabel, image }) => {
         image={image}
       />
 
-      <CfeJoinDialog
-        title={title}
-        subtitle={subtitle}
-        course={course || "CFE"}
-        buttonlabel={buttonlabel || "Access the Course"}
-      />
+      <div className="flex justify-center gap-2">
+        <CfeJoinDialog
+          title={title}
+          subtitle={subtitle}
+          course={course || "CFE"}
+          buttonlabel={buttonlabel || "Talk to Us"}
+        />
+
+        <Button
+          className="
+              bg-[#F3831C] text-white
+              px-6 py-2.5 rounded-none
+              font-semibold
+              hover:bg-[#F3831C]/90
+              transition-all
+          cursor-pointer
+            "
+          onClick={() => navigate("/enroll-now")}
+        >
+          {"Enroll Now"}
+        </Button>
+      </div>
     </>
   );
 };

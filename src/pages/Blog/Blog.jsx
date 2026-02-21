@@ -186,7 +186,8 @@ const Blog = () => {
         <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 rounded-2xl p-4">
             <SectionHeading
-              title="Subscribe to the AIA Blog"
+              // title="Subscribe to the AIA Blog"
+              title="Actionable Insights to Advance Your Prep and Career"
               description="Join the AIA community and get timely updates and expert insights directly in your inbox"
               align="center"
             />

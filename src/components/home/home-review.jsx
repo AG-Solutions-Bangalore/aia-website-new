@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import HomeMap from "./home-map";
+import SectionHeading from "../SectionHeading/SectionHeading";
 
 const HomeReview = () => {
   const { data, isLoading, isError, refetch } = useQuery({
@@ -45,18 +46,10 @@ const HomeReview = () => {
   return (
     <section className="py-12 bg-white">
       <div className="max-w-340 mx-auto w-full px-4 sm:px-6 lg:px-8">
-        <div className="mb-10">
-          <div className="text-center md:text-left">
-            <h1 className="text-3xl md:text-3xl font-bold text-[#0F3652] relative inline-block mb-2">
-              Learner Experiences From Across the Globe
-              <span className="absolute left-0 -bottom-2 w-14 h-1 bg-[#F3831C] rounded"></span>
-            </h1>
-            <p className="text-[#0F3652] text-base font-normal">
-              Hear directly from professionals who achieved success with AIA.
-            </p>
-          </div>
-        </div>
-
+        <SectionHeading
+          title="Learner Experiences from Across the Globe"
+          description="Hear directly from professionals who achieved success with AIA."
+        />
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
             {/* <div className="flex justify-center">
@@ -66,7 +59,7 @@ const HomeReview = () => {
                 className="max-w-full h-auto"
               />
             </div> */}
-            <HomeMap/>
+            <HomeMap />
           </div>
 
           <div className="w-full lg:w-1/2 px-4">
@@ -87,80 +80,88 @@ const HomeReview = () => {
             )}
 
             {!isLoading && !isError && testimonials.length > 0 && (
-              <Swiper
-                modules={[Autoplay, Pagination]}
-                spaceBetween={30}
-                slidesPerView={1}
-                autoplay={{
-                  delay: 5000,
-                  disableOnInteraction: false,
-                }}
-                pagination={{ clickable: true }}
-                loop
-                className="testimonial-swiper"
-              >
-                {testimonials.map((item, index) => (
-                  <SwiperSlide key={index}>
-                    <div className="bg-white rounded-xl p-6 border border-[#F3831C]/20">
-                      <div className="flex items-start gap-4 mb-4">
-                        <LazyLoadImage
-                          src={item.image}
-                          alt={item.alt}
-                          className="w-14 h-14 rounded-full object-cover border-2 border-[#0F3652]"
-                          effect="blur"
-                          width="56"
-                          height="56"
-                        />
+              <>
+                <div className="mb-6">
+                  <h2 className="text-3xl md:text-4xl font-bold text-[#0F3652]">
+                    290+ Voices – All Rated{" "}
+                    <span className="text-[#F3831C]">★★★★★</span>
+                  </h2>
+                </div>
+                <Swiper
+                  modules={[Autoplay, Pagination]}
+                  spaceBetween={30}
+                  slidesPerView={1}
+                  autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                  }}
+                  pagination={{ clickable: true }}
+                  loop
+                  className="testimonial-swiper"
+                >
+                  {testimonials.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="bg-white rounded-xl p-6 border border-[#F3831C]/20">
+                        <div className="flex items-start gap-4 mb-4">
+                          <LazyLoadImage
+                            src={item.image}
+                            alt={item.alt}
+                            className="w-14 h-14 rounded-full object-cover border-2 border-[#0F3652]"
+                            effect="blur"
+                            width="56"
+                            height="56"
+                          />
 
-                        <div>
-                          <h4 className="text-lg font-semibold text-[#0F3652]">
-                            {item.name}
-                          </h4>
-                          <div className="flex items-center mt-1">
-                            {[...Array(5)].map((_, i) => (
-                              <svg
-                                key={i}
-                                className="w-4 h-4 text-[#F3831C]"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                              >
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                              </svg>
-                            ))}
+                          <div>
+                            <h4 className="text-lg font-semibold text-[#0F3652]">
+                              {item.name}
+                            </h4>
+                            <div className="flex items-center mt-1">
+                              {[...Array(5)].map((_, i) => (
+                                <svg
+                                  key={i}
+                                  className="w-4 h-4 text-[#F3831C]"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                              ))}
+                            </div>
                           </div>
+
+                          <svg
+                            className="w-10 h-10 text-[#0F3652] ml-auto"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
                         </div>
 
-                        <svg
-                          className="w-10 h-10 text-[#0F3652] ml-auto"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
+                        <p className="text-[#0F3652] pl-2 border-l-2 border-[#F3831C]/50">
+                          {truncateText(item.message)}
+
+                          {item?.link && (
+                            <a
+                              href={item.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="ml-2 text-[#F3831C] font-medium text-sm hover:underline cursor-pointer"
+                            >
+                              Read more
+                            </a>
+                          )}
+                        </p>
                       </div>
-
-                      <p className="text-[#0F3652] pl-2 border-l-2 border-[#F3831C]/50">
-                        {truncateText(item.message)}
-
-                        {item?.link && (
-                          <a
-                            href={item.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="ml-2 text-[#F3831C] font-medium text-sm hover:underline cursor-pointer"
-                          >
-                            Read more
-                          </a>
-                        )}
-                      </p>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </>
             )}
           </div>
         </div>

@@ -58,7 +58,10 @@ const CIAChallenge = () => {
         slug="ciac"
         title="Meet the Professionals Who Earned Their CIA Credential"
       />
-      <CourseBlog course="CIAC" />
+      <CourseBlog
+        course="CIAC"
+        title="Expert articles, exam tips, and real-world insights for CIAC aspirants."
+      />
 
       <CamsConnection
         title="The Right Certification Starts With the Right Choice"

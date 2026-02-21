@@ -432,10 +432,10 @@ const Blog = () => {
             : null}
 
           <div className="flex flex-col items-center justify-center bg-white px-4">
-            <SectionHeading
+            {/* <SectionHeading
               title="Start Your Journey with AIA"
               align="center"
-            />
+            /> */}
             <div className="flex flex-wrap gap-4 justify-center">
               <button
                 onClick={() => navigate("/contact")}
