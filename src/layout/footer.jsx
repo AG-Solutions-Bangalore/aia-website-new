@@ -20,7 +20,7 @@ export default function Footer() {
                 { name: "Home", href: "/" },
                 { name: "About Us", href: "/about-us" },
                 { name: "Blog", href: "/blogs" },
-                { name: "Our Passout", href: "/passed-out" },
+                { name: "Our Passout", href: "/our-passouts" },
                 { name: "Contact Us", href: "/contact" },
                 { name: "Policies", href: "/policies" },
                 { name: "Terms and Conditions", href: "/terms-and-conditions" },

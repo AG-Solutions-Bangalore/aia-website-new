@@ -35,9 +35,10 @@ const CorporateTraining = () => {
       <CorporateCta />
       <CorporateHighlight />
       <CorporateFaq />
-      <CorporateReview />
+
       <CorporateWhyAia />
       <CorporateTrainer />
+      <CorporateReview />
     </>
   );
 };

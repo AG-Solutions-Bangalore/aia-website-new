@@ -185,7 +185,7 @@ const NotificationPopup = () => {
                 >
                   {currentMessage.type === "incoming" && (
                     <motion.img
-                      src={`${IMAGE_PATH}/40.jpg`}
+                      src={`${IMAGE_PATH}/aia_dp.webp`}
                       alt="avatar"
                       className="w-7 h-7 rounded-full flex-shrink-0"
                       initial={{ scale: 0 }}

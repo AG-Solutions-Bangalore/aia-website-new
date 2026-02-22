@@ -146,7 +146,7 @@ const PassoutStoriesSlug = () => {
             <div className="pt-8">
               <div className="flex items-start">
                 <a
-                  href="/passed-out"
+                  href="/our-passouts"
                   className="inline-flex items-center gap-2 group transition-colors text-[#0F3652] hover:text-[#0F3652]"
                 >
                   <svg

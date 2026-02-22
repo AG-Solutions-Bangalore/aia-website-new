@@ -112,7 +112,7 @@ const CorporateCta = () => {
   return (
     <>
       <div className="relative  px-6 py-10 md:py-12 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1E5A7A] via-[#F3831C]/90 to-[#F3831C]"></div>
+        <div className="absolute inset-0 bg-[#F3831C]/90 to-[#F3831C]"></div>
 
         <div className="absolute top-0 left-0 w-20 h-20 border-t-4 border-l-4 border-white/20"></div>
         <div className="absolute bottom-0 right-0 w-20 h-20 border-b-4 border-r-4 border-white/20"></div>

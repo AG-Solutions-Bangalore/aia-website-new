@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/api/base-url";
+import { BASE_URL, IMAGE_PATH } from "@/api/base-url";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { AlertCircle, RefreshCcw } from "lucide-react";
@@ -81,8 +81,9 @@ const HomeReview = () => {
 
             {!isLoading && !isError && testimonials.length > 0 && (
               <>
-                <div className="mb-6">
-                  <h2 className="text-3xl md:text-4xl font-bold text-[#0F3652]">
+                <div className="mb-6 flex gap-2">
+                  <img src={`${IMAGE_PATH}/g_logo.webp`} alt="Google Logo" className="w-12 h-12"/>
+                  <h2 className="text-3xl font-bold text-[#0F3652]">
                     290+ Voices – All Rated{" "}
                     <span className="text-[#F3831C]">★★★★★</span>
                   </h2>

@@ -173,7 +173,7 @@ const FreeResourceFlashCard = () => {
               className="flex flex-col items-center h-full text-center"
             >
               <div className="relative group">
-                <button className="cursor-pointer relative mb-3 flex h-28 w-28 items-center justify-center rounded-full transition-all duration-300 hover:scale-110 hover:shadow-xl sm:h-32 sm:w-32 md:h-36 md:w-36">
+                <button className="cursor-pointer relative mb-3 flex h-28 w-28 items-center justify-center rounded-full transition-all duration-300 hover:scale-110 shadow-xl sm:h-32 sm:w-32 md:h-36 md:w-36">
                   <span className="relative z-10 text-8xl">{module.icon}</span>
                 </button>
               </div>
