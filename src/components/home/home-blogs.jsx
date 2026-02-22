@@ -74,7 +74,7 @@ const HomeBlog = () => {
               aria-label="Explore Siga"
             >
               <span className="relative z-10 text-white">
-                <span>Read All Blogs.</span>
+                <span>Read All Blogs</span>
               </span>
               <span className="absolute inset-0 bg-[#F3831C] opacity-100 transition-opacity duration-300 -skew-x-12" />
             </Button>

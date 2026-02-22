@@ -20,7 +20,7 @@ export default function Footer() {
                 { name: "Home", href: "/" },
                 { name: "About Us", href: "/about-us" },
                 { name: "Blog", href: "/blogs" },
-                { name: "Our Passout", href: "/passed-out" },
+                { name: "Our Passout", href: "/our-passouts" },
                 { name: "Contact Us", href: "/contact" },
                 { name: "Policies", href: "/policies" },
                 { name: "Terms and Conditions", href: "/terms-and-conditions" },
@@ -48,23 +48,23 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { name: "CFE Curriculum", href: "/cfe-curriculum" },
-                {
-                  name: "Become CFE in Just 30 Days",
-                  href: "/become-cfe-in-just-30-days",
-                },
+                // {
+                //   name: "Become CFE in Just 30 Days",
+                //   href: "/become-cfe-in-just-30-days",
+                // },
                 { name: "CIA Curriculum", href: "/cia-curriculum" },
-                {
-                  name: "Become CIA in Just 90 Days",
-                  href: "/become-cia-in-just-90-days",
-                },
+                // {
+                //   name: "Become CIA in Just 90 Days",
+                //   href: "/become-cia-in-just-90-days",
+                // },
                 {
                   name: "CIA Challenge Curriculum",
                   href: "/cia-challenge-curriculum",
                 },
-                {
-                  name: "CIA Challenge Prep Course",
-                  href: "/cia-challenge-prep-course",
-                },
+                // {
+                //   name: "CIA Challenge Prep Course",
+                //   href: "/cia-challenge-prep-course",
+                // },
                 { name: "CAMS", href: "/cams" },
               ].map((course, idx) => (
                 <li key={idx} className="group">

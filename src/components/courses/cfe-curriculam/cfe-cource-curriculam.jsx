@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import CourseCurriculum from "../common/course-curriculam";
 import CfeJoinDialog from "./join-prep";
 
@@ -41,15 +42,31 @@ const CfeCourseCurriculum = () => {
     <>
       <CourseCurriculum
         title="CFE Course Curriculum"
-        description={` The <strong>Certified Fraud Examiner (CFE) credential is globally recognised </strong> as a benchmark for professionals working in fraud detection, investigation, and prevention. The certification <strong> validates a professional’s ability to understand & identify fraud schemes </strong>, conduct structured investigations, and design effective fraud prevention frameworks across organisations.<br/> \nThe CFE exam is divided into <strong> four core modules </strong>, covering financial fraud schemes, legal aspects, investigation techniques, and fraud prevention and deterrence. Together, these modules build strong technical knowledge and practical judgment required to handle real-world fraud risks.<br/> \n At AIA, we design our <strong> CFE training program </strong> to ensure that aspirants develop a <strong> clear organisational understanding and an investigator mindset. </strong> The course structure helps learners view transactions through a fraud-risk framework, understand how controls fail, and analyse fraud from the perspective of how it occurs.`}
+        description={` The <strong>Certified Fraud Examiner (CFE) credential is globally recognised </strong> as a benchmark for professionals working in fraud detection, investigation, and prevention. The certification <strong>lidates a professional’s ability to understand & identify fraud schemes,</strong>conduct structured investigations, and design effective fraud prevention frameworks across organisations. The <strong>CFE exam is divided into four core modules</strong>that cover financial fraud schemes, legal aspects, investigation techniques, and fraud prevention and deterrence.<br/> \nAt AIA, we design our <strong>CFE training program to ensure that aspirants develop a clear organisational understanding and an investigator mindset.</strong>The course structure helps learners view transactions through a fraud-risk framework, understand how controls fail, and analyse fraud from the perspective of how it occurs.`}
         curriculumData={curriculumData}
       />
-      <CfeJoinDialog
-        // title="dd"
-        // subtitle="dd"
-        course="CFE"
-        buttonlabel="Start Learning"
-      />
+
+      <div className="flex justify-center gap-2">
+        <CfeJoinDialog
+          // title="dd"
+          // subtitle="dd"
+          course="CFE"
+          buttonlabel="Know More"
+        />
+        <Button
+          className="
+              bg-[#F3831C] text-white
+              px-6 py-2.5 rounded-none
+              font-semibold
+              hover:bg-[#F3831C]/90
+              transition-all
+          cursor-pointer
+            "
+          onClick={() => navigate("/enroll-now")}
+        >
+          {"Enroll Now"}
+        </Button>
+      </div>
     </>
   );
 };

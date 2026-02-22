@@ -1,6 +1,7 @@
 import { BASE_URL, IMAGE_PATH } from "@/api/base-url";
 import BannerBlogCard from "@/components/blog/banner-blog-card";
 import BlogCard from "@/components/blog/blog-card";
+import BlogSubscribeSection from "@/components/blog/blog-subscription";
 import PopUp from "@/components/common/pop-up";
 import CourseTopStudent from "@/components/home/home-pr-carousel";
 import SectionHeading from "@/components/SectionHeading/SectionHeading";
@@ -33,7 +34,7 @@ const Blog = () => {
       setBlogs(response.data.data || []);
 
       const blogImageConfig = response.data.image_url?.find(
-        (item) => item.image_for === "Blog",
+        (item) => item.image_for === "Blog"
       );
       if (blogImageConfig) {
         setImageBaseUrl(blogImageConfig?.image_url);
@@ -66,7 +67,7 @@ const Blog = () => {
     ...new Set(blogs.map((blog) => blog.blog_course).filter(Boolean)),
   ];
   const trendingBlogs = filteredBlogs.filter(
-    (blog) => blog.blog_trending === "yes",
+    (blog) => blog.blog_trending === "yes"
   );
 
   const searchSuggestions = searchTerm.trim()
@@ -109,7 +110,7 @@ const Blog = () => {
     if (!showAllTrending && trendingBlogs.length > 1) {
       const interval = setInterval(() => {
         setCurrentSlide(
-          (prev) => (prev + 1) % Math.min(4, trendingBlogs.length),
+          (prev) => (prev + 1) % Math.min(4, trendingBlogs.length)
         );
       }, 5000);
 
@@ -186,7 +187,8 @@ const Blog = () => {
         <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 rounded-2xl p-4">
             <SectionHeading
-              title="Subscribe to the AIA Blog"
+              // title="Subscribe to the AIA Blog"
+              title="Actionable Insights to Advance Your Prep and Career"
               description="Join the AIA community and get timely updates and expert insights directly in your inbox"
               align="center"
             />
@@ -427,6 +429,7 @@ const Blog = () => {
           </div>
         </div>
         <CourseTopStudent />
+        <BlogSubscribeSection />
       </section>
     </>
   );

@@ -50,13 +50,20 @@ const HomeCorporatePartner = () => {
         align="center"
       />
       <div className="mx-auto">
-        <section className="relative w-full overflow-hidden bg-background">
+        <section className="relative w-full overflow-hidden bg-[#0F3652]">
           <div className="relative z-10 w-full px-8 pb-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-340 mx-auto">
             <div>
-              <h3 className="text-3xl font-semibold text-[#F3831C]">
-                {currentTitle}
+              <h3 className="text-3xl font-semibold">
+                {currentTitle?.split("X").map((part, index, arr) => (
+                  <span key={index}>
+                    <span className="text-[#F3831C]">{part}</span>
+                    {index < arr.length - 1 && (
+                      <span className="text-white">X</span>
+                    )}
+                  </span>
+                ))}
               </h3>
-              <p className="text-base md:text-lg text-[#0F3652] my-4 text-justify">
+              <p className="text-base md:text-lg text-white my-4 text-justify">
                 {currentDescription}
               </p>
               {location.pathname != "/corporate-training" && (
@@ -67,33 +74,33 @@ const HomeCorporatePartner = () => {
                 >
                   <Link to={"/corporate-training"}>
                     <span className="relative z-10 text-white">
-                      <span>Read More</span>
+                      <span>Know More</span>
                     </span>
                   </Link>
                 </Button>
               )}
             </div>
 
-              {!isLoading && !isError && testimonials.length > 0 && (
-                <CircularTestimonials
-                  testimonials={testimonials}
-                  autoplay={true}
-                  onIndexChange={handleTestimonialChange}
-                  colors={{
-                    name: "#0F3652",
-                    designation: "#0F3652",
-                    testimony: "#0F3652",
-                    arrowBackground: "#F3831C",
-                    arrowForeground: "#ffffff",
-                    arrowHoverBackground: "#0F3652",
-                  }}
-                  fontSizes={{
-                    name: "28px",
-                    designation: "20px",
-                    quote: "20px",
-                  }}
-                />
-              )}
+            {!isLoading && !isError && testimonials.length > 0 && (
+              <CircularTestimonials
+                testimonials={testimonials}
+                autoplay={true}
+                onIndexChange={handleTestimonialChange}
+                colors={{
+                  name: "#0F3652",
+                  designation: "#0F3652",
+                  testimony: "#0F3652",
+                  arrowBackground: "#F3831C",
+                  arrowForeground: "#ffffff",
+                  arrowHoverBackground: "#0F3652",
+                }}
+                fontSizes={{
+                  name: "28px",
+                  designation: "20px",
+                  quote: "20px",
+                }}
+              />
+            )}
           </div>
         </section>
       </div>

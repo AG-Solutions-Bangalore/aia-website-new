@@ -29,27 +29,33 @@ const CAMS = () => {
       <CourseTopStudent
         courseSlug="cams"
         needPrefix="true"
-        title="From CAMS Course"
+        title="Meet our CAMS-Certified Professionals"
+        subtitle="Meet AIA’s latest achievers who successfully earned their CAMS credential through structured preparation and exam-ready guidance."
       />
       <CamsCourseCurriculum />
       <CourseResult
         course="CAMS"
         queryKey="cams-certificates"
-        title="Proof of Excellence: Real ACAMS Results from Our Students!"
+        title="Proof of Excellence: Real ACAMS Results of Our Learners!"
+        description="Verified ACAMS certificates earned by qualified professionals who achieved the CAMS credential with AIA."
       />
       <CamsJourney />
       <CamsWhyAia />
       <CamsHighlight />
       <CourseMap courseCode="CAMS" />
       <CourseReview slug="CAMS" />
-      <CourseYoutube courseSlug="cams" />
+      <CourseYoutube
+        courseSlug="cams"
+        title="Hear from Our Recently Qualified Professionals on YouTube"
+        description="Watch AIA-trained professionals share their CAMS journey, exam strategies, and career insights in exclusive interviews with Puneet Sir on YouTube."
+      />
       <AboutTrainerSection path="faculty_cams.webp" />
       <CourseYoutubeLecture courseSlug="cams" />
       <CfeCourseLms
         title="Join AiA CAMS LMS"
         subtitle="Online Training and Certification Course"
         course="CAMS"
-        buttonlabel="Begin Your Journey"
+        buttonlabel="Enquire Now"
       />
 
       <CamsUnique />
@@ -57,7 +63,10 @@ const CAMS = () => {
         slug="CAMS"
         title="Meet the Professionals Who Successfully Cleared the CAMS with AIA"
       />
-      <CourseBlog course="CAMS" />
+      <CourseBlog
+        course="CAMS"
+        title="Expert articles, exam tips, and real-world insights for  CAMS aspirants."
+      />
 
       <CamsConnection
         title="The Right Certification Starts With the Right Choice"

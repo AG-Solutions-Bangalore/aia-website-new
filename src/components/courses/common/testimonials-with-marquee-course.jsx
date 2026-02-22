@@ -25,12 +25,13 @@ export function TestimonialsSectionCourse({
   if (!testimonials || testimonials.length === 0) return null;
 
   return (
-    <section className={cn("py-12 sm:py-16 md:py-18 px-0", className)}>
+    <section className={cn("py-12 sm:py-16 md:py-18 px-0 bg-[#0F3652] mt-10", className)}>
       <div className="mx-auto flex max-w-340 flex-col items-center gap-4 text-center sm:gap-16">
         <SectionHeading
           title={title}
           description={description}
           align="center"
+          className="white"
         />
         <div className="relative flex w-full overflow-hidden">
           <div
@@ -76,7 +77,7 @@ export function TestimonialsSectionCourse({
       {sucessstory && (
         <div className="flex justify-center mt-4">
           <Button
-            className=" mb-4  relative cursor-pointer overflow-hidden group  px-4 py-2  text-xs bg-[#F3831C] text-white rounded-none hover:bg-[#0F3652] transition-colors duration-300 "
+            className=" mb-4  relative cursor-pointer overflow-hidden group  px-4 py-2  text-xs bg-[#F3831C] text-white rounded-none hover:bg-[#F3831C] transition-colors duration-300 "
             variant="ghost"
             aria-label="View All Success Stories"
           >

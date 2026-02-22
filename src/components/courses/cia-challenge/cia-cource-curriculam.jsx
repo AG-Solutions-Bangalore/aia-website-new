@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import CfeJoinDialog from "../cfe-curriculam/join-prep";
 import CourseCurriculum from "../common/course-curriculam";
 
@@ -49,12 +50,27 @@ const CiaCourseCurriculum = () => {
         curriculumData={curriculumData}
       />
 
-      <CfeJoinDialog
-        title="Join AiA CIA LMS"
-        subtitle="Online Training and Certification Course"
-        course="CIA"
-        buttonlabel="Start Learning"
-      />
+      <div className="flex justify-center gap-2">
+        <CfeJoinDialog
+          title="Join AiA CIA LMS"
+          subtitle="Online Training and Certification Course"
+          course="CIA"
+          buttonlabel="Know More"
+        />
+        <Button
+          className="
+              bg-[#F3831C] text-white
+              px-6 py-2.5 rounded-none
+              font-semibold
+              hover:bg-[#F3831C]/90
+              transition-all
+          cursor-pointer
+            "
+          onClick={() => navigate("/enroll-now")}
+        >
+          {"Enroll Now"}
+        </Button>
+      </div>
     </>
   );
 };

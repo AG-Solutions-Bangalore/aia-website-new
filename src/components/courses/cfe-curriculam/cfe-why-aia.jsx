@@ -2,12 +2,13 @@ import React from "react";
 import CourseWhyAia from "../common/course-why-aia";
 import { IMAGE_PATH } from "@/api/base-url";
 import CfeJoinDialog from "./join-prep";
+import { Button } from "@/components/ui/button";
 
 const CfeWhyAia = () => {
   return (
     <>
       <CourseWhyAia
-        heading="Why Academy of Internal Audit"
+        heading="What sets AIA Apart"
         items={[
           {
             img: `${IMAGE_PATH}/teacher-svgrepo-com.png`,
@@ -31,10 +32,24 @@ const CfeWhyAia = () => {
           },
         ]}
       />
-      <CfeJoinDialog
-        course="CFE"
-        buttonlabel="Begin Your Journey"
-      />
+
+      <div className="flex justify-center gap-2">
+        <CfeJoinDialog course="CFE" buttonlabel="Enquire Now" />
+
+        <Button
+          className="
+              bg-[#F3831C] text-white
+              px-6 py-2.5 rounded-none
+              font-semibold
+              hover:bg-[#F3831C]/90
+              transition-all
+          cursor-pointer
+            "
+          onClick={() => navigate("/enroll-now")}
+        >
+          {"Enroll Now"}
+        </Button>
+      </div>
     </>
   );
 };

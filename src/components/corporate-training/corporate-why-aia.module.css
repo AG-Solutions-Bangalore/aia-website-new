@@ -32,7 +32,7 @@ span.work-flow-icon {
   width: 180px;
   height: 180px;
   background: #fff;
-box-shadow: 0 4px 28px rgba(15, 54, 82, 0.35);
+  box-shadow: 0 4px 28px rgba(243, 131, 28, 0.35);
   overflow: hidden;
   margin: auto;
   top: 0;
@@ -51,7 +51,7 @@ box-shadow: 0 4px 28px rgba(15, 54, 82, 0.35);
 }
 
 img.work-flow-oval {
-  filter: drop-shadow(0px 10px 32px rgba(15, 54, 82, 0.35));
+  filter: drop-shadow(0px 10px 32px rgba(243, 131, 28, 0.35));
   width: 135px;
   height: 135px;
   object-fit: cover;
@@ -110,7 +110,8 @@ span.work-flow-icon {
   transform: scale(1.1);
 }
 .work-flow-oval-item:hover img.work-flow-oval {
-  filter: drop-shadow(0px 2px 3px #0F3652);
+  filter: drop-shadow(0px 2px 3px #f3831c);
+  
 }
 
 .work-flow,
@@ -119,7 +120,7 @@ span.work-flow-icon {
 }
 
 .workflow-content-list-item:hover h3.workflow-content-title {
-  color: #F3831C;
+  color: #f3831c;
 }
 h3.workflow-content-title {
   font-size: 1rem;
@@ -131,7 +132,7 @@ h3.workflow-content-title {
   position: relative;
 }
 .workflow-content-number {
-  color: #0F3652;
+  color: #0f3652;
   font-size: 3.5rem;
   transition: 0.4s;
   font-family: "PF Spekk VAR";
@@ -216,13 +217,13 @@ img.workflow-icon {
   margin: 0 0 11rem;
 }
 .workflow-content-list-item:hover .workflow-content-number {
-  color: #0F3652;
+  color: #0f3652;
   transform: scale(1.1) translateY(-5px);
 }
 
 h3.workflow-content-title {
   padding: 0 15px;
-  color: #F3831C;
+  color: #f3831c;
   font-weight: 700;
 }
 
@@ -272,7 +273,7 @@ h3.workflow-content-title {
   }
 
   .workflow-content-number {
-    color: #0F3652;
+    color: #0f3652;
     font-size: 4rem;
     transition: 0.4s;
   }

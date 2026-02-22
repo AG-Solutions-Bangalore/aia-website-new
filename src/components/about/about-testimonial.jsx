@@ -86,7 +86,7 @@ const AboutTestimonial = () => {
   return (
     <>
       <div className="mt-12">
-        <SectionHeading title="Our Support Team" align="center" />
+        <SectionHeading title="Our Strength" align="center" />
         <TestimonialSlider reviews={reviews} />
       </div>
     </>
