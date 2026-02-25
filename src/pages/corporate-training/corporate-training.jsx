@@ -1,12 +1,10 @@
 import AboutPartner from "@/components/about/about-partner";
-import CorporateBanner from "@/components/corporate-training/corporate-banner";
 import CorporateCarousel from "@/components/corporate-training/corporate-carousel";
 // import CorporateCourse from "@/components/corporate-training/corporate-course";
-import CorporateCta from "@/components/corporate-training/corporate-cta";
 import CorporateDeliver from "@/components/corporate-training/corporate-deliver";
 import CorporateFaq from "@/components/corporate-training/corporate-faq";
 import CorporateHighlight from "@/components/corporate-training/corporate-highlight";
-import CorporateQuote from "@/components/corporate-training/corporate-quote";
+import CorporateQuoteDialog from "@/components/corporate-training/corporate-quote";
 import CorporateReview from "@/components/corporate-training/corporate-review";
 import CorporateTrainer from "@/components/corporate-training/corporate-trainer";
 import CorporateWhy from "@/components/corporate-training/corporate-why";
@@ -30,14 +28,31 @@ const CorporateTraining = () => {
 
       <AboutPartner />
       {/* <HomeCorporatePartner /> */}
-      <CorporateQuote />
+      {/* <CorporateQuote /> */}
+      <CorporateQuoteDialog
+        triggerText="Level Up Your Team"
+        title="Level Up Your Team"
+        description="Fill in your details and our experts will contact you shortly"
+        userType="Corporate-Quote"
+        quote="Invest in people because untrained teams can't execute great strategies."
+        bottomcontent="Leadership Insight"
+      />
       <CorporateDeliver />
       <CorporateCarousel />
       <CamsConnection
         path="how_it_works_corporate.webp"
         title="Here's Why Top Organizations Partner With Us"
       />
-      <CorporateCta />
+      {/* <CorporateCta /> */}
+      <CorporateQuoteDialog
+        triggerText="Talk to our Training Expert"
+        title="Talk to our Training Expert"
+        description="Fill in your details and our training experts will design a custom plan for your team"
+        userType="Corporate-Training"
+        quote="Let's Design Your Custom Training Plan Today!"
+        topcontent="CUSTOM TRAINING"
+      />
+
       <CorporateHighlight />
       <CorporateFaq />
 
