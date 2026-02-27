@@ -16,7 +16,7 @@ const CorporateHighlight = () => {
         },
         { value: 99.6, suffix: "%", subtitle: "Success Rate" },
         { value: 1000, suffix: "+", subtitle: "Success Stories" },
-        { value: 32, suffix: "+ Countries", subtitle: "Served" },
+        { value: 36, suffix: "+ Countries", subtitle: "Served" },
       ]}
       logos={[
         { img: `${IMAGE_PATH}/IAO.png` },

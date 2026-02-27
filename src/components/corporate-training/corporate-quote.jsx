@@ -375,23 +375,23 @@ const CorporateQuoteDialog = ({
                 </div>
               )}
               <div className="pl-8">
-                {topcontent && (
+                {/* {topcontent && (
                   <div className="inline-flex items-center gap-2 px-3 rounded-full bg-white/10 mb-4">
                     <div className="w-1.5 h-1.5  rounded-full bg-black"></div>
                     <span className="text-xs font-semibold uppercase tracking-wider">
                       {topcontent}
                     </span>
                   </div>
-                )}
-                <h2 className="text-2xl md:text-3xl font-bold leading-relaxed mb-4">
+                )} */}
+                <h2 className="text-2xl md:text-[28px] font-bold leading-relaxed mb-4">
                   <span>
                     {quote}
                   </span>
                 </h2>
                 {bottomcontent && (
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-0.5 bg-black" />
-                    <div className="w-1 h-1 rounded-full bg-black" />
+                    {/* <div className="w-8 h-0.5 bg-black" /> */}
+                    {/* <div className="w-1 h-1 rounded-full bg-black" /> */}
                     <span className="text-sm italic">
                       — {bottomcontent}
                     </span>

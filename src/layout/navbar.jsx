@@ -52,8 +52,8 @@ const Navbar = () => {
       submenu: null,
     },
     {
-      title: "About Us",
-      link: "/about-us",
+      title: "About AIA",
+      link: "/about-aia",
       submenu: null,
     },
     {

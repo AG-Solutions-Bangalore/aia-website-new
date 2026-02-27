@@ -51,10 +51,7 @@ const HomePassout = () => {
   return (
     <section className="bg-linear-to-b from-[#0F3652]/10 via-transparent to-transparent relative pb-10">
       <div className="mx-auto pt-10 max-w-340 z-10">
-        <div className="flex flex-col items-center justify-center max-w-135 mx-auto">
-          <div className="border py-1 px-4 rounded-lg border-[#F3831C] text-[#F3831C]">
-            Testimonials
-          </div>
+        <div className="flex flex-col items-center justify-center  mx-auto">
 
           <SectionHeading
             title="AIA Certified Achievers"

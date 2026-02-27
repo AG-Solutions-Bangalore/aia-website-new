@@ -35,7 +35,7 @@ const CorporateTraining = () => {
         title="Level Up Your Team"
         description="Fill in your details and our experts will contact you shortly"
         userType="Corporate-Quote"
-        quote="Invest in people because untrained teams can't execute great strategies."
+        quote="Invest in people because untrained teams can't execute great strategies ?."
         bottomcontent="Leadership Insight"
       />
       <CorporateDeliver />
@@ -51,7 +51,7 @@ const CorporateTraining = () => {
         description="Fill in your details and our training experts will design a custom plan for your team"
         userType="Corporate-Training"
         quote="Let's Design Your Custom Training Plan Today!"
-        topcontent="CUSTOM TRAINING"
+        topcontent={true}
       />
 
       <CorporateHighlight />
