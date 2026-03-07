@@ -91,7 +91,7 @@ const HomeReview = () => {
 
             {!isLoading && !isError && testimonials.length > 0 && (
               <>
-                <Helmet>
+                {/* <Helmet>
                   <script type="application/ld+json">
                     {JSON.stringify({
                       "@context": "https://schema.org",
@@ -111,7 +111,7 @@ const HomeReview = () => {
                       })),
                     })}
                   </script>
-                </Helmet>
+                </Helmet> */}
                 <div className="mb-6 flex gap-2">
                   <img
                     src={`${IMAGE_PATH}/g_logo.webp`}
