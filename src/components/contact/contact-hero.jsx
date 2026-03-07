@@ -383,7 +383,7 @@ const ContactHero = () => {
     setLoader(true);
     try {
       const res = await axios.post(
-        `${BASE_URL}/api/create-webenquirys`,
+        `${BASE_URL}/api/create-webenquiry`,
         {
           userName: formData.userName,
           userEmail: formData.userEmail,
