@@ -30,34 +30,37 @@ const PopUp = ({ slug = "home" }) => {
     }
   }, []);
 
-  useEffect(() => {
-    const fetchPopupData = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(
-          `${BASE_URL}/api/getPopupbySlug/${slug}`,
+  const fetchPopupData = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        `${BASE_URL}/api/getPopupbySlug/${slug}`,
+      );
+
+      if (response.data?.data) {
+        setPopupData(response.data.data);
+
+        const popupImageConfig = response.data.image_url?.find(
+          (item) => item.image_for === "Popup",
         );
-
-        if (response.data?.data) {
-          setPopupData(response.data.data);
-
-          const popupImageConfig = response.data.image_url?.find(
-            (item) => item.image_for === "Popup",
-          );
-          if (popupImageConfig) {
-            setImageBaseUrl(popupImageConfig.image_url);
-          }
+        if (popupImageConfig) {
+          setImageBaseUrl(popupImageConfig.image_url);
         }
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching popup data:", error);
-        setLoading(false);
       }
-    };
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching popup data:", error);
+      setLoading(false);
+    }
+  };
 
-    fetchPopupData();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchPopupData();
+    }, 3000);
+
+    return () => clearTimeout(timer);
   }, [slug]);
-
   useEffect(() => {
     if (!popupData || popupData.popup_required !== "Yes") {
       return;
