@@ -105,7 +105,11 @@ const HomeReview = () => {
                         },
                         reviewBody: t.message,
                         url: t.link,
-                        datePublished: t.update,
+                        datePublished: new Date(t.update).toISOString(),
+                        itemReviewed: {
+                          "@type": "Course",
+                          name: t.course,
+                        },
                         reviewRating: {
                           "@type": "Rating",
                           ratingValue: "5",
