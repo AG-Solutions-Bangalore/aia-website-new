@@ -96,6 +96,7 @@ const HomeReview = () => {
                         "@type": "AggregateRating",
                         ratingValue: "5",
                         bestRating: "5",
+                        worstRating: "1", 
                         reviewCount: testimonials.length.toString(),
                       },
                       review: testimonials.map((t) => ({
@@ -105,12 +106,14 @@ const HomeReview = () => {
                           name: t.name,
                         },
                         reviewBody: t.message,
-                        url: t.link,
-                        datePublished: new Date(t.update).toISOString(),
+                        datePublished: new Date(t.update)
+                          .toISOString()
+                          .split("T")[0],
                         reviewRating: {
                           "@type": "Rating",
                           ratingValue: "5",
                           bestRating: "5",
+                          worstRating: "1", 
                         },
                       })),
                     })}
@@ -128,29 +131,21 @@ const HomeReview = () => {
                   </h2>
                 </div>
                 <Swiper
-                  // modules={[Autoplay, Pagination]}
+                  modules={[Autoplay, Pagination]}
                   spaceBetween={30}
                   slidesPerView={1}
-                  // autoplay={{
-                  //   delay: 5000,
-                  //   disableOnInteraction: false,
-                  // }}
+                  autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                  }}
                   pagination={{ clickable: true }}
-                  // loop
+                  loop
                   className="testimonial-swiper"
                 >
                   {testimonials.map((item, index) => (
                     <SwiperSlide key={index}>
                       <div className="bg-white rounded-xl p-4 md:p-6 border border-[#F3831C]/20">
                         <div className="flex items-start gap-4 mb-4">
-                          {/* <LazyLoadImage
-                            src={item.image}
-                            alt={item.alt}
-                            className="w-14 h-14 rounded-full object-cover border-2 border-[#0F3652]"
-                            effect="blur"
-                            width="56"
-                            height="56"
-                          /> */}
                           <LazyLoadImage
                             src={item.image}
                             alt={item.alt}

@@ -10,6 +10,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import HomeMap from "../home/home-map";
 import SectionHeading from "../SectionHeading/SectionHeading";
+import { Helmet } from "react-helmet-async";
 
 const FreeResourceReview = () => {
   const { data, isLoading, isError, refetch } = useQuery({
@@ -33,6 +34,7 @@ const FreeResourceReview = () => {
       course: item.student_course,
       message: item.student_testimonial,
       link: item.student_testimonial_link,
+      update: item.updated_at,
       image: item.student_image
         ? `${studentImageBase}${item.student_image}`
         : noImageUrl,
@@ -45,6 +47,43 @@ const FreeResourceReview = () => {
 
   return (
     <section className="py-12 bg-white">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Course",
+            name: "CFE",
+            description: "Professional certification training for CFE",
+            provider: {
+              "@type": "Organization",
+              name: "Academy of Internal Audit",
+              url: "https://aia.in.net/",
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: "5",
+              bestRating: "5",
+              worstRating: "1",
+              reviewCount: testimonials.length.toString(),
+            },
+            review: testimonials.map((t) => ({
+              "@type": "Review",
+              author: {
+                "@type": "Person",
+                name: t.name,
+              },
+              reviewBody: t.message,
+              datePublished: new Date(t.update).toISOString().split("T")[0],
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: "5",
+                bestRating: "5",
+                worstRating: "1",
+              },
+            })),
+          })}
+        </script>
+      </Helmet>
       <div className="max-w-340 mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="md:hidden">
           <SectionHeading
@@ -61,7 +100,6 @@ const FreeResourceReview = () => {
         </div>
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
-
             <HomeMap />
           </div>
 
