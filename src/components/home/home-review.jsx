@@ -16,6 +16,7 @@ import { useLocation } from "react-router-dom";
 const HomeReview = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const isAboutPage = location.pathname === "/about-aia";
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["aia-testimonials"],
     queryFn: async () => {
@@ -81,7 +82,7 @@ const HomeReview = () => {
           </script>
         </Helmet>
       )}
-      {!isHomePage && !isLoading && !isError && testimonials.length > 0 && (
+      {isAboutPage && !isLoading && !isError && testimonials.length > 0 && (
         <Helmet>
           <script type="application/ld+json">
             {JSON.stringify({
