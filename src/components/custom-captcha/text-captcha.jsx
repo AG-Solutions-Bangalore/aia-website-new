@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useState, useEffect, useRef } from 'react';
 
 const TextCaptcha = ({ onVerify, onRefresh, showVerifyButton = false, autoVerify = true }) => {
@@ -118,7 +117,7 @@ const TextCaptcha = ({ onVerify, onRefresh, showVerifyButton = false, autoVerify
               maxLength={6}
               className="px-3 py-2 w-30 md:w-48 bg-white text-black text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500 flex-grow"
               placeholder="Enter 6 characters"
-              autoFocus
+              // autoFocus
             />
             
             {verificationError && (

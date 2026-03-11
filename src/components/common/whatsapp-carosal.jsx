@@ -239,7 +239,7 @@ export const TestimonialSlider = ({
               alt={activeReview.alt || `Slide ${currentIndex + 1}`}
               className="absolute inset-0 w-full h-full object-cover rounded-lg"
               onLoad={() => handleImageLoad(activeReview.image)}
-               loading="lazy"
+              loading="lazy"
             />
           )}
           {!loadedImages.has(activeReview.image) && (
@@ -348,18 +348,60 @@ const WhatsappCarosal = ({ title, description, course }) => {
 
   if (isLoading) {
     return (
-      <div className="relative w-full py-12 sm:py-24 md:py-32">
-        <div className="mx-auto max-w-container flex flex-col items-center gap-4 text-center sm:gap-16">
-          <div className="flex flex-col items-center gap-4 px-4 sm:gap-8">
-            <Skeleton height={40} width={400} />
-            <Skeleton height={20} width={250} />
+      <div className="relative w-full min-h-[650px] md:min-h-[600px] overflow-hidden bg-background p-8 md:p-12">
+        {/* Mobile heading */}
+        <div className="pt-4 min-h-[200px] md:hidden">
+          <div className="flex flex-col items-center gap-3">
+            <div className="h-8 w-64 bg-gray-200 rounded animate-pulse" />
+            <div className="h-4 w-48 bg-gray-200 rounded animate-pulse" />
           </div>
-          <div className="flex gap-4 overflow-hidden">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="w-[290px] h-[165px]">
-                <Skeleton height={165} width={290} />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 h-full">
+          {/* Left column — counter + left thumbs */}
+          <div className="md:col-span-2 hidden md:flex flex-col justify-between">
+            {/* Counter */}
+            <div className="h-4 w-12 bg-gray-200 rounded animate-pulse" />
+
+            {/* Left thumbnails */}
+            <div className="flex space-x-2 mt-8 md:mt-0">
+              {[...Array(2)].map((_, i) => (
+                <div
+                  key={i}
+                  className="rounded-md w-16 h-20 md:w-20 md:h-36 bg-gray-200 animate-pulse"
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Center — main image */}
+          <div className="md:col-span-4 relative h-80 min-h-[400px] md:min-h-[500px] order-2">
+            <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg" />
+          </div>
+
+          {/* Right column — heading + right thumbs + nav */}
+          <div className="md:col-span-6 flex flex-col justify-between md:pl-8 order-3">
+            {/* Desktop heading */}
+            <div className="pt-4 min-h-[200px] hidden md:flex flex-col gap-3">
+              <div className="h-8 w-64 bg-gray-200 rounded animate-pulse" />
+              <div className="h-4 w-48 bg-gray-200 rounded animate-pulse" />
+            </div>
+
+            {/* Right thumbnails + nav buttons */}
+            <div className="flex space-x-2 mt-8 md:mt-0 items-end">
+              {[...Array(4)].map((_, i) => (
+                <div
+                  key={i}
+                  className="rounded-md w-16 h-20 md:w-20 md:h-36 bg-gray-200 animate-pulse"
+                />
+              ))}
+
+              {/* Nav buttons */}
+              <div className="flex items-end ml-6 space-x-2">
+                <div className="w-12 h-12 rounded-full bg-gray-200 animate-pulse" />
+                <div className="w-12 h-12 rounded-full bg-gray-300 animate-pulse" />
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>

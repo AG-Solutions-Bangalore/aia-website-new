@@ -29,7 +29,6 @@ const CourseAbout = ({
         />
 
         <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 xl:gap-16 items-center">
-          {/* Left Content */}
           <div>
             {badgeText && (
               <div className="flex items-center gap-3 mb-2 md:mb-3">
@@ -117,7 +116,6 @@ const CourseAbout = ({
         </div>
       </div>
 
-      {/* Form Dialog - Only on non-home pages */}
       {location.pathname != "/" && (
         <div className="mt-8 md:mt-10 lg:mt-12 px-4">
           <CfeJoinDialog

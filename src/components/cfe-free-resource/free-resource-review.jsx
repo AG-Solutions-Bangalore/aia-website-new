@@ -129,7 +129,7 @@ const FreeResourceReview = () => {
                     className="w-12 h-12"
                   />
                   <h2 className="text-3xl font-bold text-[#0F3652]">
-                    290+ Professional Experiences Shared
+                    300+ Professional Experiences Shared
                   </h2>
                 </div>
                 <Swiper

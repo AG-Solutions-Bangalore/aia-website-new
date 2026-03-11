@@ -190,7 +190,7 @@ const CourseReview = ({ slug, title }) => {
         } bg-white z-40 pb-2 pt-6`}
       >
         <SectionHeading
-          title={title || "290+ Professional Experiences Shared"}
+          title={title || "300+ Professional Experiences Shared"}
           align="center"
         />
       </div>

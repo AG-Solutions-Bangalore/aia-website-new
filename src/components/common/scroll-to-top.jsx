@@ -5,17 +5,15 @@ function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if ("scrollRestoration" in window.history) {
-      window.history.scrollRestoration = "manual";
-    }
+    window.history.scrollRestoration = "manual";
 
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "instant",
-      });
-    }, 0);
+    const scroll = () => {
+      window.scrollTo(0, 0);
+    };
+
+    const timeout = setTimeout(scroll, 50);
+
+    return () => clearTimeout(timeout);
   }, [pathname]);
 
   return null;
