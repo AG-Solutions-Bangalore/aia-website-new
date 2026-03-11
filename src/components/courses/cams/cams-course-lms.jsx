@@ -20,7 +20,7 @@ const CamsCourseLms = ({ title, subtitle, course, buttonlabel, image }) => {
     {
       title: "Recorded Video Lectures",
       description:
-        "Access 30+ hours of detailed video lectures covering the complete updated CAMS syllabus. Each session explains concepts clearly and helps make your learning more effective and easier to follow.",
+        "Access 40+ hours of detailed video lectures covering the complete updated CAMS syllabus. Each session explains concepts clearly and helps make your learning more effective and easier to follow.",
     },
     {
       title: "Full-Length Mock Test",

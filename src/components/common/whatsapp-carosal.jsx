@@ -239,6 +239,7 @@ export const TestimonialSlider = ({
               alt={activeReview.alt || `Slide ${currentIndex + 1}`}
               className="absolute inset-0 w-full h-full object-cover rounded-lg"
               onLoad={() => handleImageLoad(activeReview.image)}
+               loading="lazy"
             />
           )}
           {!loadedImages.has(activeReview.image) && (

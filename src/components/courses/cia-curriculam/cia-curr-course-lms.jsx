@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ENROLL_URL } from "@/api/base-url";
 
-const CiaCurrCourseLms = () => {
+const CiaCurrCourseLms = ({ image }) => {
   const courseFeatures = [
     {
       title: "Customized Study Material",
@@ -54,6 +54,7 @@ const CiaCurrCourseLms = () => {
       <CourseLms
         cardTitle="AIA CIA Prep Course - What you will get"
         courseFeatures={courseFeatures}
+        image={image}
       />
 
       <div className="flex justify-center gap-2">

@@ -109,6 +109,7 @@ const AboutPartner = () => {
                       src={`${imageBaseUrl}${efforts[1]?.efforts_image}`}
                       alt={efforts[1]?.efforts_heading}
                       className="w-full md:h-[340px]  object-contain"
+                       loading="lazy"
                     />
                   </div>
                 </div>

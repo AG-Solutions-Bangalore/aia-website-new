@@ -81,7 +81,7 @@ const ServiceCard = ({ testimonial, i, progress, total, imageUrl }) => {
   );
 };
 
-const CourseReview = ({ slug }) => {
+const CourseReview = ({ slug, title }) => {
   const containerRef = useRef(null);
   const [testimonials, setTestimonials] = useState([]);
   const [imageUrl, setImageUrl] = useState("");
@@ -151,7 +151,7 @@ const CourseReview = ({ slug }) => {
         } bg-white z-40 pb-2 pt-6`}
       >
         <SectionHeading
-          title="290+ Professional Experiences Shared"
+          title={title || "290+ Professional Experiences Shared"}
           // highlight1="★★★★★"
           align="center"
         />

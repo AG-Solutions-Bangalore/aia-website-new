@@ -13,7 +13,7 @@ The CIA Challenge Exam is a fast-track pathway, offered by the Institute of Inte
         aboutStats={[
           {
             display: "Recorded Video Classes",
-            title: "(10+ hours of structured learning)",
+            title: "(50+ hours of structured learning)",
             show: "true",
           },
           {

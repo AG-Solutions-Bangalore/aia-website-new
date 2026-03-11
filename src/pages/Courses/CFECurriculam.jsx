@@ -71,7 +71,7 @@ Each message reflects a different experience. These reflections provide a genuin
         title="Master CFE Concepts with AIA’s Video Learning Series"
         description="Explore concise video sessions by Puneet Sir covering key CFE topics, simplified for practical clarity and exam-focused understanding"
       />
-      <CfeCourseLms />
+      <CfeCourseLms image="lms_CFE.webp" />
       <CfeUnique />
       <CourseAchivers
         slug="cfe"

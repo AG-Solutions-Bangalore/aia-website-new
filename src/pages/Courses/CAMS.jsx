@@ -73,6 +73,7 @@ Each message reflects a different experience. These reflections provide a genuin
         subtitle="Online Training and Certification Course"
         course="CAMS"
         buttonlabel="Talk to Us"
+        image="lms_CAMS.webp"
       />
 
       <CamsUnique />

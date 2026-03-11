@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const CourseLms = ({ courseFeatures, cardTitle, image = "lms2.webp" }) => {
+const CourseLms = ({ courseFeatures, cardTitle, image}) => {
   const labels = [
     "Dedicated Support Person",
     "Updated Study Curriculum",
