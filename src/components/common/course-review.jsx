@@ -168,10 +168,15 @@ const CourseReview = ({ slug, title }) => {
               reviewBody: t.student_testimonial,
               url: t.student_testimonial_link,
               datePublished: new Date(t.updated_at).toISOString(),
+              itemReviewed: {
+                "@type": "Course",
+                name: slug,
+              },
               reviewRating: {
                 "@type": "Rating",
                 ratingValue: "5",
                 bestRating: "5",
+                worstRating: "1",
               },
             })),
           })}
