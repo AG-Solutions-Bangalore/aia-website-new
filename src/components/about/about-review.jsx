@@ -5,13 +5,12 @@ import { AlertCircle, RefreshCcw } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { useLocation } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import HomeMap from "../home/home-map";
 import SectionHeading from "../SectionHeading/SectionHeading";
-import HomeMap from "./home-map";
 
 const AboutReview = () => {
   const { data, isLoading, isError, refetch } = useQuery({
