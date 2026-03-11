@@ -2,6 +2,7 @@ import { BASE_URL, IMAGE_PATH } from "@/api/base-url";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { AlertCircle, RefreshCcw } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "swiper/css";
@@ -10,16 +11,16 @@ import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import HomeMap from "../home/home-map";
 import SectionHeading from "../SectionHeading/SectionHeading";
-import { Helmet } from "react-helmet-async";
 
-const FreeResourceReview = () => {
+const AboutReview = () => {
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["cams-testimonials"],
+    queryKey: ["aia-testimonials-about"],
     queryFn: async () => {
-      const res = await axios.get(`${BASE_URL}/api/getTestimonialbyCourse/CFE`);
+      const res = await axios.get(`${BASE_URL}/api/getAllTestimonials`);
       return res.data;
     },
   });
+
   const studentImageBase =
     data?.image_url?.find((img) => img.image_for === "Student")?.image_url ||
     "";
@@ -44,46 +45,51 @@ const FreeResourceReview = () => {
     if (text.length <= limit) return text;
     return text.slice(0, limit) + "...";
   };
-
   return (
     <section className="py-12 bg-white">
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Course",
-            name: "CFE",
-            description: "Professional certification training for CFE",
-            provider: {
-              "@type": "Organization",
-              name: "Academy of Internal Audit",
-              url: "https://aia.in.net/",
-            },
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "5",
-              bestRating: "5",
-              worstRating: "1",
-              reviewCount: testimonials.length.toString(),
-            },
-            review: testimonials.map((t) => ({
-              "@type": "Review",
-              author: {
-                "@type": "Person",
-                name: t.name,
+      {!isLoading && !isError && testimonials.length > 0 && (
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "AboutPage",
+              name: "About Academy of Internal Audit",
+              url: "https://aia.in.net/about",
+              description:
+                "Learn about Academy of Internal Audit, a leading provider of professional certification training for CAMS, CFE, CIA and more.",
+              mainEntity: {
+                "@type": "Organization",
+                name: "Academy of Internal Audit",
+                url: "https://aia.in.net/",
+                description:
+                  "Academy of Internal Audit provides professional certification training for internal auditors and finance professionals.",
+                aggregateRating: {
+                  "@type": "AggregateRating",
+                  ratingValue: "5",
+                  bestRating: "5",
+                  worstRating: "1",
+                  reviewCount: testimonials.length.toString(),
+                },
+                review: testimonials.map((t) => ({
+                  "@type": "Review",
+                  author: {
+                    "@type": "Person",
+                    name: t.name,
+                  },
+                  reviewBody: t.message,
+                  datePublished: new Date(t.update).toISOString().split("T")[0],
+                  reviewRating: {
+                    "@type": "Rating",
+                    ratingValue: "5",
+                    bestRating: "5",
+                    worstRating: "1",
+                  },
+                })),
               },
-              reviewBody: t.message,
-              datePublished: new Date(t.update).toISOString().split("T")[0],
-              reviewRating: {
-                "@type": "Rating",
-                ratingValue: "5",
-                bestRating: "5",
-                worstRating: "1",
-              },
-            })),
-          })}
-        </script>
-      </Helmet>
+            })}
+          </script>
+        </Helmet>
+      )}
       <div className="max-w-340 mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="md:hidden">
           <SectionHeading
@@ -126,9 +132,10 @@ const FreeResourceReview = () => {
                   <img
                     src={`${IMAGE_PATH}/g_logo.webp`}
                     alt="Google Logo"
-                    className="w-12 h-12"
+                    className="h-10 w-10 md:w-12 md:h-12"
+                    loading="lazy"
                   />
-                  <h2 className="text-3xl font-bold text-[#0F3652]">
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#0F3652]">
                     300+ Professional Experiences Shared
                   </h2>
                 </div>
@@ -146,17 +153,14 @@ const FreeResourceReview = () => {
                 >
                   {testimonials.map((item, index) => (
                     <SwiperSlide key={index}>
-                      <div className="bg-white rounded-xl p-6 border border-[#F3831C]/20">
+                      <div className="bg-white rounded-xl p-4 md:p-6 border border-[#F3831C]/20">
                         <div className="flex items-start gap-4 mb-4">
                           <LazyLoadImage
                             src={item.image}
                             alt={item.alt}
-                            className="w-14 h-14 rounded-full object-cover border-2 border-[#0F3652]"
+                            className="w-14 h-14 min-w-14 min-h-14 rounded-full object-cover border-2 border-[#0F3652] flex-shrink-0"
                             effect="blur"
-                            width="56"
-                            height="56"
                           />
-
                           <div>
                             <h4 className="text-lg font-semibold text-[#0F3652]">
                               {item.name}
@@ -188,7 +192,7 @@ const FreeResourceReview = () => {
                           </svg>
                         </div>
 
-                        <p className="text-[#0F3652] pl-2 border-l-2 border-[#F3831C]/50">
+                        <p className="text-[#0F3652] pl-2 border-l-2 border-[#F3831C]/50 text-justify">
                           {truncateText(item.message)}
 
                           {item?.link && (
@@ -215,4 +219,4 @@ const FreeResourceReview = () => {
   );
 };
 
-export default FreeResourceReview;
+export default AboutReview;

@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ENROLL_URL } from "@/api/base-url";
 
-const CiaCourseLms = () => {
+const CiaCourseLms = ({ image }) => {
   const courseFeatures = [
     {
       title: "Customised Study Material",
@@ -20,7 +20,7 @@ const CiaCourseLms = () => {
     {
       title: "Recorded Training Sessions",
       description:
-        "Get access to 70+ hours of in-depth recorded video lectures by Puneet Sir, structured for flexible, self-paced learning and clear conceptual coverage of the CIA Challenge syllabus.",
+        "Get access to 50+ hours of in-depth recorded video lectures by Puneet Sir, structured for flexible, self-paced learning and clear conceptual coverage of the CIA Challenge syllabus.",
     },
     {
       title: "Live Query Sessions",
@@ -54,6 +54,7 @@ const CiaCourseLms = () => {
       <CourseLms
         cardTitle="AIA CIA Challenge Prep Course - What you will get"
         courseFeatures={courseFeatures}
+        image={image}
       />
 
       <div className="flex justify-center gap-2">

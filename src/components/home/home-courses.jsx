@@ -228,10 +228,6 @@ const HomeCourses = ({ certificationCourses }) => {
           <div className="md:sticky md:top-55 md:h-screen md:flex md:flex-col md:justify-center">
             <div className="h-full flex flex-col justify-between">
               <div>
-                {/* <p className="text-sm uppercase tracking-wider text-[#F3831C] font-semibold mb-4">
-                  PROFESSIONAL CERTIFICATION PROGRAMS
-                </p> */}
-
                 <div className="transition-opacity duration-300 mb-20">
                   <h1
                     className="text-xl md:text-3xl font-bold mb-3 leading-tight "

@@ -11,7 +11,6 @@ const BlogCard = ({ imageBaseUrl = "", blog, handleBlogClick }) => {
       year: "numeric",
     });
   };
-
   const imageSrc =
     blog?.blog_images && imageBaseUrl
       ? `${imageBaseUrl}${blog.blog_images}`
@@ -31,7 +30,7 @@ const BlogCard = ({ imageBaseUrl = "", blog, handleBlogClick }) => {
             onError={(e) => {
               e.currentTarget.src = `${IMAGE_PATH}/no_image.jpg`;
             }}
-             loading="lazy"
+            loading="lazy"
           />
         </div>
 

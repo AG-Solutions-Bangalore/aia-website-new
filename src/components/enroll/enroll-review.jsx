@@ -176,6 +176,7 @@ const EnrollReview = () => {
             alt="Rated testimonial"
             className="w-full h-auto max-w-full object-contain transform -scale-x-100"
             style={{ maxHeight: "90vh" }}
+             loading="lazy"
           />
         </div>
 

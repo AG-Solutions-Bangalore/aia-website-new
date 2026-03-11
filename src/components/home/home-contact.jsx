@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
 import { BASE_URL } from "@/api/base-url";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import TextCaptcha from "../custom-captcha/text-captcha";
-import { toast } from "sonner";
 
 const HomeContact = () => {
   const [showCaptcha, setShowCaptcha] = useState(false);

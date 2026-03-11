@@ -40,15 +40,22 @@ const HomeResults = ({ title, description }) => {
   if (isLoading) {
     return (
       <div className="relative w-full py-12 sm:py-24 md:py-32">
-        <div className="mx-auto max-w-container flex flex-col items-center gap-4 text-center sm:gap-16">
-          <div className="flex flex-col items-center gap-4 px-4 sm:gap-8">
-            <Skeleton height={40} width={400} />
-            <Skeleton height={20} width={200} />
+        <div className="mx-auto max-w-7xl flex flex-col items-center gap-10 text-center px-4">
+          {/* Title Skeleton */}
+          <div className="flex flex-col items-center gap-4">
+            <Skeleton height={40} width={420} />
+            <Skeleton height={18} width={260} />
           </div>
 
-          <div className="flex overflow-hidden gap-4">
-            {[...Array(6)].map((_, i) => (
-              <Skeleton key={i} height={200} width={320} />
+          {/* Cards Skeleton */}
+          <div className="flex gap-4 overflow-hidden w-full justify-center">
+            {[...Array(5)].map((_, i) => (
+              <Skeleton
+                key={i}
+                className="rounded-xl"
+                height={180}
+                width={300}
+              />
             ))}
           </div>
         </div>

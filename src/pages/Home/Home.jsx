@@ -6,6 +6,7 @@ import HomePassout from "@/components/home/home-passout";
 
 import AllYoutube from "@/components/common/get-all-youtube";
 import PopUp from "@/components/common/pop-up";
+import WhatsappCarosal from "@/components/common/whatsapp-carosal";
 import CourseYoutubeLecture from "@/components/courses/common/course-youtube-lecture";
 import HomeAbout from "@/components/home/home-about";
 import HomeAlumniWork from "@/components/home/home-alumini-work";
@@ -17,7 +18,6 @@ import HomePrCarousel from "@/components/home/home-pr-carousel";
 import HomeResults from "@/components/home/home-results";
 import HomeReview from "@/components/home/home-review";
 import certificationCourses from "@/data/certificationCourses";
-import WhatsappCarosal from "@/components/common/whatsapp-carosal";
 
 export default function Home() {
   return (
@@ -35,8 +35,9 @@ export default function Home() {
       <HomeAccredited />
       <WhatsappCarosal
         title="Unfiltered Reflections from AIA-Trained Professionals"
- description="Heartfelt messages shared by professionals after completing their journey with AIA.
-Each message reflects a different experience. These reflections provide a genuine view of what preparation looks like in real situations, beyond structured testimonials"        course="all"
+        description="Heartfelt messages shared by professionals after completing their journey with AIA.
+Each message reflects a different experience. These reflections provide a genuine view of what preparation looks like in real situations, beyond structured testimonials"
+        course="all"
       />
       <HomeReview />
 

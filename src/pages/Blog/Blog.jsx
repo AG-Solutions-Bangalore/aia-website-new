@@ -125,11 +125,15 @@ const Blog = () => {
   }, [showAllTrending, trendingBlogs.length]);
 
   const handleBlogClick = (slug) => {
-    navigate(`/blogs/${slug}`);
+    window.open(`/blogs/${slug}`, "_blank");
   };
 
   const handleCategoryClick = (category) => {
-    window.open(`/blogs/course/${category}`, "_blank", "noopener,noreferrer");
+    window.open(
+      `/blogs/course/${category.toLowerCase().replace(/\s+/g, "-")}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
   };
 
   if (loading) {
@@ -227,7 +231,7 @@ const Blog = () => {
                     <div
                       key={blog.id}
                       onClick={() => {
-                        navigate(`/blogs/${blog.blog_slug}`);
+                        window.open(`/blogs/${blog.blog_slug}`, "_blank");
                         setSearchTerm("");
                         setShowDropdown(false);
                       }}

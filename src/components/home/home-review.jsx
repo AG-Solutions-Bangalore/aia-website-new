@@ -2,17 +2,19 @@ import { BASE_URL, IMAGE_PATH } from "@/api/base-url";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { AlertCircle, RefreshCcw } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useLocation } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import HomeMap from "./home-map";
 import SectionHeading from "../SectionHeading/SectionHeading";
-import { Helmet } from "react-helmet-async";
+import HomeMap from "./home-map";
 
 const HomeReview = () => {
+  const location = useLocation();
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["aia-testimonials"],
     queryFn: async () => {
@@ -35,6 +37,7 @@ const HomeReview = () => {
       course: item.student_course,
       message: item.student_testimonial,
       link: item.student_testimonial_link,
+      update: item.updated_at,
       image: item.student_image
         ? `${studentImageBase}${item.student_image}`
         : noImageUrl,
@@ -46,6 +49,38 @@ const HomeReview = () => {
   };
   return (
     <section className="py-12 bg-white">
+      {!isLoading && !isError && testimonials.length > 0 && (
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Academy of Internal Audit",
+              url: "https://aia.in.net/",
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "5",
+                bestRating: "5",
+                worstRating: "1",
+                reviewCount: testimonials.length.toString(),
+              },
+              review: testimonials.map((t) => ({
+                "@type": "Review",
+                author: { "@type": "Person", name: t.name },
+                reviewBody: t.message,
+                datePublished: new Date(t.update).toISOString().split("T")[0],
+                reviewRating: {
+                  "@type": "Rating",
+                  ratingValue: "5",
+                  bestRating: "5",
+                  worstRating: "1",
+                },
+              })),
+            })}
+          </script>
+        </Helmet>
+      )}
+
       <div className="max-w-340 mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="md:hidden">
           <SectionHeading
@@ -84,27 +119,6 @@ const HomeReview = () => {
 
             {!isLoading && !isError && testimonials.length > 0 && (
               <>
-                {/* <Helmet>
-                  <script type="application/ld+json">
-                    {JSON.stringify({
-                      "@context": "https://schema.org",
-                      "@type": "Organization",
-                      name: "Academy of Internal Audit",
-                      url: "https://aia.in.net/",
-                      aggregateRating: {
-                        "@type": "AggregateRating",
-                        ratingValue: "5",
-                        reviewCount: testimonials.length.toString(),
-                      },
-                      review: testimonials.map((t) => ({
-                        "@type": "Review",
-                        author: { "@type": "Person", name: t.name },
-                        reviewBody: t.message,
-                        url: t.link,
-                      })),
-                    })}
-                  </script>
-                </Helmet> */}
                 <div className="mb-6 flex gap-2">
                   <img
                     src={`${IMAGE_PATH}/g_logo.webp`}
@@ -113,33 +127,25 @@ const HomeReview = () => {
                     loading="lazy"
                   />
                   <h2 className="text-2xl md:text-3xl font-bold text-[#0F3652]">
-                    290+ Professional Experiences Shared
+                    300+ Professional Experiences Shared
                   </h2>
                 </div>
                 <Swiper
-                  // modules={[Autoplay, Pagination]}
+                  modules={[Autoplay, Pagination]}
                   spaceBetween={30}
                   slidesPerView={1}
-                  // autoplay={{
-                  //   delay: 5000,
-                  //   disableOnInteraction: false,
-                  // }}
+                  autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                  }}
                   pagination={{ clickable: true }}
-                  // loop
+                  loop
                   className="testimonial-swiper"
                 >
                   {testimonials.map((item, index) => (
                     <SwiperSlide key={index}>
                       <div className="bg-white rounded-xl p-4 md:p-6 border border-[#F3831C]/20">
                         <div className="flex items-start gap-4 mb-4">
-                          {/* <LazyLoadImage
-                            src={item.image}
-                            alt={item.alt}
-                            className="w-14 h-14 rounded-full object-cover border-2 border-[#0F3652]"
-                            effect="blur"
-                            width="56"
-                            height="56"
-                          /> */}
                           <LazyLoadImage
                             src={item.image}
                             alt={item.alt}

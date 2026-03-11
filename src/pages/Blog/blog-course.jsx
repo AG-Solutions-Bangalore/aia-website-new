@@ -10,7 +10,7 @@ const BlogCard = React.memo(({ blog, imageBaseUrl, onClick }) => {
     return date.toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
-      year: "numeric"
+      year: "numeric",
     });
   }, []);
 
@@ -47,8 +47,7 @@ const BlogCard = React.memo(({ blog, imageBaseUrl, onClick }) => {
             {formatDate(blog.blog_created)}
           </div>
           <div className="flex items-center gap-1">
-            <Clock className="w-3 h-3" />
-            5 min
+            <Clock className="w-3 h-3" />5 min
           </div>
         </div>
 
@@ -69,19 +68,28 @@ const BlogCard = React.memo(({ blog, imageBaseUrl, onClick }) => {
   );
 });
 
-BlogCard.displayName = 'BlogCard';
+BlogCard.displayName = "BlogCard";
 
 const LoadingSkeleton = ({ count = 3 }) => (
   <div className="text-center mb-12">
-    <h2 className="text-2xl md:text-3xl font-bold text-[#0F3652] mb-3">Loading Blogs</h2>
+    <h2 className="text-2xl md:text-3xl font-bold text-[#0F3652] mb-3">
+      Loading Blogs
+    </h2>
     <div className="flex justify-center gap-1 mt-4">
       {[0, 1, 2].map((i) => (
-        <div key={i} className="w-2 h-2 bg-[#0F3652] rounded-full animate-pulse" style={{ animationDelay: `${i * 100}ms` }} />
+        <div
+          key={i}
+          className="w-2 h-2 bg-[#0F3652] rounded-full animate-pulse"
+          style={{ animationDelay: `${i * 100}ms` }}
+        />
       ))}
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
       {Array.from({ length: count }).map((_, i) => (
-        <div key={i} className="bg-[#0F3652]/5 rounded-md border border-[#0F3652]/20 p-5">
+        <div
+          key={i}
+          className="bg-[#0F3652]/5 rounded-md border border-[#0F3652]/20 p-5"
+        >
           <div className="h-40 bg-linear-to-r from-[#0F3652]/10 to-[#0F3652]/20 rounded-md mb-4 animate-pulse"></div>
           <div className="space-y-3">
             <div className="h-4 bg-[#0F3652]/10 rounded w-3/4"></div>
@@ -119,14 +127,13 @@ const EmptyState = ({ searchQuery, categoryName, onClearSearch }) => (
 
 const BlogCourse = () => {
   const { courseName } = useParams();
+  const course = courseName?.toUpperCase();
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
   const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [imageBaseUrl, setImageBaseUrl] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-
-//   const categoryName = useMemo(() => courseName || "", [courseName]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -137,7 +144,7 @@ const BlogCourse = () => {
         setBlogs(allBlogs);
 
         const blogImageConfig = response.data.image_url?.find(
-          (item) => item.image_for === "Blog"
+          (item) => item.image_for === "Blog",
         );
         if (blogImageConfig) {
           setImageBaseUrl(blogImageConfig.image_url);
@@ -157,54 +164,43 @@ const BlogCourse = () => {
 
     const filterBlogs = () => {
       const query = searchQuery.toLowerCase().trim();
-      
+
       if (!query) {
-        const courseBlogs = blogs.filter(blog => 
-          blog.blog_course === courseName
+        const courseBlogs = blogs.filter(
+          (blog) => blog.blog_course == course,
         );
         setFilteredBlogs(courseBlogs);
         return;
       }
-
-      const filtered = blogs.filter(blog => 
-        blog.blog_course === courseName &&
-        (
-          blog.blog_heading?.toLowerCase().includes(query) ||
-          blog.blog_short_description?.toLowerCase().includes(query) ||
-          blog.blog_content?.toLowerCase().includes(query)
-        )
+      const filtered = blogs.filter(
+        (blog) =>
+          blog.blog_course == course &&
+          (blog.blog_heading?.toLowerCase().includes(query) ||
+            blog.blog_short_description?.toLowerCase().includes(query) ||
+            blog.blog_content?.toLowerCase().includes(query)),
       );
       setFilteredBlogs(filtered);
     };
 
     filterBlogs();
-  }, [searchQuery, blogs, courseName]);
+  }, [searchQuery, blogs, course]);
   const COURSE_NAME_MAP = {
-    'CFE': 'Certified Fraud Examiner',
-    'CIA': 'Certified Internal Auditor', 
-    'CAMS': 'Certified Anti Money Laundering Specialist',
-
+    CFE: "Certified Fraud Examiner",
+    CIA: "Certified Internal Auditor",
+    CAMS: "Certified Anti Money Laundering Specialist",
   };
 
   const displayCategoryName = useMemo(() => {
-    if (!courseName) return "";
-    return COURSE_NAME_MAP[courseName] || courseName;
-  }, [courseName]);
+    if (!course) return "";
+    return COURSE_NAME_MAP[course] || course;
+  }, [course]);
   const handleBlogClick = useCallback((slug) => {
-    navigate(`/blogs/${slug}`);
-  }, [navigate]);
-
-//   const handleBackClick = useCallback(() => {
-//     navigate("/blogs");
-//   }, [navigate]);
+    window.open(`/blogs/${slug}`, "_blank", "noopener,noreferrer");
+  }, []);
 
   const handleClearSearch = useCallback(() => {
     setSearchQuery("");
   }, []);
-
-//   const handleSearchChange = useCallback((e) => {
-//     setSearchQuery(e.target.value);
-//   }, []);
 
   if (loading) {
     return (
@@ -219,62 +215,36 @@ const BlogCourse = () => {
   return (
     <section className="py-5 bg-white ">
       <div className="max-w-340 mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header with back button */}
         <div className="mb-8 ">
-          {/* <button
-            onClick={handleBackClick}
-            className="flex items-center gap-2 text-[#0F3652] hover:text-[#0F3652]/80 transition-colors mb-6"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            <span>Back to All Blogs</span>
-          </button> */}
-          
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b-2 border-[#F3831C]">
             <div>
-            <h1 className="text-3xl md:text-4xl font-bold text-[#0F3652] mb-2">
-    {displayCategoryName} 
-  </h1>
-              {/* <p className="text-[#0F3652] text-lg">
-                {filteredBlogs.length} {filteredBlogs.length === 1 ? 'article' : 'articles'} available
-              </p> */}
+              <h1 className="text-3xl md:text-4xl font-bold text-[#0F3652] mb-2">
+                {displayCategoryName}
+              </h1>
             </div>
-            
-          
-           
           </div>
         </div>
 
         {filteredBlogs.length === 0 ? (
-          <EmptyState 
-            searchQuery={searchQuery} 
+          <EmptyState
+            searchQuery={searchQuery}
             categoryName={displayCategoryName}
             onClearSearch={handleClearSearch}
           />
         ) : (
           <>
-        
             <div className="grid grid-cols-1 md:grid-cols-2 max-w-6xl mx-auto gap-10 mb-12">
               {filteredBlogs.map((blog) => (
-                <BlogCard 
-                  key={blog.id || blog.blog_slug} 
-                  blog={blog} 
+                <BlogCard
+                  key={blog.id || blog.blog_slug}
+                  blog={blog}
                   imageBaseUrl={imageBaseUrl}
                   onClick={handleBlogClick}
                 />
               ))}
             </div>
-
-            {/* <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-[#0F3652]/20">
-              <p className="text-[#0F3652] text-sm">
-                Showing {filteredBlogs.length} of {filteredBlogs.length} articles
-              </p>
-              
-              
-            </div> */}
           </>
         )}
-
-       
       </div>
     </section>
   );

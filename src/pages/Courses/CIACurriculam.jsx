@@ -73,7 +73,7 @@ Each message reflects a different experience. These reflections provide a genuin
         title="Master CIA Concepts with AIA’s Video Learning Series"
         description="Explore concise video sessions by Puneet Sir covering key CIA topics, simplified for practical clarity and exam-focused understanding."
       />
-      <CiaCurrCourseLms />
+      <CiaCurrCourseLms image="lms_CIA.webp" />
       <CfeCurrUnique />
       <CourseAchivers
         slug="CIA"
