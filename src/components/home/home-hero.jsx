@@ -3,7 +3,6 @@ import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "@/api/base-url";
-import OptimizedImage from "../common/optmized-image";
 
 export default function HomeHero({ slug, bottombar = false }) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -29,7 +28,7 @@ export default function HomeHero({ slug, bottombar = false }) {
     if (!data?.data || !data?.image_url) return;
 
     const bannerImageUrlObj = data.image_url.find(
-      (item) => item.image_for === "Banner"
+      (item) => item.image_for === "Banner",
     );
     const baseImageUrl = bannerImageUrlObj?.image_url || "";
 
@@ -59,7 +58,7 @@ export default function HomeHero({ slug, bottombar = false }) {
   const prevSlide = () => {
     if (carouselSlides.length > 0)
       setCurrentSlide(
-        (prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length
+        (prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length,
       );
   };
 
@@ -156,15 +155,15 @@ export default function HomeHero({ slug, bottombar = false }) {
                   : "opacity-0 absolute inset-0 z-0"
               }`}
             >
-              <OptimizedImage
+              <img
                 src={slide.imageUrl}
                 alt={slide.alt}
                 className="w-full h-auto object-cover"
-                priority={index === 0}
-                sizes="100vw"
                 onError={(e) => {
-                  e.target.src = "...";
+                  e.target.src =
+                    "https://via.placeholder.com/1200x400?text=Banner";
                 }}
+                loading="lazy"
               />
             </a>
           ))}

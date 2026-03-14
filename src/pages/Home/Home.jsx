@@ -87,6 +87,8 @@ const HomeFaq = lazy(() => import("@/components/home/home-faq"));
 
 export default function Home() {
   const sectionRefs = {
+    popup: useRef(null),
+    home: useRef(null),
     about: useRef(null),
     contact: useRef(null),
     courses: useRef(null),
@@ -141,9 +143,20 @@ export default function Home() {
 
   return (
     <div className="font-sans text-gray-800">
-      <PopUp slug="home" />
-      <HomeHero slug="home" bottombar="true" />
-
+      <div ref={sectionRefs.popup}>
+        {loadedSections.popup && (
+          <Suspense fallback={null}>
+            <PopUp slug="home" />
+          </Suspense>
+        )}
+      </div>
+      <div ref={sectionRefs.home}>
+        {loadedSections.home && (
+          <Suspense fallback={null}>
+            <HomeHero slug="home" bottombar="true" />
+          </Suspense>
+        )}
+      </div>
       <div ref={sectionRefs.about}>
         {loadedSections.about && (
           <Suspense fallback={null}>
