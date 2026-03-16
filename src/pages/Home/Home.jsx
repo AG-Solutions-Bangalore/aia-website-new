@@ -172,8 +172,8 @@ export default function Home() {
 
   return (
     <div className="font-sans text-gray-800">
-      {/* <PopUp slug="home" />
-      <HomeHero slug="home" bottombar="true" />
+      <PopUp slug="home" />
+      {/* <HomeHero slug="home" bottombar="true" /> */}
 
       <div ref={aboutRef}>
         {visible.about && (
@@ -296,7 +296,7 @@ export default function Home() {
             <HomeFaq />
           </Suspense>
         )}
-      </div> */}
+      </div>
     </div>
   );
 }
