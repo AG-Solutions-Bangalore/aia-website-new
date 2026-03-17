@@ -87,37 +87,32 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            // Core React stuff together
+            // Core React and Routing
             if (
               id.includes("/node_modules/react/") ||
               id.includes("/node_modules/react-dom/") ||
               id.includes("/node_modules/react-router-dom/") ||
               id.includes("/node_modules/scheduler/")
             ) {
-              return "react-core";
+              return "react-vendor";
             }
             
-            // Larger libraries isolated
-            if (id.includes("lucide-react") || id.includes("react-icons")) {
-              return "icons";
-            }
-            if (id.includes("framer-motion")) {
-              return "animation";
-            }
-            if (id.includes("leaflet") || id.includes("react-leaflet")) {
-              return "map";
-            }
-            if (id.includes("swiper") || id.includes("embla-carousel")) {
-              return "carousel";
-            }
-            if (id.includes("@tanstack/react-query")) {
-              return "query";
-            }
-            if (id.includes("axios") || id.includes("date-fns")) {
-              return "utils";
+            // Group heavy UI/Animation libs
+            if (id.includes("framer-motion") || id.includes("lucide-react") || id.includes("react-icons")) {
+              return "ui-vendor";
             }
 
-            // Everything else into vendor
+            // Maps are heavy and specific to certain routes
+            if (id.includes("leaflet") || id.includes("react-leaflet")) {
+              return "map-vendor";
+            }
+
+            // Carousels are also route-specific
+            if (id.includes("swiper") || id.includes("embla-carousel")) {
+              return "carousel-vendor";
+            }
+
+            // Everything else into a generic vendor chunk
             return "vendor";
           }
         },
