@@ -227,43 +227,39 @@ const HomeCourses = ({ certificationCourses }) => {
         <div className="grid md:grid-cols-2 gap-12">
           <div className="md:sticky md:top-55 md:h-screen md:flex md:flex-col md:justify-center">
             <div className="h-full flex flex-col justify-between">
-              <div>
-                <div className="transition-opacity duration-300 mb-20">
-                  <h1
-                    className="text-xl md:text-3xl font-bold mb-3 leading-tight "
-                    style={{
-                      color: ALL_SERVICES[activeCard]?.lefttextColor || "",
-                    }}
-                  >
-                    {ALL_SERVICES[activeCard]?.title || ALL_SERVICES[0].title}
-                  </h1>
+              <div className="transition-opacity duration-300 mb-20">
+                <h1
+                  className="text-xl md:text-3xl font-bold mb-3 leading-tight "
+                  style={{
+                    color: ALL_SERVICES[activeCard]?.lefttextColor || "",
+                  }}
+                >
+                  {ALL_SERVICES[activeCard]?.title || ALL_SERVICES[0].title}
+                </h1>
 
-                  <p className="text-[#0F3652] text-lg mb-2 max-w-lg leading-relaxed text-justify">
-                    {ALL_SERVICES[activeCard]?.description ||
-                      ALL_SERVICES[0].description}
+                <p className="text-[#0F3652] text-lg mb-2 max-w-lg leading-relaxed text-justify">
+                  {ALL_SERVICES[activeCard]?.description ||
+                    ALL_SERVICES[0].description}
+                </p>
+              </div>
+              <div className="mt-10">
+                <a
+                  href={ALL_SERVICES[activeCard]?.link || ALL_SERVICES[0].link}
+                  className="group inline-flex items-center gap-2 h-10 px-4  text-sm font-medium text-white "
+                  style={{
+                    background: ALL_SERVICES[activeCard]?.buttonColor || "",
+                  }}
+                >
+                  <span>
+                    {ALL_SERVICES[activeCard]?.cta || ALL_SERVICES[0].cta}
+                  </span>
+                </a>
+
+                <div className="hidden md:flex items-center gap-4">
+                  <div className="h-px w-16 bg-[#F3831C]"></div>
+                  <p className="text-sm text-[#0F3652]/70">
+                    Scroll to explore all courses
                   </p>
-                </div>
-                <div className="mt-10">
-                  <a
-                    href={
-                      ALL_SERVICES[activeCard]?.link || ALL_SERVICES[0].link
-                    }
-                    className="group inline-flex items-center gap-2 h-10 px-4  text-sm font-medium text-white "
-                    style={{
-                      background: ALL_SERVICES[activeCard]?.buttonColor || "",
-                    }}
-                  >
-                    <span>
-                      {ALL_SERVICES[activeCard]?.cta || ALL_SERVICES[0].cta}
-                    </span>
-                  </a>
-
-                  <div className="hidden md:flex items-center gap-4">
-                    <div className="h-px w-16 bg-[#F3831C]"></div>
-                    <p className="text-sm text-[#0F3652]/70">
-                      Scroll to explore all courses
-                    </p>
-                  </div>
                 </div>
               </div>
             </div>
