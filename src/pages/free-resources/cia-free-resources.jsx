@@ -21,7 +21,7 @@ const FreeResourceReview = lazy(() =>
   import("@/components/cfe-free-resource/free-resource-review")
 );
 
-const FreeResources = () => {
+const CIAFreeResources = () => {
   const refs = useRef({
     youtube: { current: null },
     flash: { current: null },
@@ -123,7 +123,7 @@ const FreeResources = () => {
       <div ref={refs.review}>
         {visible.review && (
           <Suspense fallback={null}>
-            <FreeResourceReview slug="CFE" />
+            <FreeResourceReview slug="CIA"/>
           </Suspense>
         )}
       </div>
@@ -131,4 +131,4 @@ const FreeResources = () => {
   );
 };
 
-export default FreeResources;
+export default CIAFreeResources;

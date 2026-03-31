@@ -54,7 +54,7 @@ function useReveal() {
           obs.disconnect();
         }
       },
-      { threshold: 0.15 },
+      { threshold: 0.15 }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -78,7 +78,9 @@ const Card = ({ item, index }) => {
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(28px)",
-        transition: `opacity 0.55s ease ${index * 0.08}s, transform 0.55s ease ${index * 0.08}s`,
+        transition: `opacity 0.55s ease ${
+          index * 0.08
+        }s, transform 0.55s ease ${index * 0.08}s`,
       }}
     >
       {/* gradient border wrapper */}
@@ -225,7 +227,7 @@ export default function MobileCorporateWhyAia() {
 
   return (
     <section
-      className="relative overflow-hidden min-h-screen px-4 py-12"
+      className="relative overflow-hidden  px-4 py-12"
       style={{
         background:
           "linear-gradient(160deg, #fafbfc 0%, #fff7f0 60%, #fef3e8 100%)",

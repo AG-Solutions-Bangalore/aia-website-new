@@ -305,7 +305,7 @@ const CourseHighLight = ({
                   })}
                   className={`rounded-xl p-8 text-center transition-all duration-300 
           flex items-center justify-center hover:scale-125 cursor-pointer
-          ${isLast ? "col-span-2 md:col-span-1" : "md:col-span-1"}`}
+          ${isLast ? "col-span-2 lg:col-span-1" : "lg:col-span-1"}`}
                 >
                   <img
                     src={logo.img}

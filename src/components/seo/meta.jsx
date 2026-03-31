@@ -1,11 +1,11 @@
-
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import meta from "../../meta/meta.json";
 
 const DEFAULT_META = {
-  title: "Best Training Institute For Top Certification Courses- AIA",
-  description: "Academy of Internal Audit is an online training institute offering globally recognized professional certification courses such as CIA, CFE, and CAMS, along with other international certifications."
+  title: "AIA | Best Training Institute for Certification Courses",
+  description:
+    "Academy of Internal Audit is an online training institute offering globally recognized professional certification courses such as CIA, CFE, and CAMS, along with other international certifications.",
 };
 
 function matchRoute(pathname) {
@@ -23,10 +23,8 @@ export default function Meta() {
     const routeKey = matchRoute(pathname);
     const metaData = meta[routeKey] || DEFAULT_META;
 
-  
     document.title = metaData.title;
 
-    
     let descTag = document.querySelector("meta[name='description']");
     if (!descTag) {
       descTag = document.createElement("meta");

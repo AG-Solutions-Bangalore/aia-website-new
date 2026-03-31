@@ -6,8 +6,11 @@ const CAMS = lazy(() => import("./pages/Courses/CAMS"));
 const CFECurriculam = lazy(() => import("./pages/Courses/CFECurriculam"));
 const CIAChallenge = lazy(() => import("./pages/Courses/CIAChallenge"));
 const CIACurriculam = lazy(() => import("./pages/Courses/CIACurriculam"));
-const FreeResources = lazy(
-  () => import("./pages/free-resources/cfe-free-resources"),
+const FreeResources = lazy(() =>
+  import("./pages/free-resources/cfe-free-resources")
+);
+const CIAFreeResources = lazy(() =>
+  import("./pages/free-resources/cia-free-resources")
 );
 const Home = lazy(() => import("./pages/Home/Home"));
 const Blog = lazy(() => import("./pages/Blog/Blog"));
@@ -16,19 +19,19 @@ const Enrool = lazy(() => import("./pages/Enroll/Enroll"));
 const Contact = lazy(() => import("./pages/contact/contact"));
 const BlogDetails = lazy(() => import("./pages/Blog/blog-details"));
 const AboutPage = lazy(() => import("./pages/About/About"));
-const CorporateTraining = lazy(
-  () => import("./pages/corporate-training/corporate-training"),
+const CorporateTraining = lazy(() =>
+  import("./pages/corporate-training/corporate-training")
 );
 const Policies = lazy(() => import("./pages/policies/policies"));
-const TermsAndConditions = lazy(
-  () => import("./pages/terms-and-conditions/terms-and-conditions"),
+const TermsAndConditions = lazy(() =>
+  import("./pages/terms-and-conditions/terms-and-conditions")
 );
 const BlogCourse = lazy(() => import("./pages/Blog/blog-course"));
-const CfePracticeQuestion = lazy(
-  () => import("./pages/free-resources/cfe-practice-question"),
+const CfePracticeQuestion = lazy(() =>
+  import("./pages/free-resources/cfe-practice-question")
 );
-const PassoutStoriesSlug = lazy(
-  () => import("./components/passout/passout-stories-slug"),
+const PassoutStoriesSlug = lazy(() =>
+  import("./components/passout/passout-stories-slug")
 );
 const NotFound = lazy(() => import("./components/common/not-found"));
 
@@ -45,13 +48,12 @@ import SuspenseLoader from "./components/common/suspense-loader";
 export default function App() {
   const location = useLocation();
 
-
   return (
     <div className="font-sans text-gray-800 min-h-screen flex flex-col">
       <ScrollToTop />
       <CanonicalTag />
       <GoogleAnalytics />
-      <NotificationPopup />
+      {!location.pathname.startsWith("/blogs/") && <NotificationPopup />}
       <FloatingContact />
       <Toaster position="top-right" richColors />
 
@@ -75,6 +77,10 @@ export default function App() {
                 element={<CIAChallenge />}
               />
               <Route path="/cams" element={<CAMS />} />
+              <Route
+                path="/cia-free-resources"
+                element={<CIAFreeResources />}
+              />
               <Route path="/cfe-free-resources" element={<FreeResources />} />
               <Route
                 path="/cfe-free-resource/:questions_module"

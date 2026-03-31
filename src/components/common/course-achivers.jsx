@@ -14,7 +14,7 @@ const CourseAchivers = ({ slug, title, description, titleClass }) => {
     queryKey: ["achivers-passout-students"],
     queryFn: async () => {
       const res = await axios.get(
-        `${BASE_URL}/api/getPassoutStudentbyCourse/${slug}`,
+        `${BASE_URL}/api/getPassoutStudentbyCourse/${slug}`
       );
       return res.data;
     },
@@ -100,7 +100,7 @@ const CourseAchivers = ({ slug, title, description, titleClass }) => {
   if (testimonialsList.length === 0) return null;
   return (
     <div
-      className="relative w-full min-h-screen overflow-hidden bg-muted/30 my-18"
+      className="relative w-full min-h-[800px] lg:min-h-screen overflow-hidden bg-muted/30 my-18"
       style={{ height: 600 }}
     >
       <div className="pt-8 px-4">
@@ -135,7 +135,7 @@ const CourseAchivers = ({ slug, title, description, titleClass }) => {
           className={cn(
             "flex h-14 w-14 items-center justify-center text-2xl transition-colors",
             "bg-background border-2 border-border hover:bg-primary hover:text-primary-foreground",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           )}
           aria-label="Previous testimonial"
         >
@@ -146,7 +146,7 @@ const CourseAchivers = ({ slug, title, description, titleClass }) => {
           className={cn(
             "flex h-14 w-14 items-center justify-center text-2xl transition-colors",
             "bg-background border-2 border-border hover:bg-primary hover:text-primary-foreground",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           )}
           aria-label="Next testimonial"
         >
