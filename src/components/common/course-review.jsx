@@ -23,7 +23,8 @@ const ServiceCard = ({ testimonial, i, progress, total, imageUrl }) => {
   const scale = useTransform(progress, [start, end], [1, 0.95]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center sticky top-30">
+    // <div className="min-h-screen flex items-center justify-center sticky top-30">
+    <div className="md:min-h-[500px] lg:min-h-screen flex items-center justify-center sticky top-60 lg:top-30">
       <motion.div
         style={{
           scale,
@@ -92,7 +93,7 @@ const CourseReview = ({ slug, title }) => {
     queryKey: ["course-testimonials", slug],
     queryFn: async () => {
       const res = await axios.get(
-        `${BASE_URL}/api/getTestimonialbyCourse/${slug}`,
+        `${BASE_URL}/api/getTestimonialbyCourse/${slug}`
       );
       return res.data;
     },
@@ -101,7 +102,7 @@ const CourseReview = ({ slug, title }) => {
   useEffect(() => {
     if (data) {
       const studentImageUrlObj = data.image_url?.find(
-        (item) => item.image_for === "Student",
+        (item) => item.image_for === "Student"
       );
 
       setImageUrl(studentImageUrlObj?.image_url || "");
@@ -195,13 +196,14 @@ const CourseReview = ({ slug, title }) => {
         />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-12">
-        <div className="md:sticky md:top-20 md:h-screen md:flex md:items-center md:justify-center">
+      <div className="grid lg:grid-cols-2 gap-12">
+        {/* <div className="md:sticky md:top-20 md:h-screen md:flex md:items-center md:justify-center"> */}
+        <div className="lg:sticky lg:flex lg:top-20 lg:h-screen lg:items-center lg:justify-center">
           <div>
             <img
               src={`${IMAGE_PATH}/rated.webp`}
               alt="Rated testimonial"
-              className="w-full h-80 md:h-[62vh] object-contain transform -scale-x-100 mb-0"
+              className="w-full h-64 md:h-72 lg:h-[62vh] object-contain transform -scale-x-100 mb-0"
               loading="lazy"
             />
 

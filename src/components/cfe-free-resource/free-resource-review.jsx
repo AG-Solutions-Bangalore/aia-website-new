@@ -12,11 +12,13 @@ import HomeMap from "../home/home-map";
 import SectionHeading from "../SectionHeading/SectionHeading";
 import { Helmet } from "react-helmet-async";
 
-const FreeResourceReview = () => {
+const FreeResourceReview = ({ slug }) => {
   const { data, isLoading, isError, refetch } = useQuery({
-    queryKey: ["cams-testimonials"],
+    queryKey: ["cams-testimonials", slug],
     queryFn: async () => {
-      const res = await axios.get(`${BASE_URL}/api/getTestimonialbyCourse/CFE`);
+      const res = await axios.get(
+        `${BASE_URL}/api/getTestimonialbyCourse/${slug}`
+      );
       return res.data;
     },
   });
