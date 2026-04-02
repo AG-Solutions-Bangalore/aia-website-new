@@ -1,8 +1,11 @@
 import { BASE_URL } from "@/api/base-url";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TextCaptcha from "../custom-captcha/text-captcha";
+
+let referralCache = null;
+let referralFetchPromise = null;
 
 const HomeContact = () => {
   const [captchaVerified, setCaptchaVerified] = useState(false);
@@ -20,8 +23,39 @@ const HomeContact = () => {
     message: "",
     userLocation: "",
     userCourse: "",
+    referred_from: "",
     userType: "Home",
   });
+  const [referral, setReferral] = useState([]);
+
+  useEffect(() => {
+    const loadReferral = async () => {
+      if (referralCache) {
+        setReferral(referralCache);
+        return;
+      }
+      if (referralFetchPromise) {
+        const data = await referralFetchPromise;
+        setReferral(data);
+        return;
+      }
+
+      referralFetchPromise = axios.get(`${BASE_URL}/api/fetch-webreffer`)
+        .then(res => {
+          const data = res.data.data || [];
+          referralCache = data;
+          setReferral(data);
+          return data;
+        })
+        .catch(error => {
+          referralFetchPromise = null;
+          console.error("Error fetching referral:", error);
+          return [];
+        });
+    };
+
+    loadReferral();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -60,6 +94,7 @@ const HomeContact = () => {
       userMessage: formData.message.trim(),
       userCourse: formData.userCourse.trim(),
       userLocation: formData.userLocation.trim(),
+      referred_from: formData.referred_from.trim(),
       userType: formData.userType.trim(),
     };
 
@@ -79,6 +114,7 @@ const HomeContact = () => {
           phone: "",
           email: "",
           userCourse: "",
+          referred_from: "",
           message: "",
         });
         setCaptchaVerified(false);
@@ -89,8 +125,8 @@ const HomeContact = () => {
     } catch (error) {
       setSubmitError(
         error.response?.data?.message ||
-          error.message ||
-          "Failed to submit form. Please try again.",
+        error.message ||
+        "Failed to submit form. Please try again.",
       );
     } finally {
       setIsSubmitting(false);
@@ -195,28 +231,40 @@ const HomeContact = () => {
                     className="w-full px-4 py-3 border border-[#0F3652] rounded focus:outline-none focus:ring-2 focus:ring-[#F3831C] text-sm resize-none"
                     disabled={isSubmitting}
                   />
-                  <div className="col-span-1 md:col-span-2">
-                    <select
-                      name="userCourse"
-                      value={formData.userCourse}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-[#0F3652] rounded focus:outline-none focus:ring-2 focus:ring-[#F3831C] text-sm"
-                    >
-                      <option value="">Service Interested In *</option>
-                      <option value="Certified Fraud Examiner">
-                        Certified Fraud Examiner
+                  <select
+                    name="userCourse"
+                    value={formData.userCourse}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-[#0F3652] rounded focus:outline-none focus:ring-2 focus:ring-[#F3831C] text-sm"
+                  >
+                    <option value="">Service Interested In *</option>
+                    <option value="Certified Fraud Examiner">
+                      Certified Fraud Examiner
+                    </option>
+                    <option value="Certified Internal Auditor">
+                      Certified Internal Auditor
+                    </option>
+                    <option value="Certified Anti Money Laundering Specialist">
+                      Certified Anti Money Laundering Specialist
+                    </option>
+                    <option value="CIA Challenge Exam">
+                      CIA Challenge Exam
+                    </option>
+                  </select>
+                  <select
+                    name="referred_from"
+                    value={formData.referred_from}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 border border-[#0F3652] rounded focus:outline-none focus:ring-2 focus:ring-[#F3831C] text-sm"
+                  >
+                    <option value="">How You Know About AIA?</option>
+                    {referral.map((item, index) => (
+                      <option key={index} value={item.referred_from}>
+                        {item.referred_from}
                       </option>
-                      <option value="Certified Internal Auditor">
-                        Certified Internal Auditor
-                      </option>
-                      <option value="Certified Anti Money Laundering Specialist">
-                        Certified Anti Money Laundering Specialist
-                      </option>
-                      <option value="CIA Challenge Exam">
-                        CIA Challenge Exam
-                      </option>
-                    </select>
-                  </div>
+                    ))}
+                  </select>
+
                 </div>
 
                 {/*

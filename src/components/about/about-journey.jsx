@@ -164,7 +164,7 @@ const AboutJourney = () => {
             <img
               src={`${IMAGE_PATH}/certified.webp`}
               alt="Our Journey"
-               loading="lazy"
+              loading="lazy"
               className="w-full h-full object-cover"
             />
           </div>

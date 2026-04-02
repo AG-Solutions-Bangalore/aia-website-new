@@ -1,8 +1,12 @@
 import { BASE_URL, IMAGE_PATH } from "@/api/base-url";
 import axios from "axios";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import FooterReviews from "../Footer/footer-review";
 import { toast } from "sonner";
+
+
+let referralCache = null;
+let referralFetchPromise = null;
 
 const ContactHero = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +21,36 @@ const ContactHero = () => {
 
   const [errors, setErrors] = useState({});
   const [loader, setLoader] = useState(false);
+  const [referral, setReferral] = useState([]);
+
+  useEffect(() => {
+    const loadReferral = async () => {
+      if (referralCache) {
+        setReferral(referralCache);
+        return;
+      }
+      if (referralFetchPromise) {
+        const data = await referralFetchPromise;
+        setReferral(data);
+        return;
+      }
+
+      referralFetchPromise = axios.get(`${BASE_URL}/api/fetch-webreffer`)
+        .then(res => {
+          const data = res.data.data || [];
+          referralCache = data;
+          setReferral(data);
+          return data;
+        })
+        .catch(error => {
+          referralFetchPromise = null;
+          console.error("Error fetching referral:", error);
+          return [];
+        });
+    };
+
+    loadReferral();
+  }, []);
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
@@ -53,6 +87,7 @@ const ContactHero = () => {
           userMobile: formData.userMobile,
           userCourse: formData.userCourse,
           userLocation: formData.userLocation,
+          referred_from: formData.referred_from,
           userMessage: formData.userMessage,
           userType: formData.userType,
         },
@@ -66,6 +101,7 @@ const ContactHero = () => {
           userMobile: "",
           userLocation: "",
           userCourse: "",
+          referred_from: "",
           userMessage: "",
           userType: "contact",
         });
@@ -80,7 +116,7 @@ const ContactHero = () => {
       console.error("API error:", error.response?.data || error.message);
       toast.error(
         error.response?.data?.message ||
-          "Something went wrong. Please try again.",
+        "Something went wrong. Please try again.",
       );
     } finally {
       setLoader(false);
@@ -155,9 +191,8 @@ const ContactHero = () => {
                       name="userName"
                       value={formData.userName}
                       onChange={handleChange}
-                      className={`w-full px-4 py-2.5 rounded border ${
-                        errors.userName ? "border-red-500" : "border-gray-300"
-                      } focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500`}
+                      className={`w-full px-4 py-2.5 rounded border ${errors.userName ? "border-red-500" : "border-gray-300"
+                        } focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500`}
                       placeholder="Full Name"
                     />
                     {errors.userName && (
@@ -174,9 +209,8 @@ const ContactHero = () => {
                       name="userEmail"
                       value={formData.userEmail}
                       onChange={handleChange}
-                      className={`w-full px-4 py-2.5 rounded border ${
-                        errors.userEmail ? "border-red-500" : "border-gray-300"
-                      } focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500`}
+                      className={`w-full px-4 py-2.5 rounded border ${errors.userEmail ? "border-red-500" : "border-gray-300"
+                        } focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500`}
                       placeholder="Email"
                     />
                     {errors.userEmail && (
@@ -195,9 +229,8 @@ const ContactHero = () => {
                       name="userMobile"
                       value={formData.userMobile}
                       onChange={handleChange}
-                      className={`w-full px-4 py-2.5 rounded border ${
-                        errors.userMobile ? "border-red-500" : "border-gray-300"
-                      } focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500`}
+                      className={`w-full px-4 py-2.5 rounded border ${errors.userMobile ? "border-red-500" : "border-gray-300"
+                        } focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500`}
                       placeholder="Phone Number"
                     />
                     {errors.userMobile && (
@@ -222,36 +255,63 @@ const ContactHero = () => {
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-gray-700">
-                    Service Interested In{" "}
-                    <span className="text-red-600">*</span>
-                  </label>
-                  <select
-                    name="userCourse"
-                    value={formData.userCourse}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-2.5 rounded border ${
-                      errors.userCourse ? "border-red-500" : "border-gray-300"
-                    } focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500`}
-                  >
-                    <option value="">Service Interested In</option>
-                    <option value="Certified Fraud Examiner">
-                      Certified Fraud Examiner
-                    </option>
-                    <option value="Certified Internal Auditor">
-                      Certified Internal Auditor
-                    </option>
-                    <option value="Certified Anti Money Laundering Specialist">
-                      Certified Anti Money Laundering Specialist
-                    </option>
-                    <option value="CIA Challenge Exam">
-                      CIA Challenge Exam
-                    </option>
-                  </select>
-                  {errors.userCourse && (
-                    <p className="text-red-500 text-xs">{errors.userCourse}</p>
-                  )}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">
+                      Service Interested In{" "}
+                      <span className="text-red-600">*</span>
+                    </label>
+                    <select
+                      name="userCourse"
+                      value={formData.userCourse}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-2.5 rounded border ${errors.userCourse ? "border-red-500" : "border-gray-300"
+                        } focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500`}
+                    >
+                      <option value="">Service Interested In</option>
+                      <option value="Certified Fraud Examiner">
+                        Certified Fraud Examiner
+                      </option>
+                      <option value="Certified Internal Auditor">
+                        Certified Internal Auditor
+                      </option>
+                      <option value="Certified Anti Money Laundering Specialist">
+                        Certified Anti Money Laundering Specialist
+                      </option>
+                      <option value="CIA Challenge Exam">
+                        CIA Challenge Exam
+                      </option>
+                    </select>
+                    {errors.userCourse && (
+                      <p className="text-red-500 text-xs">{errors.userCourse}</p>
+                    )}
+                  </div>
+                  <div className="space-y-2">
+                    <label className="block text-sm font-medium text-gray-700">
+                      How You Know About AIA?{" "}
+                    </label>
+                    <div>
+                      <select
+                        name="referred_from"
+                        value={formData.referred_from}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-2.5 rounded border ${errors.referred_from ? "border-red-500" : "border-gray-300"
+                          } focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500`}
+                      >
+                        <option value="">Select an option</option>
+
+                        {referral.map((item, index) => (
+                          <option key={index} value={item.referred_from}>
+                            {item.referred_from}
+                          </option>
+                        ))}
+                      </select>
+
+                      {errors.referred_from && (
+                        <p className="text-red-500 text-xs">{errors.referred_from}</p>
+                      )}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="space-y-2">
@@ -314,7 +374,7 @@ const ContactHero = () => {
           </div>
 
           <div className="order-3 lg:hidden">
-            <FooterReviews />
+            <FooterReviews footer={false} title="black" />
           </div>
         </div>
       </div>

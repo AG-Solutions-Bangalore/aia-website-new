@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,6 +18,16 @@ import { BASE_URL } from "@/api/base-url";
 import { X } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+let referralCache = null;
+let referralFetchPromise = null;
 
 export default function CfeJoinDialog({
   title,
@@ -25,18 +35,50 @@ export default function CfeJoinDialog({
   course,
   buttonlabel,
 }) {
+
   const [formData, setFormData] = useState({
     userName: "",
     userMobile: "",
     userEmail: "",
     userLocation: "",
     userMessage: "",
+    referred_from: "",
     userType: course || "",
     userCourse: course || "",
   });
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [loader, setLoader] = useState(false);
+  const [referral, setReferral] = useState([]);
+
+  useEffect(() => {
+    const loadReferral = async () => {
+      if (referralCache) {
+        setReferral(referralCache);
+        return;
+      }
+      if (referralFetchPromise) {
+        const data = await referralFetchPromise;
+        setReferral(data);
+        return;
+      }
+
+      referralFetchPromise = axios.get(`${BASE_URL}/api/fetch-webreffer`)
+        .then(res => {
+          const data = res.data.data || [];
+          referralCache = data;
+          setReferral(data);
+          return data;
+        })
+        .catch(error => {
+          referralFetchPromise = null;
+          console.error("Error fetching referral:", error);
+          return [];
+        });
+    };
+
+    loadReferral();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -85,6 +127,7 @@ export default function CfeJoinDialog({
           userEmail: "",
           userLocation: "",
           userMessage: "",
+          reffered_from: "",
           userType: course || "",
           userCourse: course || "",
         });
@@ -94,8 +137,8 @@ export default function CfeJoinDialog({
     } catch (error) {
       toast.error(
         error.response?.data ||
-          error.message ||
-          "Something went wrong. Please try again.",
+        error.message ||
+        "Something went wrong. Please try again.",
       );
     } finally {
       setLoader(false);
@@ -201,14 +244,35 @@ export default function CfeJoinDialog({
               )}
             </div>
 
-            <div>
-              <Label className="text-[#0F3652]">Location</Label>
-              <Input
-                name="userLocation"
-                value={formData.userLocation}
-                onChange={handleChange}
-                className={inputStyle}
-              />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <Label className="text-[#0F3652]">Location</Label>
+                <Input
+                  name="userLocation"
+                  value={formData.userLocation}
+                  onChange={handleChange}
+                  className={inputStyle}
+                />
+              </div>
+
+              <div>
+                <Label className="text-[#0F3652]">How You Know About AIA?</Label>
+                <Select
+                  onValueChange={(value) => handleChange({ target: { name: "referred_from", value } })}
+                  value={formData.referred_from}
+                >
+                  <SelectTrigger className={inputStyle}>
+                    <SelectValue placeholder="Select an option" />
+                  </SelectTrigger>
+                  <SelectContent className="z-[10000]">
+                    {referral.map((item, index) => (
+                      <SelectItem key={index} value={item.referred_from}>
+                        {item.referred_from}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
 
             <div>
