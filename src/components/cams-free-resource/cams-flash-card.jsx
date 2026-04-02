@@ -13,7 +13,7 @@ import { useState } from "react";
 import SectionHeading from "../SectionHeading/SectionHeading";
 import { Button } from "../ui/button";
 
-const FreeResourceFlashCard = () => {
+const CAMSFlashCard = () => {
   const [openDrawer, setOpenDrawer] = useState(null);
   const [flippedCardKey, setFlippedCardKey] = useState(null);
 
@@ -22,9 +22,11 @@ const FreeResourceFlashCard = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["flash-card-cfe"],
+    queryKey: ["flash-card-cams"],
     queryFn: async () => {
-      const response = await axios.get(`${BASE_URL}/api/getFlashCardByCourse/CFE`);
+      const response = await axios.get(
+        `${BASE_URL}/api/getFlashCardByCourse/CAMS`
+      );
       return response.data;
     },
   });
@@ -51,26 +53,26 @@ const FreeResourceFlashCard = () => {
       1: {
         id: 1,
         number: "01",
-        title: "Financial Transactions \n & Fraud Schemes",
-        icon: `${IMAGE_PATH}/flash_card_1.webp`,
+        title: "Understanding the Risks and Methods of Financial Crime",
+        icon: `${IMAGE_PATH}/CAMs_Understanding_the_Risks_and_Methods_of_Financial_Crime.webp`,
       },
       2: {
         id: 2,
         number: "02",
-        title: "Law",
-        icon: `${IMAGE_PATH}/flash_card_2.webp`,
+        title: "Global AFC Frameworks, Governance, and Regulations",
+        icon: `${IMAGE_PATH}/Building_an_AFC_Compliance_Program.webp`,
       },
       3: {
         id: 3,
         number: "03",
-        title: "Investigation",
-        icon: `${IMAGE_PATH}/flash_card_3.webp`,
+        title: "Building an AFC \n Compliance Program",
+        icon: `${IMAGE_PATH}/Internal_Audit_Operations_and_Audit_Plan.webp`,
       },
       4: {
         id: 4,
         number: "04",
-        title: "Fraud Prevention \n & Deterrence",
-        icon: `${IMAGE_PATH}/flash_card_4.webp`,
+        title: "Tools and Technologies to Fight Financial Crimes",
+        icon: `${IMAGE_PATH}/Internal_Audit_Professionalism_and_Quality.webp`,
       },
     };
 
@@ -158,8 +160,8 @@ const FreeResourceFlashCard = () => {
   return (
     <div className="w-full bg-white pb-12 px-4  sm:px-6  md:px-8">
       <SectionHeading
-        title="CFE Free Flashcards – Module Wise"
-        description="Select any module to access free flashcards that help you revise key topics, improve concept clarity, and strengthen your CFE preparation efficiently."
+        title="CAMS Free Flashcards - Section Wise"
+        description="Explore free flashcards to revise key AML topics, improve your understanding, and make your CAMS exam preparation more effective."
         align="center"
       />
 
@@ -324,4 +326,4 @@ const FreeResourceFlashCard = () => {
   );
 };
 
-export default FreeResourceFlashCard;
+export default CAMSFlashCard;

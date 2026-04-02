@@ -13,7 +13,7 @@ import { useState } from "react";
 import SectionHeading from "../SectionHeading/SectionHeading";
 import { Button } from "../ui/button";
 
-const FreeResourceFlashCard = () => {
+const CIAFlashCard = () => {
   const [openDrawer, setOpenDrawer] = useState(null);
   const [flippedCardKey, setFlippedCardKey] = useState(null);
 
@@ -22,9 +22,11 @@ const FreeResourceFlashCard = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["flash-card-cfe"],
+    queryKey: ["flash-card-cia"],
     queryFn: async () => {
-      const response = await axios.get(`${BASE_URL}/api/getFlashCardByCourse/CFE`);
+      const response = await axios.get(
+        `${BASE_URL}/api/getFlashCardByCourse/CIA`
+      );
       return response.data;
     },
   });
@@ -51,26 +53,32 @@ const FreeResourceFlashCard = () => {
       1: {
         id: 1,
         number: "01",
-        title: "Financial Transactions \n & Fraud Schemes",
-        icon: `${IMAGE_PATH}/flash_card_1.webp`,
+        title: "Internal Audit Professionalism and Quality",
+        icon: `${IMAGE_PATH}/Global_AFC_Frameworks,_Governance,_and_Regulations.webp`,
       },
       2: {
         id: 2,
         number: "02",
-        title: "Law",
-        icon: `${IMAGE_PATH}/flash_card_2.webp`,
+        title: "Internal Audit Operations and Audit Plan",
+        icon: `${IMAGE_PATH}/Tools_and_Technologies_to_Fight_Financial_Crimes.webp`,
       },
       3: {
         id: 3,
         number: "03",
-        title: "Investigation",
-        icon: `${IMAGE_PATH}/flash_card_3.webp`,
+        title: "Engagement \n Planning",
+        icon: `${IMAGE_PATH}/Engagement_Planning.webp`,
       },
       4: {
         id: 4,
         number: "04",
-        title: "Fraud Prevention \n & Deterrence",
-        icon: `${IMAGE_PATH}/flash_card_4.webp`,
+        title: "Engagement Performance",
+        icon: `${IMAGE_PATH}/Engagement_Performance.webp`,
+      },
+      5: {
+        id: 5,
+        number: "05",
+        title: "Engagement Results and Monitoring",
+        icon: `${IMAGE_PATH}/Engagement_Results_and_Monitoring.webp`,
       },
     };
 
@@ -158,13 +166,13 @@ const FreeResourceFlashCard = () => {
   return (
     <div className="w-full bg-white pb-12 px-4  sm:px-6  md:px-8">
       <SectionHeading
-        title="CFE Free Flashcards – Module Wise"
-        description="Select any module to access free flashcards that help you revise key topics, improve concept clarity, and strengthen your CFE preparation efficiently."
+        title="CIA Free Flashcards - Section Wise"
+        description="Access free flashcards to quickly revise important topics, understand key concepts better, and stay on track with your CIA exam preparation."
         align="center"
       />
 
       <div className="mx-auto max-w-5xl cursor-pointer">
-        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4 md:gap-10">
+        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-3 lg:grid-cols-5 md:gap-10">
           {modules.map((module) => (
             <div
               key={module.id}
@@ -324,4 +332,4 @@ const FreeResourceFlashCard = () => {
   );
 };
 
-export default FreeResourceFlashCard;
+export default CIAFlashCard;

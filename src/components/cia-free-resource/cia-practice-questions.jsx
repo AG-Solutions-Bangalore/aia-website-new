@@ -1,10 +1,9 @@
-
 import { BASE_URL } from "@/api/base-url";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const FreeResourcePracticeQuestion = () => {
+const CIAPracticeQuestion = () => {
   const [activeModule, setActiveModule] = useState(1);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [showAnswerFor, setShowAnswerFor] = useState(null);
@@ -15,9 +14,11 @@ const FreeResourcePracticeQuestion = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["practice-question-cfe"],
+    queryKey: ["practice-question-cia"],
     queryFn: async () => {
-      const response = await axios.get(`${BASE_URL}/api/getQuestionAnswerByCourse/CFE`);
+      const response = await axios.get(
+        `${BASE_URL}/api/getQuestionAnswerByCourse/CIA`
+      );
       return response.data;
     },
     retry: 3,
@@ -27,36 +28,44 @@ const FreeResourcePracticeQuestion = () => {
 
   const getModuleData = (moduleCode) => {
     switch (moduleCode) {
-      case "CFE-1":
+      case "CIA-1":
         return {
           id: 1,
-          title: "MODULE-I: FINANCIAL TRANSACTIONS AND FRAUD SCHEMES",
+          title: "SECTION-I: INTERNAL AUDIT PROFESSIONALISM AND QUALITY",
           questions: questionsData.filter(
-            (q) => q.questions_module === "CFE-1",
+            (q) => q.questions_module === "CIA-1"
           ),
         };
-      case "CFE-2":
+      case "CIA-2":
         return {
           id: 2,
-          title: "MODULE-II: LAW",
+          title: "SECTION-II: INTERNAL AUDIT OPERATIONS AND AUDIT PLAN",
           questions: questionsData.filter(
-            (q) => q.questions_module === "CFE-2",
+            (q) => q.questions_module === "CIA-2"
           ),
         };
-      case "CFE-3":
+      case "CIA-3":
         return {
           id: 3,
-          title: "MODULE-III: INVESTIGATION",
+          title: "SECTION-III: ENGAGEMENT PLANNING",
           questions: questionsData.filter(
-            (q) => q.questions_module === "CFE-3",
+            (q) => q.questions_module === "CIA-3"
           ),
         };
-      case "CFE-4":
+      case "CIA-4":
         return {
           id: 4,
-          title: "MODULE-IV: FRAUD PREVENTION & DETERRENCE",
+          title: "SECTION-IV: ENGAGEMENT PERFORMANCE",
           questions: questionsData.filter(
-            (q) => q.questions_module === "CFE-4",
+            (q) => q.questions_module === "CIA-4"
+          ),
+        };
+      case "CIA-5":
+        return {
+          id: 5,
+          title: "SECTION-V: ENGAGEMENT RESULTS AND MONITORING",
+          questions: questionsData.filter(
+            (q) => q.questions_module === "CIA-5"
           ),
         };
       default:
@@ -69,10 +78,11 @@ const FreeResourcePracticeQuestion = () => {
   };
 
   const modules = [
-    getModuleData("CFE-1"),
-    getModuleData("CFE-2"),
-    getModuleData("CFE-3"),
-    getModuleData("CFE-4"),
+    getModuleData("CIA-1"),
+    getModuleData("CIA-2"),
+    getModuleData("CIA-3"),
+    getModuleData("CIA-4"),
+    getModuleData("CIA-5"),
   ];
 
   const currentModule =
@@ -182,11 +192,11 @@ const FreeResourcePracticeQuestion = () => {
                       ? isCorrect
                         ? "border-[#21bf73] bg-[#21bf73]"
                         : isSelected
-                          ? "border-red-500 bg-red-500"
-                          : "border-gray-300 bg-white"
-                      : isSelected
-                        ? "border-[#0F3652] bg-white"
+                        ? "border-red-500 bg-red-500"
                         : "border-gray-300 bg-white"
+                      : isSelected
+                      ? "border-[#0F3652] bg-white"
+                      : "border-gray-300 bg-white"
                   }
                 `}
               >
@@ -205,8 +215,8 @@ const FreeResourcePracticeQuestion = () => {
                   showCorrect && isCorrect
                     ? "text-[#21bf73] font-medium"
                     : showCorrect && isSelected && !isCorrect
-                      ? "text-red-500 font-medium"
-                      : ""
+                    ? "text-red-500 font-medium"
+                    : ""
                 }
               `}
             >
@@ -500,7 +510,7 @@ const FreeResourcePracticeQuestion = () => {
                 {renderNavButtons(
                   currentQuestion,
                   isLastQuestion,
-                  currentQuestionIndex === 0,
+                  currentQuestionIndex === 0
                 )}
               </div>
             </div>
@@ -511,4 +521,4 @@ const FreeResourcePracticeQuestion = () => {
   );
 };
 
-export default FreeResourcePracticeQuestion;
+export default CIAPracticeQuestion;
