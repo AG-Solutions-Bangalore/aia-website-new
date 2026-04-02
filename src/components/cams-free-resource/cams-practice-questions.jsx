@@ -31,7 +31,7 @@ const CAMSPracticeQuestion = () => {
       case "CAMS-1":
         return {
           id: 1,
-          title: "MODULE-I: UNDERSTANDING THE RISKS AND METHODS OF FINANCIAL CRIME",
+          title: "SECTION-I: UNDERSTANDING THE RISKS AND METHODS OF FINANCIAL CRIME",
           questions: questionsData.filter(
             (q) => q.questions_module === "CAMS-1"
           ),
@@ -39,7 +39,7 @@ const CAMSPracticeQuestion = () => {
       case "CAMS-2":
         return {
           id: 2,
-          title: "MODULE-II: GLOBAL AFC FRAMEWORKS, GOVERNANCE, AND REGULATIONS",
+          title: "SECTION-II: GLOBAL AFC FRAMEWORKS, GOVERNANCE, AND REGULATIONS",
           questions: questionsData.filter(
             (q) => q.questions_module === "CAMS-2"
           ),
@@ -47,7 +47,7 @@ const CAMSPracticeQuestion = () => {
       case "CAMS-3":
         return {
           id: 3,
-          title: "MODULE-III: BUILDING AN AFC COMPLIANCE PROGRAM",
+          title: "SECTION-III: BUILDING AN AFC COMPLIANCE PROGRAM",
           questions: questionsData.filter(
             (q) => q.questions_module === "CAMS-3"
           ),
@@ -55,7 +55,7 @@ const CAMSPracticeQuestion = () => {
       case "CAMS-4":
         return {
           id: 4,
-          title: "MODULE-IV: TOOLS AND TECHNOLOGIES TO FIGHT FINANCIAL CRIMES",
+          title: "SECTION-IV: TOOLS AND TECHNOLOGIES TO FIGHT FINANCIAL CRIMES",
           questions: questionsData.filter(
             (q) => q.questions_module === "CAMS-4"
           ),
@@ -63,7 +63,7 @@ const CAMSPracticeQuestion = () => {
       default:
         return {
           id: 1,
-          title: "MODULE-I: FINANCIAL TRANSACTIONS AND FRAUD SCHEMES",
+          title: "SECTION-I: FINANCIAL TRANSACTIONS AND FRAUD SCHEMES",
           questions: [],
         };
     }
@@ -179,14 +179,13 @@ const CAMSPracticeQuestion = () => {
                 className={`
                   w-5 h-5 rounded-full border-2 flex items-center justify-center
                   transition-colors duration-200
-                  ${
-                    showCorrect
-                      ? isCorrect
-                        ? "border-[#21bf73] bg-[#21bf73]"
-                        : isSelected
+                  ${showCorrect
+                    ? isCorrect
+                      ? "border-[#21bf73] bg-[#21bf73]"
+                      : isSelected
                         ? "border-red-500 bg-red-500"
                         : "border-gray-300 bg-white"
-                      : isSelected
+                    : isSelected
                       ? "border-[#0F3652] bg-white"
                       : "border-gray-300 bg-white"
                   }
@@ -203,10 +202,9 @@ const CAMSPracticeQuestion = () => {
             <span
               className={`
                 text-[#0F3652] text-sm transition-colors duration-200
-                ${
-                  showCorrect && isCorrect
-                    ? "text-[#21bf73] font-medium"
-                    : showCorrect && isSelected && !isCorrect
+                ${showCorrect && isCorrect
+                  ? "text-[#21bf73] font-medium"
+                  : showCorrect && isSelected && !isCorrect
                     ? "text-red-500 font-medium"
                     : ""
                 }
@@ -349,11 +347,10 @@ const CAMSPracticeQuestion = () => {
                 className="bg-white border border-[#F3831C]/20 rounded-tr-3xl rounded-bl-3xl shadow-sm overflow-hidden"
               >
                 <button
-                  className={`w-full text-left flex items-center justify-between p-3 transition-all duration-200 ${
-                    isOpen
+                  className={`w-full text-left flex items-center justify-between p-3 transition-all duration-200 ${isOpen
                       ? "bg-[#F3831C] text-white"
                       : "bg-white text-[#0F3652]"
-                  }`}
+                    }`}
                   onClick={() => {
                     setActiveModule(isOpen ? null : module.id);
                     setCurrentQuestionIndex(0);
@@ -362,11 +359,10 @@ const CAMSPracticeQuestion = () => {
                 >
                   <div className="flex items-center gap-2">
                     <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
-                        isOpen
+                      className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${isOpen
                           ? "bg-white text-[#F3831C]"
                           : "bg-[#F3831C] text-white"
-                      }`}
+                        }`}
                     >
                       {module.id}
                     </div>
@@ -375,9 +371,8 @@ const CAMSPracticeQuestion = () => {
                     </span>
                   </div>
                   <svg
-                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
+                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+                      }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -403,11 +398,10 @@ const CAMSPracticeQuestion = () => {
                         </div>
                         {renderNavButtons(mq, mIsLast, mIsFirst)}
                         <div
-                          className={`transition-all duration-300 ${
-                            showAnswerFor === mq.id
+                          className={`transition-all duration-300 ${showAnswerFor === mq.id
                               ? "opacity-100 mt-4"
                               : "opacity-0 h-0 overflow-hidden"
-                          }`}
+                            }`}
                         >
                           {renderExplanation(mq)}
                         </div>
@@ -437,10 +431,9 @@ const CAMSPracticeQuestion = () => {
                 className={`
                   w-full text-left p-3 rounded-tr-3xl rounded-bl-3xl transition-all duration-200
                   border
-                  ${
-                    activeModule === module.id
-                      ? "bg-[#F3831C] text-white border-[#F3831C]"
-                      : "bg-white text-[#0F3652] border-gray-200 hover:bg-[#0F3652]/5"
+                  ${activeModule === module.id
+                    ? "bg-[#F3831C] text-white border-[#F3831C]"
+                    : "bg-white text-[#0F3652] border-gray-200 hover:bg-[#0F3652]/5"
                   }
                 `}
               >
@@ -448,10 +441,9 @@ const CAMSPracticeQuestion = () => {
                   <div
                     className={`
                       w-8 h-8 rounded-full flex items-center justify-center mr-3 font-bold text-xs
-                      ${
-                        activeModule === module.id
-                          ? "bg-white text-[#F3831C]"
-                          : "bg-[#F3831C] text-white"
+                      ${activeModule === module.id
+                        ? "bg-white text-[#F3831C]"
+                        : "bg-[#F3831C] text-white"
                       }
                     `}
                   >
@@ -490,11 +482,10 @@ const CAMSPracticeQuestion = () => {
                 </div>
 
                 <div
-                  className={`transition-all duration-300 ${
-                    showAnswerFor === currentQuestion.id
+                  className={`transition-all duration-300 ${showAnswerFor === currentQuestion.id
                       ? "opacity-100"
                       : "opacity-0 h-0 overflow-hidden"
-                  }`}
+                    }`}
                 >
                   {renderExplanation(currentQuestion)}
                 </div>

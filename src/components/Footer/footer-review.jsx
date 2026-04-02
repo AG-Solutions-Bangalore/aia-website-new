@@ -2,7 +2,7 @@ import { IMAGE_PATH } from "@/api/base-url";
 import React from "react";
 import { FaStar } from "react-icons/fa";
 
-const FooterReviews = ({ footer = true }) => {
+const FooterReviews = ({ footer = true, title = "white" }) => {
   const reviews = [
     {
       name: "Google",
@@ -47,7 +47,7 @@ const FooterReviews = ({ footer = true }) => {
   ];
 
   return (
-    <section className="py-6 md:py-8 border-b border-white/10">
+    <section className="py-6 md:py-8 border-b border-white/10 w-full">
       <div>
         {footer ? (
           <div className="flex flex-col justify-start">
@@ -100,7 +100,7 @@ const FooterReviews = ({ footer = true }) => {
           <>
             <div className="flex flex-col items-center justify-center lg:hidden px-3">
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold text-white">
+                <h2 className={`text-3xl font-bold ${title == "white" ? "text-white" : "text-black"}`}>
                   Top Ratings Across Platforms{" "}
                 </h2>
               </div>
