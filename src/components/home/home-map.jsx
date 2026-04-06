@@ -9,27 +9,13 @@ import "react-loading-skeleton/dist/skeleton.css";
 import "./home-map.css";
 import { BASE_URL } from "@/api/base-url";
 
-const MAX_PHOTOS = 6;
-const SPREAD_OFFSETS = [
-  { lat: 0.0, lng: 0.0 },
-  { lat: 1.2, lng: 1.4 },
-  { lat: -1.2, lng: 1.0 },
-  { lat: 1.0, lng: -1.4 },
-  { lat: -1.0, lng: -1.2 },
-  { lat: 0.0, lng: 2.0 },
-];
-
 const SIZES = [38, 44, 36, 42, 34, 40];
 
 const HomeMap = ({ courseCode }) => {
   const [mapData, setMapData] = useState(null);
   const [imageUrl, setImageUrl] = useState("");
 
-  const {
-    data: apiData,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: apiData, isLoading, isError } = useQuery({
     queryKey: ["student-map-data", courseCode],
     queryFn: async () => {
       const res = await axios.get(`${BASE_URL}/api/getAllPassoutStudentsMap`);
@@ -40,13 +26,24 @@ const HomeMap = ({ courseCode }) => {
   useEffect(() => {
     if (apiData) {
       const studentImageUrlObj = apiData.image_url?.find(
-        (item) => item.image_for === "Student",
+        (item) => item.image_for === "Student"
       );
       const studentImageUrl = studentImageUrlObj?.image_url || "";
       setMapData(apiData.data);
       setImageUrl(studentImageUrl);
     }
   }, [apiData]);
+
+  // Parse coordinates properly: handle N/S/E/W
+  const parseCoordinate = (coord) => {
+    if (!coord) return NaN;
+    const value = parseFloat(coord);
+    if (isNaN(value)) return NaN;
+    if (coord.includes("S") || coord.includes("W")) {
+      return -Math.abs(value);
+    }
+    return Math.abs(value);
+  };
 
   useEffect(() => {
     if (!mapData || !imageUrl) return;
@@ -66,7 +63,7 @@ const HomeMap = ({ courseCode }) => {
 
     const verticalBounds = L.latLngBounds(
       L.latLng(-70, -Infinity),
-      L.latLng(85, Infinity),
+      L.latLng(85, Infinity)
     );
     map.setMaxBounds(verticalBounds);
 
@@ -79,33 +76,10 @@ const HomeMap = ({ courseCode }) => {
         maxZoom: 20,
         noWrap: false,
         continuousWorld: true,
-      },
+      }
     ).addTo(map);
 
     const layerGroup = L.layerGroup();
-    const markerOriginalLngs = new Map();
-    let lastUpdateLng = null;
-
-    map.on("move", function () {
-      const mapCenterLng = map.getCenter().lng;
-      if (
-        lastUpdateLng === null ||
-        Math.abs(mapCenterLng - lastUpdateLng) > 90
-      ) {
-        layerGroup.getLayers().forEach((marker) => {
-          const originalLng = markerOriginalLngs.get(marker);
-          if (originalLng !== undefined) {
-            let newLng = originalLng;
-            while (newLng - mapCenterLng > 180) newLng -= 360;
-            while (newLng - mapCenterLng < -180) newLng += 360;
-            const latLng = marker.getLatLng();
-            if (Math.abs(newLng - latLng.lng) > 1)
-              marker.setLatLng([latLng.lat, newLng]);
-          }
-        });
-        lastUpdateLng = mapCenterLng;
-      }
-    });
 
     const makeAvatarIcon = (student, index) => {
       const size = SIZES[index % SIZES.length];
@@ -125,7 +99,7 @@ const HomeMap = ({ courseCode }) => {
             src="${student.imageUrl}"
             alt="${student.name}"
             style="width:100%;height:100%;object-fit:cover;display:block;"
-             loading="lazy"
+            loading="lazy"
           />
         </div>
       `;
@@ -151,87 +125,74 @@ const HomeMap = ({ courseCode }) => {
       </div>
     `;
 
-    const groupedByCountry = {};
-    mapData.forEach((student) => {
-      const country = student.country_name || "Unknown";
-      if (!groupedByCountry[country]) groupedByCountry[country] = [];
-      groupedByCountry[country].push({
+    const allLatLngs = [];
+
+    mapData.forEach((student, index) => {
+      const lat = parseCoordinate(student.country_latitude);
+      const lng = parseCoordinate(student.country_longitude);
+
+      if (isNaN(lat) || isNaN(lng)) return;
+
+      const studentData = {
         name: student.student_name,
         course: student.student_course,
         imageUrl: `${imageUrl}${student.student_image}`,
-        lat: parseFloat(student.country_latitude),
-        lng: parseFloat(student.country_longitude),
+        lat,
+        lng,
+      };
+
+      const icon = makeAvatarIcon(studentData, index);
+      const popupHtml = singlePopupHTML(studentData, student.country_name || "Unknown");
+
+      const marker = L.marker([lat, lng], { icon });
+
+      marker.bindPopup(popupHtml, {
+        minWidth: 130,
+        maxWidth: 180,
+        closeButton: false,
+        autoClose: true,
+        closeOnClick: true,
       });
-    });
 
-    const allLatLngs = [];
-
-    Object.keys(groupedByCountry).forEach((country) => {
-      const students = groupedByCountry[country];
-      if (!students.length) return;
-
-      const baseLat = students[0].lat;
-      const baseLng = students[0].lng;
-      if (isNaN(baseLat) || isNaN(baseLng)) return;
-
-      students.slice(0, MAX_PHOTOS).forEach((student, i) => {
-        const offset = SPREAD_OFFSETS[i] || { lat: 0, lng: 0 };
-        const coords = [baseLat + offset.lat, baseLng + offset.lng];
-
-        const icon = makeAvatarIcon(student, i);
-        const popupHtml = singlePopupHTML(student, country);
-
-        const marker = L.marker(coords, { icon });
-        markerOriginalLngs.set(marker, coords[1]);
-
-        marker.bindPopup(popupHtml, {
-          minWidth: 130,
-          maxWidth: 180,
-          closeButton: false,
-          autoClose: true,
-          closeOnClick: true,
-        });
-
-        marker.on("click", function () {
-          map.setView([baseLat, baseLng], 6, { animate: true });
-          this.openPopup();
-        });
-
-        marker.on("mouseover", function () {
-          this.openPopup();
-        });
-
-        marker.on("mouseout", function (e) {
-          const popupEl = this.getPopup()?.getElement();
-          if (
-            popupEl &&
-            e.originalEvent?.relatedTarget &&
-            popupEl.contains(e.originalEvent.relatedTarget)
-          )
-            return;
-          this.closePopup();
-        });
-
-        marker.on("popupopen", function () {
-          const popupEl = this.getPopup()?.getElement();
-          if (!popupEl) return;
-          const self = this;
-          popupEl._mouseoutHandler = function (e) {
-            if (!popupEl.contains(e.relatedTarget)) self.closePopup();
-          };
-          popupEl.addEventListener("mouseleave", popupEl._mouseoutHandler);
-        });
-
-        marker.on("popupclose", function () {
-          const popupEl = this.getPopup()?.getElement();
-          if (popupEl?._mouseoutHandler) {
-            popupEl.removeEventListener("mouseleave", popupEl._mouseoutHandler);
-          }
-        });
-
-        layerGroup.addLayer(marker);
-        allLatLngs.push(coords);
+      marker.on("click", function () {
+        map.setView([lat, lng], 6, { animate: true });
+        this.openPopup();
       });
+
+      marker.on("mouseover", function () {
+        this.openPopup();
+      });
+
+      marker.on("mouseout", function (e) {
+        const popupEl = this.getPopup()?.getElement();
+        if (
+          popupEl &&
+          e.originalEvent?.relatedTarget &&
+          popupEl.contains(e.originalEvent.relatedTarget)
+        )
+          return;
+        this.closePopup();
+      });
+
+      marker.on("popupopen", function () {
+        const popupEl = this.getPopup()?.getElement();
+        if (!popupEl) return;
+        const self = this;
+        popupEl._mouseoutHandler = function (e) {
+          if (!popupEl.contains(e.relatedTarget)) self.closePopup();
+        };
+        popupEl.addEventListener("mouseleave", popupEl._mouseoutHandler);
+      });
+
+      marker.on("popupclose", function () {
+        const popupEl = this.getPopup()?.getElement();
+        if (popupEl?._mouseoutHandler) {
+          popupEl.removeEventListener("mouseleave", popupEl._mouseoutHandler);
+        }
+      });
+
+      layerGroup.addLayer(marker);
+      allLatLngs.push([lat, lng]);
     });
 
     layerGroup.addTo(map);
