@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
-
+import PopUp from "@/components/common/pop-up";
 import HomeHero from "@/components/home/home-hero";
 
 const CourseYoutubeLecture = lazy(() =>
@@ -70,6 +70,11 @@ const CAMSFreeResources = () => {
   return (
     <>
       {/* Initial render */}
+      
+
+<PopUp slug="cams-free-resources" />
+
+
       <HomeHero slug="cams-free-resources" />
 
       <div ref={refs.youtube}>
