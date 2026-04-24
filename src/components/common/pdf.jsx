@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import PdfJoinDialog from "./PdfForm";
 
 const STATIC_REVIEWS = [
     { id: 1, image: "/pdf/1.webp", alt: "Brochure image" },
@@ -115,7 +116,7 @@ export const TestimonialSlider = ({
     }, [reviews.length, startTimer]);
 
     return (
-        <div className={cn("relative w-full text-foreground", className)}>
+        <div className={cn("relative w-full text-foreground ", className)}>
 
             <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 items-center">
 
@@ -180,13 +181,11 @@ export const TestimonialSlider = ({
                             </button>
 
                         </div>
-                        <a
-                            href="/puneet_garg_profile.pdf"
-                            download
-                            className="bg-[#F3831C] text-[12px] md:text-[16px] text-white px-6 py-1 rounded-xl font-semibold hover:bg-[#F3831C]/90 transition-all cursor-pointer flex items-center"
-                        >
-                            <p>Download Complete Profile</p>
-                        </a>
+                        {/* add */}
+                        <PdfJoinDialog
+                            course="Download Broucher"
+                            buttonlabel="Download Complete Profile"
+                        />
 
                     </div>
                 </div>
@@ -297,11 +296,12 @@ export const TestimonialSlider = ({
 
 const Pdf = () => {
     return (
-        <div className="w-full bg-linear-to-r from-slate-700 via-slate-600 to-blue-950 px-4 sm:px-6 lg:px-8 bg-white py-16">
+        <div className="w-full bg-linear-to-r from-slate-700 via-slate-600 to-blue-950 px-4 sm:px-6 lg:px-8 bg-white py-5">
             <div className="max-w-7xl mx-auto">
                 <TestimonialSlider
                     reviews={STATIC_REVIEWS}
                 />
+
             </div>
         </div>
     );
